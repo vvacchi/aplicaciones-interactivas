@@ -2,8 +2,8 @@ import Categoria from '../models/Categoria.model.js';
 import Publicacion from '../models/Publicacion.model.js';
 import { RecursoNoEncontradoError, ConflictoError } from '../utils/errors.js';
 
-export const listar = async ({ soloActivas = false } = {}) => {
-  const filtro = soloActivas ? { activa: true } : {};
+export const listar = async ({ activa } = {}) => {
+  const filtro = activa === undefined ? {} : { activa };
   return Categoria.find(filtro).sort({ nombre: 1 });
 };
 

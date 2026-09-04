@@ -1,9 +1,13 @@
 import express from 'express';
+import { z } from 'zod';
 import cors from 'cors';
 import morgan from 'morgan';
 import router from './routes/index.js';
 import { notFound } from './middlewares/notFound.middleware.js';
 import { errorHandler } from './middlewares/error.middleware.js';
+
+// Mensajes de error de Zod en español.
+z.config(z.locales.es());
 
 const app = express();
 

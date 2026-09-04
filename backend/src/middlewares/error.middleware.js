@@ -15,7 +15,10 @@ export const errorHandler = (err, req, res, next) => {
     return res.status(409).json({ mensaje: err.message });
   }
   if (err instanceof DatosInvalidosError) {
-    return res.status(400).json({ mensaje: err.message });
+    return res.status(400).json({
+      mensaje: err.message,
+      ...(err.detalles?.length > 0 && { errores: err.detalles }),
+    });
   }
   if (err instanceof NoAutorizadoError) {
     return res.status(401).json({ mensaje: err.message });

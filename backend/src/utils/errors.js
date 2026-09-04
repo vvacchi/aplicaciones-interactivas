@@ -13,9 +13,10 @@ export class ConflictoError extends Error {
 }
 
 export class DatosInvalidosError extends Error {
-  constructor(mensaje = 'Datos inválidos') {
+  constructor(mensaje = 'Datos inválidos', detalles = []) {
     super(mensaje);
     this.name = 'DatosInvalidosError';
+    this.detalles = detalles;
   }
 }
 
