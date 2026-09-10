@@ -26,3 +26,14 @@ export class NoAutorizadoError extends Error {
     this.name = 'NoAutorizadoError';
   }
 }
+
+/**
+ * Distinto de NoAutorizadoError: aca el usuario si esta identificado,
+ * pero su rol no alcanza para la operacion que pidio.
+ */
+export class ProhibidoError extends Error {
+  constructor(mensaje = 'No tenes permisos para realizar esta accion') {
+    super(mensaje);
+    this.name = 'ProhibidoError';
+  }
+}

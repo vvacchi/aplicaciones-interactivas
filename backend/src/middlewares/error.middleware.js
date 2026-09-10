@@ -4,6 +4,7 @@ import {
   ConflictoError,
   DatosInvalidosError,
   NoAutorizadoError,
+  ProhibidoError,
 } from '../utils/errors.js';
 
 export const errorHandler = (err, req, res, next) => {
@@ -22,6 +23,9 @@ export const errorHandler = (err, req, res, next) => {
   }
   if (err instanceof NoAutorizadoError) {
     return res.status(401).json({ mensaje: err.message });
+  }
+  if (err instanceof ProhibidoError) {
+    return res.status(403).json({ mensaje: err.message });
   }
 
   // Errores de Mongoose
