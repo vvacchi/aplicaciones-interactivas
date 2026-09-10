@@ -7,8 +7,9 @@ const horarioSchema = new mongoose.Schema(
       required: true,
       enum: ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'],
     },
-    desde: { type: String, required: true },
-    hasta: { type: String, required: true },
+    // La regla (abierto => desde y hasta) lo aplico la capa de validacion.
+    desde: { type: String },
+    hasta: { type: String },
     cerrado: { type: Boolean, default: false },
   },
   { _id: false }
