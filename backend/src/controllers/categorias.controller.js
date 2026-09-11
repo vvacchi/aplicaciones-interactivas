@@ -1,7 +1,13 @@
 import * as categoriasService from '../services/categorias.service.js';
 
+/** El listado publico y el del panel son el mismo endpoint. */
+const contexto = (req) => ({ esAdmin: req.usuario?.rol === 'admin' });
+
 export const listar = async (req, res) => {
-  const categorias = await categoriasService.listar(req.validado.query);
+  const categorias = await categoriasService.listar(
+    req.validado.query,
+    contexto(req)
+  );
   res.json(categorias);
 };
 

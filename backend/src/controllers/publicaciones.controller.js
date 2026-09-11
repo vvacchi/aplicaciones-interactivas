@@ -1,12 +1,21 @@
 import * as publicacionesService from '../services/publicaciones.service.js';
 
+/** El listado publico y el del panel son el mismo endpoint. */
+const contexto = (req) => ({ esAdmin: req.usuario?.rol === 'admin' });
+
 export const listar = async (req, res) => {
-  const resultado = await publicacionesService.listar(req.validado.query);
+  const resultado = await publicacionesService.listar(
+    req.validado.query,
+    contexto(req)
+  );
   res.json(resultado);
 };
 
 export const obtener = async (req, res) => {
-  const publicacion = await publicacionesService.obtenerPorId(req.validado.params.id);
+  const publicacion = await publicacionesService.obtenerPorId(
+    req.validado.params.id,
+    contexto(req)
+  );
   res.json(publicacion);
 };
 

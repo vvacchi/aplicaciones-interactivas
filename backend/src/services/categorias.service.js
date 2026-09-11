@@ -2,8 +2,13 @@ import Categoria from '../models/Categoria.model.js';
 import Publicacion from '../models/Publicacion.model.js';
 import { RecursoNoEncontradoError, ConflictoError } from '../utils/errors.js';
 
-export const listar = async ({ activa } = {}) => {
-  const filtro = activa === undefined ? {} : { activa };
+export const listar = async ({ activa } = {}, { esAdmin = false } = {}) => {
+  // El visitante nunca ve las categorias desactivadas.
+  const filtro = esAdmin
+    ? activa === undefined
+      ? {}
+      : { activa }
+    : { activa: true };
   return Categoria.find(filtro).sort({ nombre: 1 });
 };
 

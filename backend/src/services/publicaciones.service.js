@@ -40,8 +40,12 @@ const verificarCategoria = async (id) => {
   }
 };
 
-export const listar = async ({ pagina, limite, orden, ...filtros } = {}) => {
-  const filtro = armarFiltro(filtros);
+export const listar = async (
+  { pagina, limite, orden, ...filtros } = {},
+  { esAdmin = false } = {}
+) => {
+  // Las publicaciones desactivadas son borradores: solo las ve el panel.
+  const filtro = armarFiltro(esAdmin ? filtros : { ...filtros, activa: true });
   const salteo = (pagina - 1) * limite;
 
   const [datos, total] = await Promise.all([
@@ -64,9 +68,13 @@ export const listar = async ({ pagina, limite, orden, ...filtros } = {}) => {
   };
 };
 
-export const obtenerPorId = async (id) => {
+export const obtenerPorId = async (id, { esAdmin = false } = {}) => {
   const publicacion = await Publicacion.findById(id).populate('categoria', 'nombre');
-  if (!publicacion) throw new RecursoNoEncontradoError('Publicación no encontrada');
+
+  // Para el visitante, una publicacion desactivada no existe.
+  if (!publicacion || (!esAdmin && !publicacion.activa)) {
+    throw new RecursoNoEncontradoError('Publicación no encontrada');
+  }
   return publicacion;
 };
 
