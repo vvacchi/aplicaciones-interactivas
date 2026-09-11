@@ -11,7 +11,7 @@ const atributosExperiencia = z.strictObject({
   dificultad: z.enum(['baja', 'media', 'alta']),
   duracionHoras: z.number().positive({ error: 'La duración debe ser mayor a cero' }),
   temporada: z
-    .array(z.enum(['verano', 'otoño', 'invierno', 'primavera']))
+    .array(z.enum(['verano', 'otonio', 'invierno', 'primavera']))
     .min(1, { error: 'Indicá al menos una temporada' }),
   cupoMaximo: z.number().int().positive(),
   puntoEncuentro: z.string().trim().min(3),
