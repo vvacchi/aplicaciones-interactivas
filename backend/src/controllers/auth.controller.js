@@ -24,20 +24,14 @@ export const actualizarPerfil = async (req, res) => {
 };
 
 export const recuperarPassword = async (req, res) => {
-  const { token } = await authService.solicitarRecuperacion(req.validado.body);
+  await authService.solicitarRecuperacion(req.validado.body);
 
-  const respuesta = {
+  // Siempre la misma respuesta, exista o no el correo: distinguir los dos
+  // casos permitiria averiguar que direcciones estan registradas.
+  res.json({
     mensaje:
       'Si el correo esta registrado, vas a recibir las instrucciones para recuperar la contrasena',
-  };
-
-  // Sin envio de mails, el token no tendria como llegar al usuario.
-  // Se expone solo fuera de produccion para poder probar el circuito.
-  if (token && process.env.NODE_ENV !== 'production') {
-    respuesta.token = token;
-  }
-
-  res.json(respuesta);
+  });
 };
 
 export const resetearPassword = async (req, res) => {

@@ -67,7 +67,7 @@ export const COMERCIO = {
 export const ADMIN = {
   nombre: 'Carlos',
   apellido: 'Rossi',
-  email: 'admin@andesvertical.com.ar',
+  email: 'andesverticaltest@gmail.com',
   telefono: '+54 294 4123456',
   password: 'Bariloche2026',
   rol: 'admin',

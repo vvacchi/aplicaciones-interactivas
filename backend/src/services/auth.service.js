@@ -1,6 +1,7 @@
 import crypto from 'node:crypto';
 import Usuario from '../models/Usuario.model.js';
 import { firmarToken } from '../utils/jwt.js';
+import { enviarMailRecuperacion } from '../utils/mailer.js';
 import {
   ConflictoError,
   NoAutorizadoError,
@@ -91,7 +92,7 @@ export const actualizarPerfil = async (usuarioActual, datos) => {
  */
 export const solicitarRecuperacion = async ({ email }) => {
   const usuario = await Usuario.findOne({ email });
-  if (!usuario) return { token: null };
+  if (!usuario) return { enviado: false };
 
   const token = crypto.randomBytes(32).toString('hex');
 
@@ -101,7 +102,17 @@ export const solicitarRecuperacion = async ({ email }) => {
   );
   await usuario.save();
 
-  return { token };
+  try {
+    await enviarMailRecuperacion({ usuario, token });
+    return { enviado: true };
+  } catch (error) {
+    // El pedido en si no falla: la respuesta al cliente es siempre la
+    // misma para no revelar que correos estan registrados. El problema
+    // de envio queda en el log del servidor, que es quien puede
+    // resolverlo.
+    console.error('[mailer] No se pudo enviar el correo de recuperacion:', error.message);
+    return { enviado: false };
+  }
 };
 
 export const resetearPassword = async ({ token, password }) => {
