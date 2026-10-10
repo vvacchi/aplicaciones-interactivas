@@ -1,0 +1,48 @@
+/*
+ * Tokens PROVISORIOS. El sistema de diseño todavia no esta definido:
+ * estos valores son neutros a proposito y se reemplazan cuando se cierre.
+ * Los componentes usan siempre las variables, nunca valores sueltos.
+ */
+:root {
+  /* Color */
+  --color-fondo: #ffffff;
+  --color-superficie: #f4f4f5;
+  --color-borde: #d4d4d8;
+  --color-texto: #18181b;
+  --color-texto-suave: #52525b;
+  --color-acento: #3f3f46;
+  --color-acento-contraste: #ffffff;
+  --color-error: #b91c1c;
+  --color-exito: #15803d;
+  --color-foco: #2563eb;
+
+  /* Tipografia */
+  --fuente-base: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --fuente-titulos: var(--fuente-base);
+  --texto-xs: 0.75rem;
+  --texto-sm: 0.875rem;
+  --texto-md: 1rem;
+  --texto-lg: 1.25rem;
+  --texto-xl: 1.75rem;
+  --texto-2xl: 2.5rem;
+  --interlineado: 1.5;
+
+  /* Espaciado */
+  --espacio-1: 0.25rem;
+  --espacio-2: 0.5rem;
+  --espacio-3: 0.75rem;
+  --espacio-4: 1rem;
+  --espacio-6: 1.5rem;
+  --espacio-8: 2rem;
+  --espacio-12: 3rem;
+
+  /* Forma */
+  --radio-sm: 4px;
+  --radio-md: 8px;
+  --radio-lg: 16px;
+  --sombra-sm: 0 1px 2px rgb(0 0 0 / 0.08);
+  --sombra-md: 0 4px 12px rgb(0 0 0 / 0.1);
+
+  /* Layout */
+  --ancho-max: 72rem;
+}
