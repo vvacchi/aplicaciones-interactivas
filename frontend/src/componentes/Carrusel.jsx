@@ -5,8 +5,9 @@ import estilos from './Carrusel.module.css';
 /**
  * Muestra una imagen a la vez con flechas y puntos. Si una imagen no
  * carga, queda un fondo neutro con un icono en lugar del icono roto.
+ * Con `miniaturas` agrega debajo una tira para saltar a cada imagen.
  */
-export default function Carrusel({ imagenes = [], alt, className = '' }) {
+export default function Carrusel({ imagenes = [], alt, className = '', miniaturas = false }) {
   const [indice, setIndice] = useState(0);
   const [fallidas, setFallidas] = useState(() => new Set());
   const total = imagenes.length;
@@ -22,7 +23,7 @@ export default function Carrusel({ imagenes = [], alt, className = '' }) {
 
   const marcarFallida = () => setFallidas((previas) => new Set(previas).add(actual));
 
-  return (
+  const marco = (
     <div className={`${estilos.carrusel} ${className}`}>
       {actual && !fallidas.has(actual) ? (
         <img
@@ -52,6 +53,28 @@ export default function Carrusel({ imagenes = [], alt, className = '' }) {
           </div>
         </>
       )}
+    </div>
+  );
+
+  if (!miniaturas || total < 2) return marco;
+
+  return (
+    <div className={estilos.galeria}>
+      {marco}
+      <ul className={estilos.miniaturas}>
+        {imagenes.map((url, i) => (
+          <li key={url + i}>
+            <button
+              type="button"
+              onClick={() => setIndice(i)}
+              aria-label={`Ver imagen ${i + 1} de ${total}`}
+              aria-current={i === indice ? 'true' : undefined}
+            >
+              {!fallidas.has(url) && <img src={url} alt="" loading="lazy" />}
+            </button>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

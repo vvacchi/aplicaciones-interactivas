@@ -4,13 +4,22 @@ import Campo from './Campo.jsx';
 import { hoy, resumirRango, validarRango } from '../utils/fechas.js';
 import estilos from './RangoFechas.module.css';
 
+const TEXTOS_ALQUILER = {
+  pregunta: '¿Cuándo lo necesitás?',
+  nota: 'Elegí las fechas para ver el total de cada equipo. No es una reserva: las fechas viajan con tu consulta.',
+  desde: 'Retiro',
+  hasta: 'Devolución',
+};
+
 /**
- * Fechas de retiro y devolucion del alquiler. No reservan nada: sirven
- * para calcular el total estimado y viajan con la consulta.
+ * Rango de fechas elegido por el visitante. No reserva nada: sirve para
+ * calcular el total estimado del alquiler y viaja con la consulta.
  * Para que el borrador se reinicie cuando el rango cambia desde afuera,
  * el padre le pasa una `key` armada con las fechas.
+ * `textos` cambia los rotulos (por ejemplo, fechas tentativas de una
+ * experiencia) y `compacto` lo acomoda a una columna angosta.
  */
-export default function RangoFechas({ rango, alAplicar, alQuitar }) {
+export default function RangoFechas({ rango, alAplicar, alQuitar, textos = TEXTOS_ALQUILER, compacto = false }) {
   const [borrador, setBorrador] = useState(rango ?? { desde: '', hasta: '' });
   const [errores, setErrores] = useState({});
 
@@ -27,16 +36,14 @@ export default function RangoFechas({ rango, alAplicar, alQuitar }) {
   };
 
   return (
-    <form className={estilos.rango} onSubmit={aplicar} noValidate>
+    <form className={`${estilos.rango} ${compacto ? estilos.compacto : ''}`} onSubmit={aplicar} noValidate>
       <div className={estilos.resumen}>
-        <p className={estilos.titulo}>{rango ? resumirRango(rango) : '¿Cuándo lo necesitás?'}</p>
-        <p className={estilos.nota}>
-          Elegí las fechas para ver el total de cada equipo. No es una reserva: las fechas viajan con tu consulta.
-        </p>
+        <p className={estilos.titulo}>{rango ? resumirRango(rango) : textos.pregunta}</p>
+        <p className={estilos.nota}>{textos.nota}</p>
       </div>
       <div className={estilos.campos}>
         <Campo
-          etiqueta="Retiro"
+          etiqueta={textos.desde}
           type="date"
           min={hoy()}
           value={borrador.desde}
@@ -44,7 +51,7 @@ export default function RangoFechas({ rango, alAplicar, alQuitar }) {
           error={errores.desde}
         />
         <Campo
-          etiqueta="Devolución"
+          etiqueta={textos.hasta}
           type="date"
           min={borrador.desde || hoy()}
           value={borrador.hasta}

@@ -55,6 +55,31 @@
   cursor: pointer;
 }
 
+/* Version para una columna angosta, como la ficha del detalle. */
+.compacto {
+  display: grid;
+  border-left-width: 1px;
+}
+
+.compacto .campos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.compacto .campos > div:not(.acciones) {
+  width: auto;
+}
+
+.compacto .acciones {
+  grid-column: 1 / -1;
+  padding-top: 0;
+}
+
+.compacto .campos input {
+  padding-inline: 0.5rem;
+  font-size: var(--texto-sm);
+}
+
 @media (max-width: 480px) {
   .campos > div:not(.acciones) {
     width: calc(50% - var(--espacio-2));

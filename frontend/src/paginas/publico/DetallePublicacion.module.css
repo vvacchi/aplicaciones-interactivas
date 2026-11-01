@@ -1,0 +1,241 @@
+.migas {
+  padding-block: var(--espacio-6) var(--espacio-4);
+  font-size: var(--texto-sm);
+  color: var(--color-texto-suave);
+}
+
+.migas ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-1) var(--espacio-2);
+}
+
+.migas li + li::before {
+  content: '›';
+  margin-right: var(--espacio-2);
+}
+
+.migas a {
+  text-underline-offset: 3px;
+}
+
+/* Mobile: fotos y titulo, despues la ficha con el precio y "Consultar",
+   despues el resto. Desktop: la ficha queda a la derecha, fija al scrollear. */
+.disposicion {
+  display: grid;
+  grid-template-areas: 'cabecera' 'ficha' 'cuerpo';
+  gap: var(--espacio-8);
+}
+
+@media (min-width: 960px) {
+  .disposicion {
+    grid-template-columns: minmax(0, 1fr) 21rem;
+    grid-template-areas: 'cabecera ficha' 'cuerpo ficha';
+    grid-template-rows: auto 1fr;
+    align-items: start;
+  }
+}
+
+.cabecera,
+.cuerpo {
+  display: grid;
+  gap: var(--espacio-6);
+  min-width: 0;
+}
+
+.cabecera {
+  grid-area: cabecera;
+}
+
+.cuerpo {
+  grid-area: cuerpo;
+}
+
+.carrusel {
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radio);
+}
+
+.encabezado h1 {
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-weight: var(--peso-negrita);
+  line-height: 1.2;
+}
+
+.categoria {
+  margin-bottom: var(--espacio-1);
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-semi);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.categoria a {
+  color: var(--color-texto-suave);
+  text-decoration: none;
+}
+
+.categoria a:hover {
+  color: var(--color-primario);
+  text-decoration: underline;
+}
+
+.etiquetas {
+  display: flex;
+  gap: var(--espacio-2);
+  margin-top: var(--espacio-2);
+}
+
+.etiquetas:empty {
+  display: none;
+}
+
+.descripcion {
+  max-width: 44rem;
+  font-weight: var(--peso-liviano);
+  font-size: 1.05rem;
+  white-space: pre-line;
+}
+
+.tituloSeccion {
+  margin-bottom: var(--espacio-3);
+  font-size: var(--texto-md);
+  font-weight: var(--peso-negrita);
+  text-transform: uppercase;
+  color: var(--color-primario);
+}
+
+.datos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+  border-top: 1px solid var(--color-linea);
+}
+
+.datos div {
+  padding: var(--espacio-3) 0;
+  border-bottom: 1px solid var(--color-linea);
+}
+
+.datos dt {
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-semi);
+  text-transform: uppercase;
+  color: var(--color-texto-suave);
+}
+
+.datos dd {
+  font-weight: var(--peso-medio);
+}
+
+.lista {
+  display: grid;
+  gap: var(--espacio-2);
+  font-weight: var(--peso-liviano);
+}
+
+.lista li {
+  position: relative;
+  padding-left: var(--espacio-6);
+}
+
+.lista li::before {
+  content: '';
+  position: absolute;
+  left: 0.3rem;
+  top: 0.6em;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--color-primario);
+}
+
+/* ------------------------------- Ficha ------------------------------- */
+.lateral {
+  grid-area: ficha;
+  min-width: 0;
+}
+
+@media (min-width: 960px) {
+  .lateral {
+    position: sticky;
+    top: var(--espacio-4);
+  }
+}
+
+.ficha {
+  display: grid;
+  gap: var(--espacio-4);
+  padding: var(--espacio-5);
+  border: 1px solid var(--color-linea);
+  border-radius: var(--radio);
+  background: var(--color-fondo);
+}
+
+.precio {
+  font-size: 1.8rem;
+  font-weight: var(--peso-negrita);
+  line-height: 1.1;
+}
+
+.precio small {
+  display: block;
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-semi);
+  text-transform: uppercase;
+  color: var(--color-texto-suave);
+}
+
+.disponible,
+.noDisponible {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-2);
+  font-weight: var(--peso-semi);
+  font-size: var(--texto-sm);
+}
+
+.disponible {
+  color: var(--color-exito);
+}
+
+.noDisponible {
+  color: var(--color-error);
+}
+
+.disponible::before,
+.noDisponible::before {
+  content: '';
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.total {
+  font-size: var(--texto-sm);
+}
+
+.consultar {
+  width: 100%;
+}
+
+.ayuda {
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-liviano);
+  color: var(--color-texto-suave);
+}
+
+/* ---------------------------- Relacionadas ---------------------------- */
+.relacionadas {
+  padding-block: var(--espacio-14);
+}
+
+.relacionadas .tituloSeccion {
+  margin-bottom: var(--espacio-6);
+}
+
+.grilla {
+  display: grid;
+  gap: var(--espacio-8) var(--espacio-6);
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+}
