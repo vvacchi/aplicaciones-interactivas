@@ -48,12 +48,16 @@ function textoPrecio(publicacion) {
 /**
  * Tarjeta del catalogo. Toda la tarjeta lleva al detalle (link estirado
  * desde el titulo); las flechas del carrusel quedan por encima.
- * Con `conTipo` muestra el tipo junto a la categoria.
+ * Con `conTipo` muestra el tipo junto a la categoria. Con `dias` (alquiler)
+ * agrega el total estimado del periodo, y `busqueda` se suma al link del
+ * detalle para que las fechas elegidas viajen con el visitante.
  */
-export default function TarjetaPublicacion({ publicacion, conTipo = false }) {
+export default function TarjetaPublicacion({ publicacion, conTipo = false, dias, busqueda = '' }) {
   const { _id, nombre, categoria, imagenes, disponible, destacada, tipo } = publicacion;
   const precio = textoPrecio(publicacion);
   const datos = datosPorTipo(publicacion).filter(([, valor]) => valor);
+  const precioDiario = tipo === 'alquiler' ? precioDePublicacion(publicacion) : null;
+  const totalEstimado = dias && precioDiario != null ? precioDiario * dias : null;
 
   return (
     <article className={`${estilos.tarjeta} ${disponible ? '' : estilos.noDisponible}`}>
@@ -74,7 +78,7 @@ export default function TarjetaPublicacion({ publicacion, conTipo = false }) {
           {conTipo && ` · ${TIPOS[tipo]}`}
         </p>
         <h3 className={estilos.nombre}>
-          <Link to={`/publicaciones/${_id}`}>{nombre}</Link>
+          <Link to={`/publicaciones/${_id}${busqueda}`}>{nombre}</Link>
         </h3>
         <dl className={estilos.datos}>
           {datos.map(([etiqueta, valor]) => (
@@ -87,11 +91,18 @@ export default function TarjetaPublicacion({ publicacion, conTipo = false }) {
 
       <div className={estilos.pie}>
         {precio ? (
-          <p className={estilos.precio}>
-            {precio.previo && <small>{precio.previo} </small>}
-            {precio.monto}
-            {precio.posterior && <small> {precio.posterior}</small>}
-          </p>
+          <div>
+            <p className={estilos.precio}>
+              {precio.previo && <small>{precio.previo} </small>}
+              {precio.monto}
+              {precio.posterior && <small> {precio.posterior}</small>}
+            </p>
+            {totalEstimado != null && (
+              <p className={estilos.estimado}>
+                {dias} {dias === 1 ? 'día' : 'días'}: <strong>{formatearPrecio(totalEstimado)}</strong>
+              </p>
+            )}
+          </div>
         ) : (
           <p className={estilos.consultar}>Precio a consultar</p>
         )}

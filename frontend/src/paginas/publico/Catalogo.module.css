@@ -1,0 +1,157 @@
+.tipos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--espacio-2);
+  margin-bottom: var(--espacio-8);
+}
+
+.fechas {
+  margin-bottom: var(--espacio-8);
+}
+
+.disposicion {
+  display: grid;
+  gap: var(--espacio-8);
+  padding-bottom: var(--espacio-14);
+}
+
+@media (min-width: 960px) {
+  .disposicion {
+    grid-template-columns: 16rem minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+/* ------------------------------ Lateral ------------------------------ */
+.lateral {
+  display: grid;
+  gap: var(--espacio-6);
+}
+
+.buscador {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--espacio-2);
+}
+
+.buscador > div {
+  flex: 1;
+}
+
+.botonBuscar {
+  margin-top: 1.55rem;
+  padding: 0.6rem 0.85rem;
+}
+
+.icono {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.filtros {
+  display: grid;
+  gap: var(--espacio-6);
+}
+
+.rotulo {
+  margin-bottom: var(--espacio-2);
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-semi);
+  text-transform: uppercase;
+  color: var(--color-texto-suave);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-2);
+}
+
+.precio fieldset {
+  border: 0;
+}
+
+.precioCampos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--espacio-2) var(--espacio-3);
+}
+
+.aplicar {
+  grid-column: 1 / -1;
+  justify-self: start;
+}
+
+.limpiar,
+.abrirFiltros {
+  justify-self: start;
+  border: 0;
+  background: none;
+  font-weight: var(--peso-semi);
+  font-size: var(--texto-sm);
+  color: var(--color-primario);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.abrirFiltros {
+  display: none;
+}
+
+/* En pantallas chicas los filtros secundarios quedan plegados. */
+@media (max-width: 959px) {
+  .abrirFiltros {
+    display: block;
+  }
+
+  .filtros {
+    display: none;
+  }
+
+  .filtros.abiertos {
+    display: grid;
+    padding: var(--espacio-4);
+    border: 1px solid var(--color-linea);
+    border-radius: var(--radio);
+  }
+}
+
+/* ----------------------------- Resultados ----------------------------- */
+.barra {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--espacio-3);
+  padding-bottom: var(--espacio-3);
+  margin-bottom: var(--espacio-6);
+  border-bottom: 1px solid var(--color-linea);
+  font-size: var(--texto-sm);
+  color: var(--color-texto-suave);
+}
+
+.orden {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-2);
+}
+
+.orden select {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--color-borde-control);
+  border-radius: var(--radio);
+  background: var(--color-fondo);
+  color: var(--color-texto);
+}
+
+.grilla {
+  display: grid;
+  gap: var(--espacio-8) var(--espacio-6);
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+}
+
+.centro {
+  text-align: center;
+}

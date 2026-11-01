@@ -1,0 +1,71 @@
+.rango {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--espacio-4) var(--espacio-8);
+  padding: var(--espacio-4) var(--espacio-5);
+  border: 1px solid var(--color-linea);
+  border-left: 4px solid var(--color-primario);
+  border-radius: var(--radio);
+  background: var(--color-fondo);
+}
+
+.resumen {
+  flex: 1 1 16rem;
+}
+
+.titulo {
+  font-weight: var(--peso-negrita);
+  font-size: 1.1rem;
+  color: var(--color-primario);
+}
+
+.nota {
+  margin-top: var(--espacio-1);
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-liviano);
+  color: var(--color-texto-suave);
+}
+
+.campos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--espacio-3);
+}
+
+.campos > div:not(.acciones) {
+  width: 10.5rem;
+}
+
+.acciones {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-3);
+  padding-top: 1.7rem;
+}
+
+.quitar {
+  border: 0;
+  background: none;
+  font-size: var(--texto-sm);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .campos > div:not(.acciones) {
+    width: calc(50% - var(--espacio-2));
+  }
+
+  .acciones {
+    padding-top: 0;
+  }
+
+  .campos input {
+    padding-inline: 0.5rem;
+    font-size: var(--texto-sm);
+  }
+}

@@ -116,6 +116,15 @@
   color: var(--color-texto-suave);
 }
 
+.estimado {
+  font-size: var(--texto-xs);
+  color: var(--color-texto-suave);
+}
+
+.estimado strong {
+  color: var(--color-texto);
+}
+
 .mas {
   font-weight: var(--peso-semi);
   font-size: 0.82rem;
