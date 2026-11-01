@@ -1,0 +1,48 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espacio-3);
+  color: var(--color-primario);
+  font-weight: var(--peso-negrita);
+  font-size: 1.1rem;
+  line-height: 1.1;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.marca {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  background: var(--color-primario);
+  color: var(--color-sobre-primario);
+}
+
+.marca svg {
+  width: 1.35rem;
+  height: 1.35rem;
+}
+
+.subtitulo {
+  display: block;
+  font-weight: var(--peso-medio);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  color: var(--color-texto-suave);
+}
+
+.claro {
+  color: #fff;
+}
+
+.claro .marca {
+  background: #fff;
+  color: var(--color-primario);
+}
+
+.claro .subtitulo {
+  color: rgb(255 255 255 / 0.75);
+}

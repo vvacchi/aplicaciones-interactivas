@@ -1,0 +1,18 @@
+.chip {
+  padding: 0.4rem 1rem;
+  border: 1px solid var(--color-borde-control);
+  border-radius: var(--radio-pildora);
+  background: var(--color-fondo);
+  font-size: var(--texto-sm);
+  cursor: pointer;
+}
+
+.chip:hover {
+  border-color: var(--color-texto);
+}
+
+.chip[aria-pressed='true'] {
+  background: var(--color-barra);
+  border-color: var(--color-barra);
+  color: #fff;
+}

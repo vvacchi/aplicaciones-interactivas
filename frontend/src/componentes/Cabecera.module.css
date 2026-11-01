@@ -1,0 +1,150 @@
+.cabecera {
+  position: relative;
+  z-index: 20;
+  background: var(--color-fondo);
+}
+
+.superior {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espacio-4);
+  padding-block: var(--espacio-4);
+}
+
+.acciones {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-4);
+}
+
+.buscador {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-2);
+  width: 17rem;
+  max-width: 100%;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-borde-control);
+  border-radius: var(--radio-pildora);
+  background: var(--color-fondo);
+  color: var(--color-texto);
+}
+
+.buscador:focus-within {
+  outline: 3px solid var(--color-foco);
+  outline-offset: 2px;
+}
+
+.buscador input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: none;
+  font-size: var(--texto-sm);
+}
+
+.iconoBuscar {
+  width: 1.1rem;
+  height: 1.1rem;
+  flex: none;
+}
+
+.botonMenu {
+  display: none;
+  padding: var(--espacio-2);
+  border: 0;
+  background: none;
+  color: var(--color-primario);
+  cursor: pointer;
+}
+
+.botonMenu svg {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
+.nav {
+  background: var(--color-barra);
+}
+
+.nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--espacio-1) var(--espacio-8);
+  padding: 0.9rem var(--gutter);
+}
+
+.nav a {
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 0.95rem;
+}
+
+.nav a:hover,
+.nav a[aria-current='page'] {
+  color: var(--color-barra-texto-activo);
+}
+
+.nav a[aria-current='page'] {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+.nav a:focus-visible {
+  outline-color: #fff;
+}
+
+.soloMovil {
+  display: none;
+}
+
+@media (max-width: 820px) {
+  .soloEscritorio {
+    display: none;
+  }
+
+  .botonMenu {
+    display: block;
+  }
+
+  /* En mobile la barra se convierte en un panel desplegable. */
+  .nav {
+    display: none;
+    position: absolute;
+    inset: 100% 0 auto;
+    padding: var(--espacio-4) var(--gutter) var(--espacio-6);
+    box-shadow: 0 12px 20px -12px rgb(0 0 0 / 0.5);
+  }
+
+  .nav.abierto {
+    display: block;
+  }
+
+  .soloMovil {
+    display: block;
+    margin-bottom: var(--espacio-4);
+  }
+
+  .soloMovil .buscador {
+    width: 100%;
+  }
+
+  .nav ul {
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+  }
+
+  .nav li + li {
+    border-top: 1px solid rgb(255 255 255 / 0.15);
+  }
+
+  .nav a {
+    display: block;
+    padding: 0.8rem 0;
+  }
+}

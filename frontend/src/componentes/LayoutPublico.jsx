@@ -1,21 +1,21 @@
-import { Link, Outlet } from 'react-router';
+import { Outlet } from 'react-router';
+import Cabecera from './Cabecera.jsx';
+import Pie from './Pie.jsx';
+import BotonAyuda from './BotonAyuda.jsx';
+import estilos from './LayoutPublico.module.css';
 
-// Navegacion provisoria para recorrer las rutas hasta que exista el diseño.
 export default function LayoutPublico() {
   return (
-    <>
-      <header>
-        <nav aria-label="Principal">
-          <Link to="/">Inicio</Link> · <Link to="/catalogo">Catálogo</Link> ·{' '}
-          <Link to="/publicaciones/demo">Publicación (demo)</Link> ·{' '}
-          <Link to="/contacto">Contacto</Link> ·{' '}
-          <Link to="/recuperar-password">Recuperar contraseña</Link> ·{' '}
-          <Link to="/admin">Panel</Link>
-        </nav>
-      </header>
-      <main>
+    <div className={estilos.pagina}>
+      <a href="#contenido" className={estilos.saltar}>
+        Saltar al contenido
+      </a>
+      <Cabecera />
+      <main id="contenido" className={estilos.contenido} tabIndex={-1}>
         <Outlet />
       </main>
-    </>
+      <Pie />
+      <BotonAyuda />
+    </div>
   );
 }

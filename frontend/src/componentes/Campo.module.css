@@ -1,0 +1,48 @@
+.campo {
+  display: grid;
+  gap: var(--espacio-1);
+  align-content: start;
+}
+
+.etiqueta {
+  font-weight: var(--peso-semi);
+  font-size: var(--texto-sm);
+}
+
+.opcional {
+  font-weight: var(--peso-normal);
+  color: var(--color-texto-suave);
+}
+
+.control {
+  width: 100%;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid var(--color-borde-control);
+  border-radius: var(--radio);
+  background: var(--color-fondo);
+  font-size: var(--texto-md);
+}
+
+textarea.control {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+.control:focus-visible {
+  outline-offset: 0;
+}
+
+.conError .control {
+  border: 2px solid var(--color-error);
+}
+
+.ayuda {
+  font-size: var(--texto-xs);
+  color: var(--color-texto-suave);
+}
+
+.error {
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-semi);
+  color: var(--color-error);
+}

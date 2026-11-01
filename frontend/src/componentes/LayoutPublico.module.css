@@ -1,0 +1,28 @@
+.pagina {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.contenido {
+  flex: 1;
+}
+
+.contenido:focus {
+  outline: none;
+}
+
+.saltar {
+  position: absolute;
+  left: var(--espacio-4);
+  top: -3rem;
+  z-index: 30;
+  padding: var(--espacio-2) var(--espacio-4);
+  border-radius: var(--radio);
+  background: var(--color-primario);
+  color: var(--color-sobre-primario);
+}
+
+.saltar:focus {
+  top: var(--espacio-2);
+}

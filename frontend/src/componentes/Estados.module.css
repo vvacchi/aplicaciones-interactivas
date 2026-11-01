@@ -1,0 +1,33 @@
+.estado {
+  display: grid;
+  justify-items: center;
+  gap: var(--espacio-3);
+  padding: var(--espacio-10) var(--espacio-4);
+  text-align: center;
+  color: var(--color-texto-suave);
+}
+
+.titulo {
+  font-weight: var(--peso-semi);
+  font-size: var(--texto-lg);
+  color: var(--color-texto);
+}
+
+.error .titulo {
+  color: var(--color-error);
+}
+
+.indicador {
+  width: 2rem;
+  height: 2rem;
+  border: 3px solid var(--color-linea);
+  border-top-color: var(--color-primario);
+  border-radius: 50%;
+  animation: girar 0.8s linear infinite;
+}
+
+@keyframes girar {
+  to {
+    rotate: 360deg;
+  }
+}

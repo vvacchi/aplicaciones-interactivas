@@ -1,5 +1,6 @@
 import { Navigate, Outlet, useLocation } from 'react-router';
 import { useAuth } from '../contexto/AuthContext.jsx';
+import { Cargando } from './Estados.jsx';
 
 /**
  * Envuelve las rutas del panel. No revisa el rol: en el back el unico
@@ -10,7 +11,7 @@ export default function RutaProtegida() {
   const ubicacion = useLocation();
 
   if (cargando) {
-    return <p role="status">Verificando sesión…</p>;
+    return <Cargando texto="Verificando sesión…" />;
   }
 
   if (!usuario) {

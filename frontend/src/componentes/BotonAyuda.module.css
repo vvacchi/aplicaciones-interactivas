@@ -1,0 +1,41 @@
+.ayuda {
+  position: fixed;
+  right: var(--espacio-4);
+  bottom: var(--espacio-4);
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-2);
+  padding: 0.75rem 1.1rem;
+  border-radius: var(--radio-pildora);
+  background: var(--color-primario);
+  color: var(--color-sobre-primario);
+  font-weight: var(--peso-semi);
+  font-size: var(--texto-sm);
+  text-decoration: none;
+  box-shadow: var(--sombra-flotante);
+}
+
+.ayuda:hover {
+  background: var(--color-primario-hover);
+}
+
+.icono {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+/* En pantallas chicas queda solo el icono; el texto sigue para lectores. */
+@media (max-width: 520px) {
+  .ayuda {
+    padding: 0.85rem;
+  }
+
+  .texto {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+}

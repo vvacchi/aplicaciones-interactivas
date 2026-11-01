@@ -1,9 +1,5 @@
-// Placeholder: el contenido llega en su propio bloque.
+import EnPreparacion from '../../componentes/EnPreparacion.jsx';
+
 export default function Comercio() {
-  return (
-    <section>
-      <h1>Datos del comercio</h1>
-      <p>Pendiente. Ruta: <code>/admin/comercio</code></p>
-    </section>
-  );
+  return <EnPreparacion titulo="Datos del comercio" />;
 }

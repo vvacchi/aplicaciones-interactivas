@@ -1,0 +1,44 @@
+.encabezado {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--espacio-4);
+  margin-bottom: var(--espacio-6);
+}
+
+.titulo {
+  font-size: 1.9rem;
+  font-weight: var(--peso-negrita);
+  letter-spacing: -0.01em;
+}
+
+.bajada {
+  margin-top: var(--espacio-1);
+  color: var(--color-texto-suave);
+}
+
+.acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-3);
+}
+
+.publico {
+  justify-content: center;
+  text-align: center;
+  padding-top: var(--espacio-10);
+}
+
+.publico .titulo {
+  font-size: var(--texto-xl);
+  color: var(--color-primario);
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+.publico .bajada {
+  max-width: 40rem;
+  margin-inline: auto;
+  font-weight: var(--peso-liviano);
+}

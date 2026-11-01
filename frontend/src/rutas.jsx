@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router';
 import LayoutPublico from './componentes/LayoutPublico.jsx';
 import LayoutAdmin from './componentes/LayoutAdmin.jsx';
 import RutaProtegida from './componentes/RutaProtegida.jsx';
+import Raiz from './componentes/Raiz.jsx';
 
 import Inicio from './paginas/publico/Inicio.jsx';
 import Catalogo from './paginas/publico/Catalogo.jsx';
@@ -22,34 +23,39 @@ import Perfil from './paginas/admin/Perfil.jsx';
 
 export const router = createBrowserRouter([
   {
-    element: <LayoutPublico />,
-    children: [
-      { path: '/', element: <Inicio /> },
-      { path: '/catalogo', element: <Catalogo /> },
-      { path: '/publicaciones/:id', element: <DetallePublicacion /> },
-      { path: '/contacto', element: <Contacto /> },
-      { path: '/recuperar-password', element: <RecuperarPassword /> },
-      { path: '*', element: <NoEncontrada /> },
-    ],
-  },
-  // Login y registro quedan fuera de la ruta protegida.
-  { path: '/admin/login', element: <Login /> },
-  { path: '/admin/registro', element: <Registro /> },
-  {
-    path: '/admin',
-    element: <RutaProtegida />,
+    element: <Raiz />,
     children: [
       {
-        element: <LayoutAdmin />,
+        element: <LayoutPublico />,
         children: [
-          { index: true, element: <Resumen /> },
-          { path: 'publicaciones', element: <Publicaciones /> },
-          { path: 'publicaciones/nueva', element: <PublicacionForm /> },
-          { path: 'publicaciones/:id/editar', element: <PublicacionForm /> },
-          { path: 'categorias', element: <Categorias /> },
-          { path: 'consultas', element: <Consultas /> },
-          { path: 'comercio', element: <Comercio /> },
-          { path: 'perfil', element: <Perfil /> },
+          { path: '/', element: <Inicio /> },
+          { path: '/catalogo', element: <Catalogo /> },
+          { path: '/publicaciones/:id', element: <DetallePublicacion /> },
+          { path: '/contacto', element: <Contacto /> },
+          { path: '/recuperar-password', element: <RecuperarPassword /> },
+          { path: '*', element: <NoEncontrada /> },
+        ],
+      },
+      // Login y registro quedan fuera de la ruta protegida.
+      { path: '/admin/login', element: <Login /> },
+      { path: '/admin/registro', element: <Registro /> },
+      {
+        path: '/admin',
+        element: <RutaProtegida />,
+        children: [
+          {
+            element: <LayoutAdmin />,
+            children: [
+              { index: true, element: <Resumen /> },
+              { path: 'publicaciones', element: <Publicaciones /> },
+              { path: 'publicaciones/nueva', element: <PublicacionForm /> },
+              { path: 'publicaciones/:id/editar', element: <PublicacionForm /> },
+              { path: 'categorias', element: <Categorias /> },
+              { path: 'consultas', element: <Consultas /> },
+              { path: 'comercio', element: <Comercio /> },
+              { path: 'perfil', element: <Perfil /> },
+            ],
+          },
         ],
       },
     ],
