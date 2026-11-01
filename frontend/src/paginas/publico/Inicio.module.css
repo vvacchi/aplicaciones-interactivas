@@ -1,0 +1,328 @@
+/* ------------------------------- Hero ------------------------------- */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: min(70vh, 34rem);
+  background: var(--color-barra);
+  color: #fff;
+}
+
+.heroImagen {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgb(20 22 30 / 0.45);
+}
+
+.heroContenido {
+  position: relative;
+  z-index: 1;
+  padding-block: var(--espacio-14);
+  text-align: center;
+}
+
+.hero h1 {
+  max-width: 22ch;
+  margin-inline: auto;
+  font-size: var(--texto-2xl);
+  font-weight: var(--peso-negrita);
+  text-transform: uppercase;
+  line-height: 1.15;
+}
+
+.hero p {
+  max-width: 36rem;
+  margin: var(--espacio-4) auto var(--espacio-6);
+  font-weight: var(--peso-liviano);
+  font-size: 1.1rem;
+}
+
+/* ----------------------------- Secciones ----------------------------- */
+.seccion {
+  padding-block: var(--espacio-14);
+}
+
+.gris {
+  background: var(--color-fondo-alterno);
+}
+
+.titulo {
+  text-align: center;
+  color: var(--color-primario);
+  font-weight: var(--peso-negrita);
+  font-size: var(--texto-xl);
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+.bajada {
+  max-width: 40rem;
+  margin: var(--espacio-2) auto 0;
+  text-align: center;
+  font-weight: var(--peso-liviano);
+  color: var(--color-texto-suave);
+}
+
+.centro {
+  margin-top: var(--espacio-8);
+  text-align: center;
+}
+
+.grilla {
+  display: grid;
+  gap: var(--espacio-8) var(--espacio-6);
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  margin-top: var(--espacio-8);
+}
+
+/* ------------------------------ Explorar ------------------------------ */
+.pestanias {
+  display: flex;
+  justify-content: center;
+  gap: var(--espacio-2);
+  margin: var(--espacio-6) 0;
+}
+
+.pestanias button {
+  padding: 0.55rem 1.3rem;
+  border: 2px solid var(--color-primario);
+  border-radius: var(--radio-pildora);
+  background: var(--color-fondo);
+  color: var(--color-primario);
+  font-weight: var(--peso-semi);
+  font-size: var(--texto-sm);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.pestanias button[aria-selected='true'] {
+  background: var(--color-primario);
+  color: var(--color-sobre-primario);
+}
+
+.ejes {
+  display: grid;
+  gap: var(--espacio-5);
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+
+.eje {
+  display: block;
+  color: var(--color-texto);
+  text-decoration: none;
+}
+
+.ejeImagen {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: var(--radio);
+  background: var(--color-fondo-alterno);
+}
+
+.ejeImagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: scale 0.4s;
+}
+
+.eje:hover .ejeImagen img {
+  scale: 1.03;
+}
+
+.eje h3 {
+  margin-top: var(--espacio-3);
+  font-size: 1.25rem;
+  font-weight: var(--peso-negrita);
+}
+
+.eje:hover h3 {
+  color: var(--color-primario);
+}
+
+.eje p {
+  margin: var(--espacio-1) 0 var(--espacio-2);
+  font-weight: var(--peso-liviano);
+  font-size: var(--texto-sm);
+  color: var(--color-texto-suave);
+}
+
+.mas {
+  font-weight: var(--peso-semi);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  color: var(--color-primario);
+}
+
+.mas::after {
+  content: ' ▸';
+}
+
+/* ------------------------------- Escala ------------------------------- */
+.escala {
+  display: grid;
+  gap: var(--espacio-6);
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  margin-top: var(--espacio-8);
+  text-align: center;
+}
+
+.escala li {
+  display: grid;
+  justify-items: center;
+  gap: var(--espacio-2);
+}
+
+.escala strong {
+  font-weight: var(--peso-semi);
+  text-transform: uppercase;
+  color: var(--color-texto-suave);
+}
+
+.escala span {
+  max-width: 15rem;
+  font-weight: var(--peso-liviano);
+  font-size: var(--texto-sm);
+}
+
+.punto {
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.18);
+}
+
+.bajo {
+  background: var(--color-nivel-bajo);
+}
+
+.medio {
+  background: var(--color-nivel-medio);
+}
+
+.alto {
+  background: var(--color-nivel-alto);
+}
+
+/* ------------------------------ Nosotros ------------------------------ */
+.nosotros {
+  display: grid;
+  gap: var(--espacio-8);
+  align-items: center;
+}
+
+.nosotrosImagen {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: var(--radio);
+  background: var(--color-linea);
+}
+
+.nosotrosImagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.nosotros h2 {
+  color: var(--color-primario);
+  font-size: 1.6rem;
+  font-weight: var(--peso-negrita);
+  text-transform: uppercase;
+}
+
+.nosotros p {
+  margin-top: var(--espacio-4);
+  font-weight: var(--peso-liviano);
+  color: var(--color-texto-suave);
+}
+
+@media (min-width: 860px) {
+  .nosotros {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ------------------------------ Bloques ------------------------------ */
+.bloques {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+}
+
+.bloque {
+  display: grid;
+  align-content: start;
+  justify-items: center;
+  gap: var(--espacio-3);
+  padding: var(--espacio-10) var(--espacio-8);
+  text-align: center;
+}
+
+.bloque h2 {
+  font-size: 1.25rem;
+  font-weight: var(--peso-negrita);
+  text-transform: uppercase;
+}
+
+.bloque p {
+  font-weight: var(--peso-liviano);
+}
+
+.bloque address {
+  font-style: normal;
+  display: grid;
+  gap: var(--espacio-2);
+}
+
+.azul {
+  background: var(--color-primario);
+  color: var(--color-sobre-primario);
+}
+
+.oscuro {
+  background: var(--color-barra);
+  color: #fff;
+}
+
+.claro {
+  background: var(--color-fondo-alterno);
+}
+
+.azul a:focus-visible,
+.oscuro a:focus-visible {
+  outline-color: #fff;
+}
+
+.horarios {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: var(--espacio-1) var(--espacio-6);
+  text-align: left;
+  font-weight: var(--peso-liviano);
+}
+
+/* Cada par dia/horario se reparte en las dos columnas de la grilla. */
+.horarios div {
+  display: contents;
+}
+
+.horarios dt {
+  font-weight: var(--peso-semi);
+}
+
+.redes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--espacio-2) var(--espacio-4);
+  font-weight: var(--peso-semi);
+}

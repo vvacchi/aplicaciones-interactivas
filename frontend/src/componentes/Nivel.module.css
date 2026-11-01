@@ -1,0 +1,25 @@
+.nivel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.punto {
+  display: inline-block;
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.25);
+}
+
+.bajo {
+  background: var(--color-nivel-bajo);
+}
+
+.medio {
+  background: var(--color-nivel-medio);
+}
+
+.alto {
+  background: var(--color-nivel-alto);
+}

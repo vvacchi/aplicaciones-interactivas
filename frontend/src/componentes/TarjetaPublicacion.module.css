@@ -1,0 +1,129 @@
+.tarjeta {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.media {
+  position: relative;
+}
+
+.carrusel {
+  aspect-ratio: 5 / 3;
+  border-radius: var(--radio);
+}
+
+.noDisponible .carrusel img {
+  filter: grayscale(1);
+  opacity: 0.8;
+}
+
+.etiqueta {
+  position: absolute;
+  top: var(--espacio-3);
+  left: var(--espacio-3);
+  z-index: 2;
+}
+
+.cuerpo {
+  display: grid;
+  align-content: start;
+  gap: 0.15rem;
+  flex: 1;
+  padding: 0.9rem var(--espacio-1) 0;
+}
+
+.categoria {
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-semi);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--color-texto-suave);
+}
+
+.nombre {
+  margin-bottom: 0.35rem;
+  font-size: var(--texto-lg);
+  font-weight: var(--peso-negrita);
+  line-height: 1.25;
+}
+
+.nombre a {
+  color: var(--color-texto);
+  text-decoration: none;
+}
+
+/* Link estirado: toda la tarjeta es clickeable. */
+.nombre a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.nombre a:focus-visible {
+  outline: none;
+}
+
+.nombre a:focus-visible::after {
+  outline: 3px solid var(--color-foco);
+  outline-offset: 4px;
+  border-radius: var(--radio);
+}
+
+.tarjeta:hover .nombre a {
+  color: var(--color-primario);
+}
+
+.datos {
+  display: grid;
+  gap: 0.1rem;
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-liviano);
+  color: var(--color-texto-suave);
+}
+
+.datos div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.3rem;
+}
+
+.datos dt {
+  font-weight: var(--peso-semi);
+  color: var(--color-texto);
+}
+
+.pie {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--espacio-2);
+  margin-top: var(--espacio-3);
+  padding: var(--espacio-3) var(--espacio-1) 0;
+  border-top: 1px solid var(--color-linea);
+}
+
+.precio {
+  font-weight: var(--peso-negrita);
+  font-size: 1.1rem;
+}
+
+.precio small,
+.consultar {
+  font-weight: var(--peso-normal);
+  font-size: var(--texto-xs);
+  color: var(--color-texto-suave);
+}
+
+.mas {
+  font-weight: var(--peso-semi);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  color: var(--color-primario);
+  white-space: nowrap;
+}
+
+.mas::after {
+  content: ' ▸';
+}
