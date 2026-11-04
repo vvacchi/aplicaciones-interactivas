@@ -13,6 +13,7 @@ import TarjetaPublicacion from '../../componentes/TarjetaPublicacion.jsx';
 import { Cargando, ErrorCarga, Vacio } from '../../componentes/Estados.jsx';
 import { IconoBuscar } from '../../componentes/Iconos.jsx';
 import { contarDias, rangoDeUrl } from '../../utils/fechas.js';
+import { esId } from '../../utils/validaciones.js';
 import estilos from './Catalogo.module.css';
 
 const LIMITE = 12;
@@ -41,9 +42,6 @@ const ORDENES = [
 // El back filtra y ordena por `precio`, que el alquiler no tiene (usa
 // precioPorDia): esos controles solo tienen sentido con experiencias o cursos.
 const usaPrecio = (tipo) => tipo === 'experiencia' || tipo === 'curso';
-
-// Mismo formato que valida el back para los ObjectId.
-const esId = (texto) => /^[a-fd]{24}$/i.test(texto ?? '');
 
 const esNumero = (texto) => texto !== null && texto !== '' && !Number.isNaN(Number(texto)) && Number(texto) >= 0;
 

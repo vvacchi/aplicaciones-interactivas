@@ -1,0 +1,209 @@
+/* Mobile: formulario y abajo los datos de contacto. Desktop: los datos al costado. */
+.disposicion {
+  display: grid;
+  gap: var(--espacio-10);
+  padding-bottom: var(--espacio-14);
+}
+
+@media (min-width: 960px) {
+  .disposicion {
+    grid-template-columns: minmax(0, 1fr) 19rem;
+    align-items: start;
+  }
+}
+
+.principal {
+  min-width: 0;
+}
+
+/* ----------------------------- Formulario ----------------------------- */
+.formulario {
+  display: grid;
+  gap: var(--espacio-5);
+}
+
+.fila {
+  display: grid;
+  gap: var(--espacio-5);
+}
+
+@media (min-width: 640px) {
+  .fila {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.acciones {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--espacio-3) var(--espacio-5);
+}
+
+.nota {
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-liviano);
+  color: var(--color-texto-suave);
+}
+
+.errorGeneral,
+.aviso {
+  padding: var(--espacio-3) var(--espacio-4);
+  border-radius: var(--radio);
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-medio);
+}
+
+.errorGeneral {
+  border-left: 4px solid var(--color-error);
+  background: var(--color-error-fondo);
+  color: var(--color-error);
+}
+
+.aviso {
+  margin-bottom: var(--espacio-5);
+  border-left: 4px solid var(--color-aviso);
+  background: var(--color-aviso-fondo);
+  color: var(--color-aviso);
+}
+
+/* ------------------------ Publicacion consultada ------------------------ */
+.consultada {
+  display: flex;
+  gap: var(--espacio-4);
+  padding: var(--espacio-4);
+  border-radius: var(--radio);
+  background: var(--color-fondo-alterno);
+}
+
+.miniatura {
+  flex: none;
+  width: 5.5rem;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radio);
+  object-fit: cover;
+}
+
+.consultadaEtiqueta {
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-semi);
+  text-transform: uppercase;
+  color: var(--color-texto-suave);
+}
+
+.consultadaNombre {
+  font-weight: var(--peso-negrita);
+  line-height: 1.3;
+}
+
+.consultadaNombre a {
+  color: var(--color-texto);
+  text-underline-offset: 3px;
+}
+
+.consultadaDato {
+  font-size: var(--texto-sm);
+  color: var(--color-texto-suave);
+}
+
+.consultadaFechas {
+  margin-top: var(--espacio-2);
+  font-size: var(--texto-sm);
+}
+
+.consultadaFechas span {
+  display: block;
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-liviano);
+  color: var(--color-texto-suave);
+}
+
+/* ------------------------------ Enviada ------------------------------ */
+.enviada {
+  display: grid;
+  justify-items: start;
+  gap: var(--espacio-4);
+  padding: var(--espacio-8) var(--espacio-6);
+  border-left: 4px solid var(--color-exito);
+  border-radius: var(--radio);
+  background: var(--color-exito-fondo);
+}
+
+.enviada h2 {
+  font-size: var(--texto-xl);
+  font-weight: var(--peso-negrita);
+  color: var(--color-exito);
+}
+
+.enviada p {
+  max-width: 36rem;
+}
+
+.enviadaAcciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-3);
+  margin-top: var(--espacio-2);
+}
+
+/* ------------------------------- Lateral ------------------------------- */
+.lateral {
+  display: grid;
+  gap: var(--espacio-4);
+  padding: var(--espacio-6);
+  border-radius: var(--radio);
+  background: var(--color-barra);
+  color: #fff;
+}
+
+.lateral a {
+  color: #fff;
+  text-underline-offset: 3px;
+}
+
+.tituloLateral {
+  font-size: var(--texto-md);
+  font-weight: var(--peso-negrita);
+  text-transform: uppercase;
+}
+
+.subtituloLateral {
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-semi);
+  text-transform: uppercase;
+  color: var(--color-barra-texto-activo);
+}
+
+.direccion {
+  display: grid;
+  gap: var(--espacio-1);
+  font-style: normal;
+  font-weight: var(--peso-liviano);
+  overflow-wrap: anywhere;
+}
+
+.horarios {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--espacio-1) var(--espacio-4);
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-liviano);
+}
+
+/* Cada par dia/horario se reparte en las dos columnas de la grilla. */
+.horarios div {
+  display: contents;
+}
+
+.horarios dt {
+  font-weight: var(--peso-semi);
+}
+
+.redes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-2) var(--espacio-4);
+  padding-top: var(--espacio-3);
+  border-top: 1px solid rgb(255 255 255 / 0.2);
+  font-weight: var(--peso-semi);
+}

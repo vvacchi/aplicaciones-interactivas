@@ -19,6 +19,11 @@ const corta = new Intl.DateTimeFormat('es-AR', { day: 'numeric', month: 'short' 
 /** "2026-12-05" -> "5 dic" */
 export const formatearFechaCorta = (texto) => corta.format(aFecha(texto)).replace('.', '');
 
+const numerica = new Intl.DateTimeFormat('es-AR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+
+/** "2026-12-05" -> "05/12/2026". Para textos que lee otra persona, sin ambigüedad de año. */
+export const formatearFechaNumerica = (texto) => numerica.format(aFecha(texto));
+
 /** Dias de alquiler contando el de retiro y el de devolucion: 5 al 10 = 6 dias. */
 export const contarDias = (desde, hasta) =>
   Math.round((aFecha(hasta) - aFecha(desde)) / 86_400_000) + 1;
