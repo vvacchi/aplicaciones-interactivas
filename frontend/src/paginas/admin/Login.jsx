@@ -1,69 +1,93 @@
 import { useState } from 'react';
 import { Link, Navigate, useLocation } from 'react-router';
 import { useAuth } from '../../contexto/AuthContext.jsx';
+import { useFormulario } from '../../hooks/useFormulario.js';
+import Aviso from '../../componentes/Aviso.jsx';
+import Boton from '../../componentes/Boton.jsx';
+import Campo from '../../componentes/Campo.jsx';
+import PantallaAcceso from '../../componentes/PantallaAcceso.jsx';
+import { errorDeEmail, soloErrores } from '../../utils/validaciones.js';
+import estilos from '../../componentes/PantallaAcceso.module.css';
 
-// Version minima para probar la sesion; el diseño llega en el bloque de auth.
+const validar = ({ email, password }) =>
+  soloErrores({
+    email: errorDeEmail(email),
+    password: password ? null : 'Escribí tu contraseña',
+  });
+
 export default function Login() {
   const { usuario, login } = useAuth();
   const ubicacion = useLocation();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState(null);
-  const [enviando, setEnviando] = useState(false);
+  const [verPassword, setVerPassword] = useState(false);
 
   // Vuelve a la ruta que pidio antes de que lo mandaran al login.
-  const destino = ubicacion.state?.desde?.pathname ?? '/admin';
+  const desde = ubicacion.state?.desde;
+  const destino = desde ? `${desde.pathname}${desde.search ?? ''}` : '/admin';
+
+  const form = useFormulario({
+    inicial: { email: '', password: '' },
+    validar,
+    alEnviar: async ({ email, password }) => {
+      try {
+        await login({ email: email.trim(), password });
+        // Con el usuario cargado, el <Navigate> de abajo hace la redireccion.
+      } catch (error) {
+        // El back usa el mismo 401 para mail inexistente y contraseña mal.
+        if (error.estado === 401) error.message = 'El mail o la contraseña no son correctos.';
+        throw error;
+      }
+    },
+  });
 
   if (usuario) return <Navigate to={destino} replace />;
 
-  const enviar = async (evento) => {
-    evento.preventDefault();
-    setError(null);
-    setEnviando(true);
-    try {
-      await login({ email, password });
-      // Con el usuario cargado, el <Navigate> de arriba hace la redireccion.
-    } catch (err) {
-      setError(err);
-      setEnviando(false);
-    }
-  };
-
   return (
-    <section>
-      <h1>Ingresar al panel</h1>
-      <form onSubmit={enviar} noValidate>
-        <div>
-          <label htmlFor="email">Correo electrónico</label>
-          <input
-            id="email"
-            type="email"
-            autoComplete="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          {error?.porCampo?.email && <p>{error.porCampo.email}</p>}
-        </div>
-        <div>
-          <label htmlFor="password">Contraseña</label>
-          <input
-            id="password"
-            type="password"
-            autoComplete="current-password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          {error?.porCampo?.password && <p>{error.porCampo.password}</p>}
-        </div>
-        {error && <p role="alert">{error.message}</p>}
-        <button type="submit" disabled={enviando}>
-          {enviando ? 'Ingresando…' : 'Ingresar'}
-        </button>
+    <PantallaAcceso
+      titulo="Ingresar al panel"
+      bajada="Administrá publicaciones, categorías y consultas."
+      pie={
+        <>
+          ¿Todavía no tenés cuenta? <Link to="/admin/registro">Creá una</Link>
+        </>
+      }
+    >
+      {desde && !form.errorGeneral && (
+        <Aviso variante="advertencia">Ingresá para continuar. Si tu sesión venció, volvé a entrar.</Aviso>
+      )}
+      {form.errorGeneral && <Aviso>{form.errorGeneral}</Aviso>}
+
+      <form className={estilos.formulario} onSubmit={form.enviar} noValidate>
+        <Campo
+          etiqueta="Mail"
+          name="email"
+          type="email"
+          autoComplete="email"
+          value={form.valores.email}
+          onChange={form.cambiar}
+          error={form.errores.email}
+          required
+        />
+        <Campo
+          etiqueta="Contraseña"
+          name="password"
+          type={verPassword ? 'text' : 'password'}
+          autoComplete="current-password"
+          value={form.valores.password}
+          onChange={form.cambiar}
+          error={form.errores.password}
+          required
+        />
+        <Link to="/recuperar-password" className={estilos.olvido}>
+          ¿Olvidaste tu contraseña?
+        </Link>
+        <label className={estilos.mostrar}>
+          <input type="checkbox" checked={verPassword} onChange={(e) => setVerPassword(e.target.checked)} />
+          Mostrar contraseña
+        </label>
+        <Boton type="submit" disabled={form.enviando}>
+          {form.enviando ? 'Ingresando…' : 'Ingresar'}
+        </Boton>
       </form>
-      <p>
-        <Link to="/admin/registro">Crear cuenta</Link> ·{' '}
-        <Link to="/recuperar-password">Olvidé mi contraseña</Link>
-      </p>
-    </section>
+    </PantallaAcceso>
   );
 }

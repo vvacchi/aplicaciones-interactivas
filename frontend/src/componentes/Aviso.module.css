@@ -1,0 +1,25 @@
+.aviso {
+  padding: var(--espacio-3) var(--espacio-4);
+  border-left: 4px solid;
+  border-radius: var(--radio);
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-medio);
+}
+
+.error {
+  border-color: var(--color-error);
+  background: var(--color-error-fondo);
+  color: var(--color-error);
+}
+
+.exito {
+  border-color: var(--color-exito);
+  background: var(--color-exito-fondo);
+  color: var(--color-exito);
+}
+
+.advertencia {
+  border-color: var(--color-aviso);
+  background: var(--color-aviso-fondo);
+  color: var(--color-aviso);
+}

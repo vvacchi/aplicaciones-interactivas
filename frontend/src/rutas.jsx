@@ -32,11 +32,11 @@ export const router = createBrowserRouter([
           { path: '/catalogo', element: <Catalogo /> },
           { path: '/publicaciones/:id', element: <DetallePublicacion /> },
           { path: '/contacto', element: <Contacto /> },
-          { path: '/recuperar-password', element: <RecuperarPassword /> },
           { path: '*', element: <NoEncontrada /> },
         ],
       },
-      // Login y registro quedan fuera de la ruta protegida.
+      // Las pantallas de acceso van sin la navegacion del sitio y fuera de la ruta protegida.
+      { path: '/recuperar-password', element: <RecuperarPassword /> },
       { path: '/admin/login', element: <Login /> },
       { path: '/admin/registro', element: <Registro /> },
       {

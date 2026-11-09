@@ -1,0 +1,87 @@
+.pantalla {
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: var(--espacio-6);
+  min-height: 100vh;
+  padding: var(--espacio-10) var(--gutter);
+  background: var(--color-fondo-alterno);
+}
+
+@media (min-height: 760px) {
+  .pantalla {
+    align-content: center;
+  }
+}
+
+.tarjeta {
+  display: grid;
+  gap: var(--espacio-5);
+  width: 100%;
+  max-width: 27rem;
+  padding: var(--espacio-8) var(--espacio-6);
+  border: 1px solid var(--color-linea);
+  border-radius: var(--radio);
+  background: var(--color-fondo);
+}
+
+.encabezado h1 {
+  font-size: var(--texto-lg);
+  font-weight: var(--peso-negrita);
+  color: var(--color-primario);
+  text-transform: uppercase;
+}
+
+.encabezado p {
+  margin-top: var(--espacio-1);
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-liviano);
+  color: var(--color-texto-suave);
+}
+
+.pie {
+  font-size: var(--texto-sm);
+  text-align: center;
+}
+
+.volver {
+  font-size: var(--texto-sm);
+  color: var(--color-texto-suave);
+}
+
+/* ------- Piezas que comparten los formularios de estas pantallas ------- */
+.formulario {
+  display: grid;
+  gap: var(--espacio-4);
+}
+
+.formulario button[type='submit'] {
+  width: 100%;
+  margin-top: var(--espacio-2);
+}
+
+.mostrar {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-2);
+  font-size: var(--texto-sm);
+  cursor: pointer;
+}
+
+.mostrar input {
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--color-primario);
+}
+
+.olvido {
+  justify-self: end;
+  margin-top: calc(-1 * var(--espacio-2));
+  font-size: var(--texto-sm);
+}
+
+.nota {
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-liviano);
+  color: var(--color-texto-suave);
+}

@@ -65,9 +65,29 @@ export function AuthProvider({ children }) {
     [iniciarSesion]
   );
 
+  // El link del mail de recuperacion deja la sesion abierta con la clave nueva.
+  const restablecerPassword = useCallback(
+    async (datos) => iniciarSesion(await authApi.resetearPassword(datos)),
+    [iniciarSesion]
+  );
+
+  const actualizarPerfil = useCallback(async (datos) => {
+    const actualizado = await authApi.actualizarPerfil(datos);
+    setUsuario(actualizado);
+    return actualizado;
+  }, []);
+
   const valor = useMemo(
-    () => ({ usuario, cargando, login, registrar, logout: cerrarSesion }),
-    [usuario, cargando, login, registrar, cerrarSesion]
+    () => ({
+      usuario,
+      cargando,
+      login,
+      registrar,
+      restablecerPassword,
+      actualizarPerfil,
+      logout: cerrarSesion,
+    }),
+    [usuario, cargando, login, registrar, restablecerPassword, actualizarPerfil, cerrarSesion]
   );
 
   return <AuthContext.Provider value={valor}>{children}</AuthContext.Provider>;

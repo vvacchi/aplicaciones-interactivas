@@ -1,0 +1,59 @@
+.secciones {
+  display: grid;
+  gap: var(--espacio-6);
+  max-width: 48rem;
+}
+
+.tarjeta {
+  display: grid;
+  gap: var(--espacio-4);
+  padding: var(--espacio-6) var(--espacio-5);
+  border: 1px solid var(--color-linea);
+  border-radius: var(--radio);
+  background: var(--color-fondo);
+}
+
+.titulo {
+  font-size: var(--texto-md);
+  font-weight: var(--peso-negrita);
+}
+
+.formulario {
+  display: grid;
+  gap: var(--espacio-4);
+}
+
+.fila {
+  display: grid;
+  gap: var(--espacio-4);
+}
+
+@media (min-width: 640px) {
+  .fila {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Ocupa lo mismo que una columna de .fila para alinear los campos. */
+  .medio {
+    max-width: calc(50% - var(--espacio-2));
+  }
+}
+
+.mostrar {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-2);
+  font-size: var(--texto-sm);
+  cursor: pointer;
+}
+
+.mostrar input {
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--color-primario);
+}
+
+.acciones {
+  display: flex;
+  justify-content: flex-end;
+}
