@@ -1,0 +1,211 @@
+.aviso {
+  margin-bottom: var(--espacio-5);
+}
+
+/* ------------------------------- Filtros ------------------------------- */
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--espacio-4) var(--espacio-8);
+  margin-bottom: var(--espacio-6);
+  padding: var(--espacio-5);
+  border: 1px solid var(--color-linea);
+  border-radius: var(--radio);
+  background: var(--color-fondo);
+}
+
+.buscador {
+  display: flex;
+  flex-basis: 100%;
+  align-items: flex-end;
+  gap: var(--espacio-3);
+}
+
+.buscador > :first-child {
+  flex: 1;
+}
+
+.grupo {
+  display: grid;
+  gap: var(--espacio-1);
+}
+
+.etiquetaGrupo {
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-semi);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-2);
+}
+
+.categoriaFiltro {
+  flex: 0 1 16rem;
+}
+
+/* -------------------------------- Tabla -------------------------------- */
+.total {
+  margin-bottom: var(--espacio-3);
+  font-size: var(--texto-sm);
+  color: var(--color-texto-suave);
+}
+
+.tablaCaja {
+  /* Los textos solo-lector de las celdas se posicionan dentro de la caja. */
+  position: relative;
+  margin-bottom: var(--espacio-6);
+  border: 1px solid var(--color-linea);
+  border-radius: var(--radio);
+  background: var(--color-fondo);
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--texto-sm);
+}
+
+.tabla th {
+  padding: var(--espacio-3) var(--espacio-4);
+  border-bottom: 1px solid var(--color-linea);
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-semi);
+  text-align: left;
+  text-transform: uppercase;
+  color: var(--color-texto-suave);
+}
+
+.tabla td {
+  padding: var(--espacio-3) var(--espacio-4);
+  border-bottom: 1px solid var(--color-linea);
+  vertical-align: middle;
+}
+
+.tabla tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.celdaPublicacion {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-3);
+  min-width: 16rem;
+}
+
+.miniatura {
+  flex: none;
+  width: 4rem;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radio);
+  background: var(--color-fondo-alterno);
+  object-fit: cover;
+}
+
+.nombre {
+  display: block;
+  font-weight: var(--peso-semi);
+  color: var(--color-texto);
+  text-decoration: none;
+}
+
+.nombre:hover {
+  color: var(--color-primario);
+  text-decoration: underline;
+}
+
+.categoria {
+  display: block;
+  font-size: var(--texto-xs);
+  color: var(--color-texto-suave);
+}
+
+.etiquetas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-1);
+}
+
+.precio {
+  white-space: nowrap;
+}
+
+.celdaAcciones {
+  white-space: nowrap;
+  text-align: right;
+}
+
+.accion {
+  display: inline-block;
+  padding: var(--espacio-1) var(--espacio-2);
+  border: 0;
+  background: none;
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-semi);
+  color: var(--color-primario);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.eliminar {
+  color: var(--color-error);
+}
+
+/* En pantallas angostas cada fila pasa a ser una tarjeta. */
+@media (max-width: 899px) {
+  .tabla thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  .tabla tr {
+    display: grid;
+    gap: var(--espacio-2);
+    padding: var(--espacio-4);
+    border-bottom: 1px solid var(--color-linea);
+  }
+
+  .tabla tbody tr:last-child {
+    border-bottom: 0;
+  }
+
+  .tabla td {
+    padding: 0;
+    border: 0;
+  }
+
+  .tabla td[data-titulo] {
+    display: flex;
+    gap: var(--espacio-3);
+    align-items: center;
+  }
+
+  .tabla td[data-titulo]::before {
+    content: attr(data-titulo);
+    flex: none;
+    width: 4.5rem;
+    font-size: var(--texto-xs);
+    font-weight: var(--peso-semi);
+    text-transform: uppercase;
+    color: var(--color-texto-suave);
+  }
+
+  .celdaPublicacion {
+    min-width: 0;
+    margin-bottom: var(--espacio-1);
+  }
+
+  .celdaAcciones {
+    text-align: left;
+  }
+
+  .accion:first-child {
+    padding-left: 0;
+  }
+}

@@ -1,8 +1,8 @@
 import { useRef, useState } from 'react';
 import { Link } from 'react-router';
 import { obtenerComercio } from '../../api/comercio.api.js';
-import { listarPublicaciones } from '../../api/publicaciones.api.js';
-import { listarCategorias } from '../../api/categorias.api.js';
+import { listarPublicacionesVisibles } from '../../api/publicaciones.api.js';
+import { listarCategoriasVisibles } from '../../api/categorias.api.js';
 import { usePedido } from '../../hooks/usePedido.js';
 import Boton from '../../componentes/Boton.jsx';
 import TarjetaPublicacion from '../../componentes/TarjetaPublicacion.jsx';
@@ -15,15 +15,15 @@ import estilos from './Inicio.module.css';
 
 /** Experiencias destacadas; si no hay ninguna marcada, las mas recientes. */
 const pedirExperiencias = async () => {
-  const destacadas = await listarPublicaciones({ tipo: 'experiencia', destacada: true, limite: 3 });
+  const destacadas = await listarPublicacionesVisibles({ tipo: 'experiencia', destacada: true, limite: 3 });
   if (destacadas.datos.length) return destacadas.datos;
-  return (await listarPublicaciones({ tipo: 'experiencia', limite: 3 })).datos;
+  return (await listarPublicacionesVisibles({ tipo: 'experiencia', limite: 3 })).datos;
 };
 
-const pedirCursos = () => listarPublicaciones({ tipo: 'curso', limite: 3 }).then((r) => r.datos);
+const pedirCursos = () => listarPublicacionesVisibles({ tipo: 'curso', limite: 3 }).then((r) => r.datos);
 
 const pedirAlquileres = () =>
-  listarPublicaciones({ tipo: 'alquiler', disponible: true, limite: 3 }).then((r) => r.datos);
+  listarPublicacionesVisibles({ tipo: 'alquiler', disponible: true, limite: 3 }).then((r) => r.datos);
 
 const EJES_POR_TIPO = [
   { tipo: 'experiencia', titulo: 'Experiencias guiadas', texto: 'Trekking, escalada y ascensos con guía.', unidad: ['salida', 'salidas'] },
@@ -35,16 +35,16 @@ const EJES_POR_TIPO = [
 const pedirTipos = () =>
   Promise.all(
     EJES_POR_TIPO.map(async (eje) => {
-      const { datos, paginacion } = await listarPublicaciones({ tipo: eje.tipo, limite: 1 });
+      const { datos, paginacion } = await listarPublicacionesVisibles({ tipo: eje.tipo, limite: 1 });
       return { ...eje, total: paginacion.total, imagen: datos[0]?.imagenes?.[0] };
     })
   );
 
 /** Las categorias no tienen foto propia: se usa la de una de sus publicaciones. */
 const pedirCategorias = async () => {
-  const categorias = await listarCategorias();
+  const categorias = await listarCategoriasVisibles();
   const conteos = await Promise.all(
-    categorias.map((c) => listarPublicaciones({ categoria: c._id, limite: 1 }))
+    categorias.map((c) => listarPublicacionesVisibles({ categoria: c._id, limite: 1 }))
   );
   return categorias
     .map((c, i) => ({

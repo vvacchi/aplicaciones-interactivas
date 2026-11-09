@@ -27,8 +27,14 @@ export function useFormulario({ inicial, validar, alEnviar }) {
 
   const enfocarPrimerError = (encontrados) => {
     const primero = campos.find((campo) => encontrados[campo]);
-    if (primero) formulario.current?.elements[primero]?.focus();
+    if (!primero) return;
+    // Un grupo de checkboxes con el mismo name devuelve una lista: se enfoca el primero.
+    const elemento = formulario.current?.elements[primero];
+    (elemento?.focus ? elemento : elemento?.[0])?.focus();
   };
+
+  /** Para campos que no son inputs de texto (checkboxes, listas): saca su error al cambiarlos. */
+  const limpiarError = (campo) => setErrores((e) => ({ ...e, [campo]: undefined }));
 
   /** Para mostrar un error que no vino de la validacion (por ejemplo, un 409). */
   const marcarErrores = (encontrados, general = null) => {
@@ -62,5 +68,5 @@ export function useFormulario({ inicial, validar, alEnviar }) {
     }
   };
 
-  return { valores, setValores, errores, errorGeneral, enviando, cambiar, enviar, marcarErrores };
+  return { valores, setValores, errores, errorGeneral, enviando, cambiar, enviar, marcarErrores, limpiarError };
 }

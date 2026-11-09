@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { Link, useParams, useSearchParams } from 'react-router';
-import { listarPublicaciones, obtenerPublicacion } from '../../api/publicaciones.api.js';
+import { listarPublicacionesVisibles, obtenerPublicacion } from '../../api/publicaciones.api.js';
 import { usePedido } from '../../hooks/usePedido.js';
 import Boton from '../../componentes/Boton.jsx';
 import Carrusel from '../../componentes/Carrusel.jsx';
@@ -82,7 +82,7 @@ function textoPrecio(publicacion) {
 function Relacionadas({ publicacion }) {
   const pedir = useCallback(
     () =>
-      listarPublicaciones({ categoria: publicacion.categoria._id, limite: 4 }).then((r) =>
+      listarPublicacionesVisibles({ categoria: publicacion.categoria._id, limite: 4 }).then((r) =>
         r.datos.filter((p) => p._id !== publicacion._id).slice(0, 3)
       ),
     [publicacion.categoria._id, publicacion._id]
@@ -197,7 +197,7 @@ export default function DetallePublicacion() {
     );
   }
 
-  const { nombre, tipo, categoria, descripcion, imagenes, destacada, disponible } = publicacion;
+  const { nombre, tipo, categoria, descripcion, imagenes, destacada, disponible, activa } = publicacion;
   const datos = datosDeFicha(publicacion).filter(([, valor]) => valor);
   const lista = listaDeFicha(publicacion);
 
@@ -225,6 +225,8 @@ export default function DetallePublicacion() {
             <div className={estilos.etiquetas}>
               {destacada && <Etiqueta>Destacada</Etiqueta>}
               {!disponible && <Etiqueta variante="neutra">No disponible</Etiqueta>}
+              {/* Solo llega aca con la sesion del panel: es la vista previa del admin. */}
+              {activa === false && <Etiqueta variante="aviso">Oculta en el sitio</Etiqueta>}
             </div>
           </header>
         </div>

@@ -1,0 +1,40 @@
+.modal {
+  /* El reset global saca el margin: auto con el que el navegador centra el <dialog>. */
+  margin: auto;
+  width: min(28rem, calc(100% - 2 * var(--gutter)));
+  padding: 0;
+  border: 0;
+  border-radius: var(--radio);
+  background: var(--color-fondo);
+  color: var(--color-texto);
+  box-shadow: var(--sombra-flotante);
+}
+
+.modal::backdrop {
+  background: rgb(20 20 25 / 0.55);
+}
+
+.caja {
+  display: grid;
+  gap: var(--espacio-4);
+  padding: var(--espacio-6);
+}
+
+.titulo {
+  font-size: var(--texto-lg);
+  font-weight: var(--peso-negrita);
+}
+
+.cuerpo {
+  display: grid;
+  gap: var(--espacio-3);
+  color: var(--color-texto-suave);
+}
+
+.acciones {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--espacio-3);
+  margin-top: var(--espacio-2);
+}

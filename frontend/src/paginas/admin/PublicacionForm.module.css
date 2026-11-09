@@ -1,0 +1,237 @@
+.volver {
+  display: inline-block;
+  margin-bottom: var(--espacio-3);
+  font-size: var(--texto-sm);
+  color: var(--color-texto-suave);
+}
+
+.formulario {
+  display: grid;
+  gap: var(--espacio-6);
+  max-width: 50rem;
+}
+
+/* ------------------------------ Secciones ------------------------------ */
+.seccion {
+  display: grid;
+  gap: var(--espacio-4);
+  min-width: 0;
+  margin: 0;
+  padding: var(--espacio-6) var(--espacio-5);
+  border: 1px solid var(--color-linea);
+  border-radius: var(--radio);
+  background: var(--color-fondo);
+}
+
+/* El legend de un fieldset no respeta el padding: se baja con float. */
+.tituloSeccion {
+  float: left;
+  width: 100%;
+  padding: 0;
+  font-size: var(--texto-md);
+  font-weight: var(--peso-negrita);
+}
+
+.tituloSeccion + * {
+  clear: both;
+}
+
+.bajada,
+.ayuda {
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-normal);
+  color: var(--color-texto-suave);
+}
+
+.ayuda {
+  display: block;
+}
+
+.fila {
+  display: grid;
+  gap: var(--espacio-4);
+}
+
+@media (min-width: 640px) {
+  .fila {
+    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  }
+
+  .corto {
+    max-width: 16rem;
+  }
+}
+
+/* ------------------------- Grupos de opciones ------------------------- */
+.grupo {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.etiquetaGrupo {
+  margin-bottom: var(--espacio-2);
+  padding: 0;
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-semi);
+}
+
+.opciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-2) var(--espacio-5);
+}
+
+.opcion {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-2);
+  cursor: pointer;
+}
+
+.opcion input,
+.interruptor input,
+.opcionTipo input {
+  flex: none;
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: var(--color-primario);
+}
+
+.grupoConError .opciones {
+  padding: var(--espacio-2);
+  border: 2px solid var(--color-error);
+  border-radius: var(--radio);
+}
+
+.error {
+  margin-top: var(--espacio-1);
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-semi);
+  color: var(--color-error);
+}
+
+/* Elegir el tipo: tres opciones grandes, una por renglon en mobile. */
+.opcionTipo {
+  display: flex;
+  flex: 1 1 12rem;
+  align-items: flex-start;
+  gap: var(--espacio-3);
+  padding: var(--espacio-4);
+  border: 1px solid var(--color-borde-control);
+  border-radius: var(--radio);
+  cursor: pointer;
+}
+
+.opcionTipo input {
+  margin-top: 0.15rem;
+}
+
+.opcionElegida {
+  border-color: var(--color-primario);
+  box-shadow: inset 0 0 0 1px var(--color-primario);
+}
+
+.tipoFijo strong {
+  color: var(--color-primario);
+}
+
+.interruptor {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--espacio-3);
+  cursor: pointer;
+}
+
+.interruptor input {
+  margin-top: 0.2rem;
+}
+
+/* ------------------------------ Imagenes ------------------------------ */
+.imagenes {
+  display: grid;
+  gap: var(--espacio-4);
+}
+
+.listaImagenes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+  gap: var(--espacio-3);
+}
+
+.listaImagenes li {
+  display: grid;
+  gap: var(--espacio-1);
+}
+
+.listaImagenes img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radio);
+  background: var(--color-fondo-alterno);
+  object-fit: cover;
+}
+
+.accionesImagen {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--espacio-1);
+  font-size: var(--texto-xs);
+}
+
+.accionesImagen button {
+  padding: 0;
+  border: 0;
+  background: none;
+  font-weight: var(--peso-semi);
+  color: var(--color-primario);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+.accionesImagen button:last-child {
+  color: var(--color-error);
+}
+
+.principal {
+  font-weight: var(--peso-semi);
+  color: var(--color-exito);
+}
+
+.agregarImagen {
+  display: grid;
+  gap: var(--espacio-3);
+}
+
+.agregarImagen > button {
+  justify-self: start;
+}
+
+@media (min-width: 640px) {
+  .agregarImagen {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+  }
+
+  /* El boton queda a la altura del input, debajo del label. */
+  .agregarImagen > button {
+    margin-top: 1.55rem;
+  }
+}
+
+/* ------------------------------ Acciones ------------------------------ */
+.acciones {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--espacio-3) var(--espacio-6);
+}
+
+.cancelar {
+  font-weight: var(--peso-semi);
+  color: var(--color-texto-suave);
+}

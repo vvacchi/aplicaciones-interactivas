@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router';
-import { listarPublicaciones } from '../../api/publicaciones.api.js';
-import { listarCategorias } from '../../api/categorias.api.js';
+import { listarPublicacionesVisibles } from '../../api/publicaciones.api.js';
+import { listarCategoriasVisibles } from '../../api/categorias.api.js';
 import { usePedido } from '../../hooks/usePedido.js';
 import Boton from '../../componentes/Boton.jsx';
 import Campo from '../../componentes/Campo.jsx';
@@ -161,9 +161,9 @@ export default function Catalogo() {
   const filtros = useMemo(() => filtrosDeUrl(new URLSearchParams(textoParams)), [textoParams]);
   const [filtrosAbiertos, setFiltrosAbiertos] = useState(false);
 
-  const pedir = useCallback(() => listarPublicaciones(paramsDeApi(filtros)), [filtros]);
+  const pedir = useCallback(() => listarPublicacionesVisibles(paramsDeApi(filtros)), [filtros]);
   const publicaciones = usePedido(pedir);
-  const categorias = usePedido(listarCategorias);
+  const categorias = usePedido(listarCategoriasVisibles);
 
   /**
    * Aplica cambios a la URL. Los filtros vuelven a la pagina 1 y no mueven
