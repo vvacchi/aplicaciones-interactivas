@@ -1,0 +1,173 @@
+.aviso {
+  margin-bottom: var(--espacio-5);
+}
+
+/* -------------------------------- Tabla -------------------------------- */
+.tablaCaja {
+  /* Los textos solo-lector de las celdas se posicionan dentro de la caja. */
+  position: relative;
+  max-width: 56rem;
+  border: 1px solid var(--color-linea);
+  border-radius: var(--radio);
+  background: var(--color-fondo);
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--texto-sm);
+}
+
+.tabla th {
+  padding: var(--espacio-3) var(--espacio-4);
+  border-bottom: 1px solid var(--color-linea);
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-semi);
+  text-align: left;
+  text-transform: uppercase;
+  color: var(--color-texto-suave);
+}
+
+.tabla td {
+  padding: var(--espacio-4);
+  border-bottom: 1px solid var(--color-linea);
+  vertical-align: middle;
+}
+
+.tabla tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.tabla td a {
+  font-weight: var(--peso-semi);
+  text-underline-offset: 3px;
+}
+
+.nombre {
+  display: block;
+  font-weight: var(--peso-semi);
+  font-size: var(--texto-md);
+}
+
+.descripcion {
+  display: block;
+  max-width: 28rem;
+  font-size: var(--texto-xs);
+  color: var(--color-texto-suave);
+}
+
+.cantidad {
+  white-space: nowrap;
+}
+
+.suave {
+  color: var(--color-texto-suave);
+}
+
+.celdaAcciones {
+  white-space: nowrap;
+  text-align: right;
+}
+
+.accion {
+  padding: var(--espacio-1) var(--espacio-2);
+  border: 0;
+  background: none;
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-semi);
+  color: var(--color-primario);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.eliminar {
+  color: var(--color-error);
+}
+
+/* En pantallas angostas cada fila pasa a ser una tarjeta. */
+@media (max-width: 699px) {
+  .tabla thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  .tabla tr {
+    display: grid;
+    gap: var(--espacio-2);
+    padding: var(--espacio-4);
+    border-bottom: 1px solid var(--color-linea);
+  }
+
+  .tabla tbody tr:last-child {
+    border-bottom: 0;
+  }
+
+  .tabla td {
+    padding: 0;
+    border: 0;
+  }
+
+  .tabla td[data-titulo] {
+    display: flex;
+    gap: var(--espacio-3);
+    align-items: center;
+  }
+
+  .tabla td[data-titulo]::before {
+    content: attr(data-titulo);
+    flex: none;
+    width: 7rem;
+    font-size: var(--texto-xs);
+    font-weight: var(--peso-semi);
+    text-transform: uppercase;
+    color: var(--color-texto-suave);
+  }
+
+  .celdaAcciones {
+    text-align: left;
+  }
+
+  .accion:first-child {
+    padding-left: 0;
+  }
+}
+
+/* ------------------------------ Formulario ------------------------------ */
+.formulario {
+  display: grid;
+  gap: var(--espacio-4);
+  color: var(--color-texto);
+}
+
+.interruptor {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--espacio-3);
+  cursor: pointer;
+}
+
+.interruptor input {
+  flex: none;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-top: 0.2rem;
+  accent-color: var(--color-primario);
+}
+
+.ayuda {
+  display: block;
+  font-size: var(--texto-xs);
+  color: var(--color-texto-suave);
+}
+
+.acciones {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--espacio-3);
+  margin-top: var(--espacio-2);
+}
