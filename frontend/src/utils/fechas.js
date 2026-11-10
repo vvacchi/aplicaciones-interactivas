@@ -24,6 +24,19 @@ const numerica = new Intl.DateTimeFormat('es-AR', { day: '2-digit', month: '2-di
 /** "2026-12-05" -> "05/12/2026". Para textos que lee otra persona, sin ambigüedad de año. */
 export const formatearFechaNumerica = (texto) => numerica.format(aFecha(texto));
 
+const mesCorto = new Intl.DateTimeFormat('es-AR', { month: 'short' });
+const dosCifras = (n) => String(n).padStart(2, '0');
+
+/**
+ * Fecha ISO del back (createdAt) -> "9 nov 2026, 17:40" en hora local.
+ * Se arma a mano: Intl en es-AR da "9 de nov de 2026, 05:40 p. m.".
+ */
+export const formatearFechaHora = (iso) => {
+  const d = new Date(iso);
+  const mes = mesCorto.format(d).replace('.', '');
+  return `${d.getDate()} ${mes} ${d.getFullYear()}, ${dosCifras(d.getHours())}:${dosCifras(d.getMinutes())}`;
+};
+
 /** Dias de alquiler contando el de retiro y el de devolucion: 5 al 10 = 6 dias. */
 export const contarDias = (desde, hasta) =>
   Math.round((aFecha(hasta) - aFecha(desde)) / 86_400_000) + 1;

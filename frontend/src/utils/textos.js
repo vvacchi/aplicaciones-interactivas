@@ -44,3 +44,10 @@ export const ESCALA = {
   intermedio: 2,
   avanzado: 3,
 };
+
+/** Estados de una consulta, en el orden en que avanzan. */
+export const ESTADOS_CONSULTA = {
+  pendiente: 'Pendiente',
+  leida: 'Leída',
+  respondida: 'Respondida',
+};
