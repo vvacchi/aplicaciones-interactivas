@@ -1,16 +1,33 @@
-# React + Vite
+# Andes Vertical · Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Sitio público y panel de administración, en React 19 + React Router 7 + Vite 8, con CSS propio (CSS Modules y variables globales, sin librerías de componentes).
 
-Currently, two official plugins are available:
+La descripción del proyecto y la documentación están en el [README de la raíz](../README.md) y en [`docs/`](../docs/).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Comandos
 
-## React Compiler
+```bash
+npm install
+npm run dev       # http://localhost:5173
+npm run build     # versión de producción en dist/
+npm run preview   # sirve la versión de producción
+npm run lint      # Oxlint
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+La API se toma de `VITE_API_URL` (por defecto `http://localhost:4000/api`).
 
-## Expanding the Oxlint configuration
+## Estructura
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+```
+src/
+├── api/          cliente.js (único punto de salida a la API) y un archivo por recurso
+├── componentes/  piezas reutilizables: Boton, Campo, Modal, TarjetaPublicacion, layouts…
+├── contexto/     AuthContext: sesión del panel (JWT en localStorage)
+├── hooks/        usePedido (lecturas) y useFormulario (formularios con validación)
+├── paginas/
+│   ├── publico/  portada, catálogo, detalle, contacto, recuperar contraseña
+│   └── admin/    ingreso, registro, resumen, publicaciones, categorías, consultas, comercio, perfil
+├── estilos/      tokens.css (colores, tipografía, espacios) y global.css
+├── utils/        formato de precios y fechas, textos de los enums, validaciones
+└── rutas.jsx     mapa de rutas
+```
