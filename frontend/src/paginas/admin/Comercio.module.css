@@ -1,0 +1,133 @@
+.formulario {
+  display: grid;
+  gap: var(--espacio-6);
+  max-width: 50rem;
+}
+
+.seccion {
+  display: grid;
+  gap: var(--espacio-4);
+  min-width: 0;
+  margin: 0;
+  padding: var(--espacio-6) var(--espacio-5);
+  border: 1px solid var(--color-linea);
+  border-radius: var(--radio);
+  background: var(--color-fondo);
+}
+
+/* El legend de un fieldset no respeta el padding: se baja con float. */
+.tituloSeccion {
+  float: left;
+  width: 100%;
+  padding: 0;
+  font-size: var(--texto-md);
+  font-weight: var(--peso-negrita);
+}
+
+.tituloSeccion + * {
+  clear: both;
+}
+
+.bajada {
+  font-size: var(--texto-xs);
+  color: var(--color-texto-suave);
+}
+
+.fila {
+  display: grid;
+  gap: var(--espacio-4);
+}
+
+@media (min-width: 640px) {
+  .fila {
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  }
+}
+
+/* ------------------------------ Horarios ------------------------------ */
+.horarios ul {
+  display: grid;
+}
+
+.horarios li {
+  display: grid;
+  grid-template-columns: 6.5rem auto 1fr;
+  align-items: center;
+  gap: var(--espacio-2) var(--espacio-4);
+  padding: var(--espacio-3) 0;
+  border-bottom: 1px solid var(--color-linea);
+}
+
+.horarios li:last-child {
+  border-bottom: 0;
+}
+
+.dia {
+  font-weight: var(--peso-semi);
+}
+
+.abierto {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-2);
+  font-size: var(--texto-sm);
+  cursor: pointer;
+}
+
+.abierto input {
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: var(--color-primario);
+}
+
+.cerrado {
+  font-size: var(--texto-sm);
+  color: var(--color-texto-suave);
+}
+
+.horas {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-2);
+  font-size: var(--texto-sm);
+}
+
+.horas input {
+  padding: 0.4rem 0.5rem;
+  border: 1px solid var(--color-borde-control);
+  border-radius: var(--radio);
+  background: var(--color-fondo);
+  font-size: var(--texto-sm);
+}
+
+.diaConError .horas input {
+  border: 2px solid var(--color-error);
+}
+
+.errorDia,
+.error {
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-semi);
+  color: var(--color-error);
+}
+
+.errorDia {
+  grid-column: 1 / -1;
+}
+
+/* En angosto el horario baja a su propio renglon. */
+@media (max-width: 539px) {
+  .horarios li {
+    grid-template-columns: 1fr auto;
+  }
+
+  .horas,
+  .cerrado {
+    grid-column: 1 / -1;
+  }
+}
+
+.acciones {
+  display: flex;
+  justify-content: flex-end;
+}

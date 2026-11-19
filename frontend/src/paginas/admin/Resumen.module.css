@@ -1,0 +1,144 @@
+.aviso {
+  margin-bottom: var(--espacio-5);
+}
+
+.tarjetas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: var(--espacio-4);
+  margin-bottom: var(--espacio-6);
+}
+
+.tarjeta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-1);
+  padding: var(--espacio-5);
+  border: 1px solid var(--color-linea);
+  border-radius: var(--radio);
+  background: var(--color-fondo);
+}
+
+/* Consultas sin leer: lo unico que pide hacer algo hoy. */
+.destacada {
+  border-color: var(--color-primario);
+  box-shadow: inset 4px 0 0 var(--color-primario);
+}
+
+.tituloTarjeta {
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-semi);
+  text-transform: uppercase;
+  color: var(--color-texto-suave);
+}
+
+.numero {
+  font-size: 2.2rem;
+  font-weight: var(--peso-negrita);
+  line-height: 1.1;
+}
+
+.destacada .numero {
+  color: var(--color-primario);
+}
+
+.detalle {
+  font-size: var(--texto-sm);
+  color: var(--color-texto-suave);
+}
+
+.secundario {
+  display: block;
+  margin-top: var(--espacio-1);
+  color: var(--color-aviso);
+  font-weight: var(--peso-medio);
+}
+
+.enlace {
+  margin-top: auto;
+  padding-top: var(--espacio-3);
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-semi);
+  text-underline-offset: 3px;
+}
+
+/* --------------------------- Ultimas consultas --------------------------- */
+.panel {
+  padding: var(--espacio-5);
+  border: 1px solid var(--color-linea);
+  border-radius: var(--radio);
+  background: var(--color-fondo);
+}
+
+.cabeceraPanel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--espacio-2);
+  margin-bottom: var(--espacio-3);
+}
+
+.cabeceraPanel .enlace {
+  margin: 0;
+  padding: 0;
+}
+
+.tituloPanel {
+  font-size: var(--texto-md);
+  font-weight: var(--peso-negrita);
+}
+
+.alDia {
+  font-size: var(--texto-sm);
+  color: var(--color-texto-suave);
+}
+
+.consultas li + li {
+  border-top: 1px solid var(--color-linea);
+}
+
+.consulta {
+  display: grid;
+  grid-template-columns: minmax(0, 12rem) minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: var(--espacio-1) var(--espacio-4);
+  padding: var(--espacio-3) var(--espacio-2);
+  color: var(--color-texto);
+  font-size: var(--texto-sm);
+  text-decoration: none;
+}
+
+.consulta:hover {
+  background: var(--color-fondo-alterno);
+}
+
+.consultaNombre {
+  overflow: hidden;
+  font-weight: var(--peso-semi);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.consultaAsunto {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.consultaFecha {
+  font-size: var(--texto-xs);
+  color: var(--color-texto-suave);
+  white-space: nowrap;
+}
+
+@media (max-width: 639px) {
+  .consulta {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .consultaAsunto {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+}
