@@ -68,6 +68,12 @@
   gap: var(--espacio-2);
 }
 
+.pista {
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-liviano);
+  color: var(--color-texto-suave);
+}
+
 .precio fieldset {
   border: 0;
 }

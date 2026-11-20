@@ -12,7 +12,9 @@ import RangoFechas from '../../componentes/RangoFechas.jsx';
 import TarjetaPublicacion from '../../componentes/TarjetaPublicacion.jsx';
 import { Cargando, ErrorCarga, Vacio } from '../../componentes/Estados.jsx';
 import { IconoBuscar } from '../../componentes/Iconos.jsx';
+import Nivel from '../../componentes/Nivel.jsx';
 import { contarDias, rangoDeUrl } from '../../utils/fechas.js';
+import { DIFICULTADES, NIVELES, TEMPORADAS } from '../../utils/textos.js';
 import { esId } from '../../utils/validaciones.js';
 import estilos from './Catalogo.module.css';
 
@@ -45,6 +47,19 @@ const usaPrecio = (tipo) => tipo === 'experiencia' || tipo === 'curso';
 
 const esNumero = (texto) => texto !== null && texto !== '' && !Number.isNaN(Number(texto)) && Number(texto) >= 0;
 
+/**
+ * Buscador avanzado: cada filtro de atributos aplica a un tipo. Dificultad
+ * y temporada son de las experiencias; nivel, de los cursos.
+ */
+const FILTROS_ATRIBUTOS = [
+  { clave: 'dificultad', titulo: 'Dificultad', opciones: DIFICULTADES, tipo: 'experiencia', conNivel: true },
+  { clave: 'temporada', titulo: 'Temporada', opciones: TEMPORADAS, tipo: 'experiencia' },
+  { clave: 'nivel', titulo: 'Nivel', opciones: NIVELES, tipo: 'curso', conNivel: true },
+];
+
+/** "baja,media" -> ['baja', 'media'], descartando lo que no sea un valor conocido. */
+const listaDeUrl = (texto, validos) => [...new Set((texto ?? '').split(',').filter((v) => validos[v]))];
+
 /** Lee los filtros de la URL descartando lo que no sea valido. */
 function filtrosDeUrl(params) {
   const tipo = SECCIONES[params.get('tipo')] && params.get('tipo') ? params.get('tipo') : '';
@@ -64,6 +79,9 @@ function filtrosDeUrl(params) {
     precioMin: conPrecio && esNumero(params.get('precioMin')) ? params.get('precioMin') : '',
     precioMax: conPrecio && esNumero(params.get('precioMax')) ? params.get('precioMax') : '',
     rango: tipo === 'alquiler' ? rangoDeUrl(params.get('desde'), params.get('hasta')) : null,
+    ...Object.fromEntries(
+      FILTROS_ATRIBUTOS.map((f) => [f.clave, tipo === f.tipo ? listaDeUrl(params.get(f.clave), f.opciones) : []])
+    ),
   };
 }
 
@@ -78,6 +96,9 @@ const paramsDeApi = (f) => ({
   limite: LIMITE,
   precioMin: f.precioMin || undefined,
   precioMax: f.precioMax || undefined,
+  dificultad: f.dificultad.join(',') || undefined,
+  temporada: f.temporada.join(',') || undefined,
+  nivel: f.nivel.join(',') || undefined,
 });
 
 /* ----------------------------- Controles ----------------------------- */
@@ -153,6 +174,26 @@ function FiltroPrecio({ min, max, alAplicar }) {
   );
 }
 
+/** Chips de seleccion multiple para un atributo (dificultad, temporada o nivel). */
+function FiltroAtributo({ filtro, elegidos, alCambiar }) {
+  const id = `rotulo-${filtro.clave}`;
+  const alternar = (valor) =>
+    alCambiar(elegidos.includes(valor) ? elegidos.filter((v) => v !== valor) : [...elegidos, valor]);
+
+  return (
+    <div role="group" aria-labelledby={id}>
+      <p id={id} className={estilos.rotulo}>{filtro.titulo}</p>
+      <div className={estilos.chips}>
+        {Object.entries(filtro.opciones).map(([valor, texto]) => (
+          <Chip key={valor} activo={elegidos.includes(valor)} onClick={() => alternar(valor)}>
+            {filtro.conNivel ? <Nivel valor={valor} /> : texto}
+          </Chip>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 /* ------------------------------- Pagina ------------------------------- */
 
 export default function Catalogo() {
@@ -186,13 +227,21 @@ export default function Catalogo() {
       if (ORDENES.find((o) => o.valor === filtros.orden)?.conPrecio) cambios.orden = null;
     }
     if (tipo !== 'alquiler') Object.assign(cambios, { desde: null, hasta: null });
+    FILTROS_ATRIBUTOS.filter((f) => f.tipo !== tipo).forEach((f) => {
+      cambios[f.clave] = null;
+    });
     actualizar(cambios);
   };
 
   const limpiar = () => setParams(filtros.tipo ? { tipo: filtros.tipo } : {}, { preventScrollReset: true });
 
-  const hayFiltros = Boolean(filtros.q || filtros.categoria || filtros.disponible || filtros.precioMin || filtros.precioMax);
-  const cantidadFiltros = [filtros.categoria, filtros.disponible, filtros.precioMin || filtros.precioMax].filter(Boolean).length;
+  const atributosActivos = FILTROS_ATRIBUTOS.filter((f) => filtros[f.clave].length > 0).length;
+  const hayFiltros = Boolean(
+    filtros.q || filtros.categoria || filtros.disponible || filtros.precioMin || filtros.precioMax || atributosActivos
+  );
+  const cantidadFiltros =
+    [filtros.categoria, filtros.disponible, filtros.precioMin || filtros.precioMax].filter(Boolean).length + atributosActivos;
+  const filtrosDelTipo = FILTROS_ATRIBUTOS.filter((f) => f.tipo === filtros.tipo);
   const conPrecio = usaPrecio(filtros.tipo);
   const seccion = SECCIONES[filtros.tipo];
   const dias = filtros.rango ? contarDias(filtros.rango.desde, filtros.rango.hasta) : undefined;
@@ -306,6 +355,21 @@ export default function Catalogo() {
                 </Chip>
               </div>
             </div>
+
+            {filtrosDelTipo.map((f) => (
+              <FiltroAtributo
+                key={f.clave}
+                filtro={f}
+                elegidos={filtros[f.clave]}
+                alCambiar={(lista) => actualizar({ [f.clave]: lista.join(',') })}
+              />
+            ))}
+            {(filtros.tipo === '' || filtros.tipo === 'alquiler') && (
+              <p className={estilos.pista}>
+                Elegí <strong>Experiencias</strong> para filtrar por dificultad y temporada, o <strong>Cursos</strong> para
+                filtrar por nivel.
+              </p>
+            )}
 
             {conPrecio && (
               <FiltroPrecio

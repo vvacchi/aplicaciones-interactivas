@@ -57,8 +57,27 @@ const filtroDeBusqueda = async (q) => {
 };
 
 /** Traduce los filtros ya validados a un filtro de Mongo. */
-const armarFiltro = async ({ q, tipo, categoria, disponible, activa, destacada, precioMin, precioMax }) => {
+const armarFiltro = async ({
+  q,
+  tipo,
+  categoria,
+  disponible,
+  activa,
+  destacada,
+  precioMin,
+  precioMax,
+  dificultad,
+  nivel,
+  temporada,
+}) => {
   const filtro = q ? await filtroDeBusqueda(q) : {};
+
+  // Buscador avanzado. Cada lista es un "o" (dificultad baja o media);
+  // entre filtros distintos es un "y". `temporada` es una lista en la
+  // publicacion: alcanza con que coincida una.
+  if (dificultad) filtro['atributos.dificultad'] = { $in: dificultad };
+  if (nivel) filtro['atributos.nivel'] = { $in: nivel };
+  if (temporada) filtro['atributos.temporada'] = { $in: temporada };
 
   if (tipo) filtro.tipo = tipo;
   if (categoria) filtro.categoria = categoria;

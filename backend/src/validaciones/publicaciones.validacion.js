@@ -172,6 +172,20 @@ export const actualizarPublicacionSchema = z
 const enteroDeQuery = (opciones = {}) =>
   z.coerce.number().int().min(opciones.min ?? 1);
 
+/**
+ * Filtro de varios valores en la query: "dificultad=baja,media" llega
+ * como texto y se convierte en ['baja', 'media'], validando cada uno.
+ */
+const listaDeQuery = (valores, nombre) =>
+  z
+    .string()
+    .transform((texto) => texto.split(',').map((v) => v.trim()).filter(Boolean))
+    .pipe(
+      z
+        .array(z.enum(valores, { error: `${nombre}: los valores posibles son ${valores.join(', ')}` }))
+        .min(1, { error: `${nombre}: indicá al menos un valor` })
+    );
+
 export const listarPublicacionesSchema = z
   .strictObject({
     q: z.string().trim().min(2, { error: 'La búsqueda necesita al menos 2 caracteres' }).optional(),
@@ -182,6 +196,10 @@ export const listarPublicacionesSchema = z
     destacada: booleanoDeQuery.optional(),
     precioMin: z.coerce.number().nonnegative().optional(),
     precioMax: z.coerce.number().nonnegative().optional(),
+    // Buscador avanzado: filtran por los atributos de cada tipo.
+    dificultad: listaDeQuery(['baja', 'media', 'alta'], 'Dificultad').optional(),
+    nivel: listaDeQuery(['inicial', 'intermedio', 'avanzado'], 'Nivel').optional(),
+    temporada: listaDeQuery(['verano', 'otonio', 'invierno', 'primavera'], 'Temporada').optional(),
     orden: z.enum(['recientes', 'precio-asc', 'precio-desc', 'nombre']).default('recientes'),
     pagina: enteroDeQuery().default(1),
     limite: enteroDeQuery().max(50, { error: 'El límite máximo es 50' }).default(12),
