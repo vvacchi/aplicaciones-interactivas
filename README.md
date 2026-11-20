@@ -9,17 +9,24 @@ El sitio público muestra el catálogo y permite enviar consultas. No hay carrit
 **Sitio público**
 - Portada con propuestas destacadas, exploración por tipo y por categoría, información del comercio y horarios.
 - Catálogo con búsqueda por texto, filtros (tipo, categoría, disponibilidad, precio), orden y paginación. Los filtros quedan en la dirección y se pueden compartir.
+- Buscador avanzado: dificultad y temporada para experiencias, nivel para cursos, con selección múltiple.
 - Detalle de cada publicación con galería de imágenes, datos según el tipo y botón **Consultar**.
 - Alquiler y experiencias permiten elegir fechas tentativas; en alquiler se muestra el total estimado.
-- Formulario de contacto que llega precargado con la publicación y las fechas elegidas.
+- Formulario de contacto que llega precargado con la publicación y las fechas elegidas. Cada consulta nueva le llega por mail al comercio.
 
 **Panel de administración**
 - Resumen con consultas sin leer y totales del catálogo.
 - Publicaciones: alta, edición, ocultar del sitio y borrado.
 - Categorías: alta, edición, ocultar y borrado (solo si no tienen publicaciones).
-- Consultas: bandeja con estados (pendiente, leída, respondida), respuesta por mail y borrado.
+- Consultas: bandeja con estados (pendiente, leída, respondida), respuesta escrita en el panel y enviada por mail desde la cuenta del comercio, y borrado.
 - Datos del comercio: presentación, contacto, redes y horarios.
-- Ingreso, registro, recuperación de contraseña por mail y perfil.
+- Ingreso, recuperación de contraseña por mail y perfil.
+- Alta de administradores: solo un administrador con sesión puede crear otra cuenta.
+
+**Seguridad**
+- Todo lo que modifica datos exige un JWT válido con rol `admin`, verificado en el backend.
+- Registro cerrado al público, límite de intentos fallidos en el ingreso y la recuperación de contraseña, y CORS restringido al frontend.
+- Contraseñas guardadas con hash (bcrypt); el ingreso no revela qué mails existen.
 
 ## Tecnologías
 
@@ -36,6 +43,9 @@ El sitio público muestra el catálogo y permite enviar consultas. No hay carrit
 | [Modelo de datos](docs/modelo-de-datos.md) | Colecciones, campos y relaciones |
 | [Diagrama de navegación](docs/diagrama-de-navegacion.md) | Pantallas y cómo se pasa de una a otra |
 | [Manual de instalación](docs/manual-de-instalacion.md) | Cómo levantar el proyecto en una máquina nueva |
+| [Guion de la demo](docs/guion-de-demo.md) | Recorrido paso a paso para presentar el sistema |
+| [Guía de pruebas](docs/guia-de-pruebas.md) | Lista completa de pruebas de funcionalidad y seguridad, con el resultado de la última corrida |
+| [Créditos de las imágenes](docs/creditos-imagenes.md) | Autor y licencia de cada foto de ejemplo |
 
 ## Inicio rápido
 

@@ -31,6 +31,10 @@ El visitante nunca necesita registrarse: todo el sitio público es de libre acce
 ### Catálogo (`/catalogo`)
 - **Búsqueda por texto:** tienen que aparecer todas las palabras escritas, en el nombre, la descripción o la categoría. No distingue mayúsculas ni tildes y encuentra palabras incompletas («escala» encuentra «escalada»). Ignora palabras como «y», «de» o «la».
 - **Filtros:** tipo, categoría, solo disponibles y rango de precio (este último para experiencias y cursos; el alquiler se cobra por día).
+- **Buscador avanzado:** al elegir un tipo aparecen los filtros por sus atributos, con selección múltiple:
+  - Experiencias: **dificultad** (baja, media, alta) y **temporada** (primavera, verano, otoño, invierno).
+  - Cursos: **nivel** (inicial, intermedio, avanzado).
+  - Dentro de un mismo filtro las opciones se suman («alta» o «media»); entre filtros distintos se cruzan («alta o media» y «verano»).
 - **Orden:** más recientes, precio (ascendente o descendente) y nombre.
 - **Paginación** de 12 resultados.
 - Todos los filtros quedan en la dirección de la página: se pueden compartir y se mantienen al recargar.
@@ -44,6 +48,7 @@ El visitante nunca necesita registrarse: todo el sitio público es de libre acce
   - Alquiler: talles, unidades disponibles y depósito.
 - Precio, disponibilidad y, en alquiler y experiencias, elección de fechas tentativas.
 - Botón **Consultar**, que lleva al formulario de contacto con la publicación ya asociada.
+- Al enviar la consulta, al comercio le llega un mail de aviso con los datos del visitante, el mensaje y el enlace para abrirla en el panel. Si se responde ese mail, la respuesta le llega directamente al visitante. Si el aviso no sale, la consulta se guarda igual y aparece en el panel.
 - Otras propuestas de la misma categoría.
 
 ### Contacto (`/contacto`)
@@ -56,7 +61,7 @@ El visitante nunca necesita registrarse: todo el sitio público es de libre acce
 
 ### Acceso
 - **Ingresar** con mail y contraseña. Un mismo mensaje para mail inexistente y contraseña incorrecta, para no revelar qué cuentas existen.
-- **Crear cuenta** de administrador.
+- **Agregar administrador:** solo un administrador con sesión puede crear otra cuenta, desde el panel. No hay registro público. El primer administrador lo crea el script de datos (`npm run seed`).
 - **Recuperar contraseña:** se pide el mail y llega un enlace que vence a los 60 minutos y se usa una sola vez. La respuesta es la misma exista o no la cuenta.
 - **Perfil:** cambiar datos personales y contraseña (pide la contraseña actual).
 - La sesión dura 7 días. Si vence, el panel vuelve a pedir el ingreso y después regresa a la pantalla donde se estaba.
@@ -78,8 +83,11 @@ Pantalla de inicio del panel: consultas sin leer, total de publicaciones por tip
 - Bandeja con las consultas sin leer en negrita, filtro por estado y orden por fecha.
 - Al abrir una se ve quién escribió, sus datos de contacto, el mensaje y sobre qué publicación consulta.
 - Estado: **pendiente → leída → respondida**, que el administrador cambia a mano.
-- «Responder por mail» abre el correo con el asunto y un saludo ya escritos.
+- **Responder** desde el panel: se escribe la respuesta (viene con el saludo ya escrito) y el sistema la manda por mail a quien consultó, desde la cuenta de Andes Vertical y con su consulta citada. La consulta pasa sola a «Respondida» y la respuesta queda guardada, con la fecha y quién la envió.
 - Borrado con confirmación.
+
+### Administradores
+Alta de una cuenta nueva del panel (nombre, apellido, mail, teléfono y contraseña inicial). Solo la ve un administrador con sesión; la persona nueva ingresa con esos datos y cambia la contraseña desde «Perfil».
 
 ### Datos del comercio
 Nombre, descripción, dirección, teléfono, mail, redes sociales y horarios de los siete días. Es lo que el sitio muestra en la portada y en la página de contacto.
@@ -94,6 +102,15 @@ Nombre, descripción, dirección, teléfono, mail, redes sociales y horarios de 
 - **El tipo de una publicación no cambia** después de crearla, porque cada tipo tiene datos distintos.
 - **Las categorías ocultas** dejan de aparecer en los filtros y en la portada; sus publicaciones siguen visibles en el catálogo.
 - **Las consultas** solo las ve el administrador, porque tienen datos personales.
+
+## Seguridad
+
+- **Autorización en el backend.** Todo lo que crea, modifica o borra datos exige un token JWT válido con rol `admin`. Esconder un botón en el frontend no alcanza: el backend vuelve a verificar cada pedido, aunque llegue desde Postman o curl.
+- **Sin registro público.** Solo un administrador con sesión puede crear otro administrador; quien lo crea sigue con su propia sesión.
+- **Límite de intentos fallidos.** Después de 5 intentos fallidos de ingreso desde la misma dirección, el backend responde «Demasiados intentos fallidos» durante 15 minutos (la recuperación de contraseña tiene su propio límite). Un ingreso correcto reinicia el contador.
+- **CORS restringido.** La API solo acepta pedidos de navegador que vengan del frontend del proyecto.
+- **Contraseñas.** Se guardan con hash (bcrypt) y nunca salen en las respuestas. El enlace de recuperación vence a los 60 minutos y se usa una sola vez.
+- **Datos personales.** Las consultas solo las ve el administrador; el visitante tampoco recibe publicaciones ni categorías ocultas.
 
 ## Calidad y experiencia de uso
 

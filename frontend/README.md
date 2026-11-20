@@ -26,7 +26,7 @@ src/
 ├── hooks/        usePedido (lecturas) y useFormulario (formularios con validación)
 ├── paginas/
 │   ├── publico/  portada, catálogo, detalle, contacto, recuperar contraseña
-│   └── admin/    ingreso, registro, resumen, publicaciones, categorías, consultas, comercio, perfil
+│   └── admin/    ingreso, resumen, publicaciones, categorías, consultas, comercio, administradores, perfil
 ├── estilos/      tokens.css (colores, tipografía, espacios) y global.css
 ├── utils/        formato de precios y fechas, textos de los enums, validaciones
 └── rutas.jsx     mapa de rutas

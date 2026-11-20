@@ -1,6 +1,6 @@
 # Diagrama de navegación
 
-El sistema tiene dos partes: el **sitio público**, de libre acceso, y el **panel de administración**, que requiere iniciar sesión. Las pantallas de acceso (ingresar, crear cuenta y recuperar contraseña) quedan entre las dos.
+El sistema tiene dos partes: el **sitio público**, de libre acceso, y el **panel de administración**, que requiere iniciar sesión. Las pantallas de acceso (ingresar y recuperar contraseña) quedan entre las dos. No hay registro público: las cuentas nuevas las crea un administrador desde el panel.
 
 ## Sitio público
 
@@ -30,7 +30,6 @@ Desde cualquier pantalla pública se puede ir a la portada, al catálogo filtrad
 ```mermaid
 flowchart TD
     Login["Ingresar<br/>/admin/login"]
-    Registro["Crear cuenta<br/>/admin/registro"]
     Recuperar["Recuperar contraseña<br/>/recuperar-password"]
     Nueva["Elegir contraseña nueva<br/>/recuperar-password?token=…"]
     Mail(["Mail con el enlace"])
@@ -42,19 +41,21 @@ flowchart TD
     Cats["Categorías<br/>/admin/categorias"]
     Cons["Consultas<br/>/admin/consultas"]
     Com["Datos del comercio<br/>/admin/comercio"]
+    Admins["Agregar administrador<br/>/admin/administradores"]
     Perfil["Mi perfil<br/>/admin/perfil"]
 
-    Login <-->|"Crear cuenta / Ingresar"| Registro
     Login -->|"¿Olvidaste tu contraseña?"| Recuperar
     Recuperar -->|"Enviar enlace"| Mail
     Mail -->|"Abrir enlace"| Nueva
     Login -->|"Ingresar"| Resumen
-    Registro -->|"Crear cuenta"| Resumen
     Nueva -->|"Guardar"| Resumen
 
     Resumen --> Pubs
     Resumen --> Cats
     Resumen --> Cons
+    Resumen -.->|"Menú"| Com
+    Resumen -.->|"Menú"| Admins
+    Resumen -.->|"Menú"| Perfil
     Resumen -->|"Nueva publicación"| PubNueva
     Pubs -->|"Nueva publicación"| PubNueva
     Pubs -->|"Editar"| PubEditar
@@ -64,7 +65,7 @@ flowchart TD
     Cons -->|"Editar la publicación consultada"| PubEditar
 ```
 
-Dentro del panel, el menú lateral (o la barra superior en el celular) da acceso directo a Resumen, Publicaciones, Categorías, Consultas, Comercio y Perfil, y a «Ver el sitio». **Cerrar sesión** vuelve al ingreso.
+Dentro del panel, el menú lateral (o la barra superior en el celular) da acceso directo a Resumen, Publicaciones, Categorías, Consultas, Comercio, Administradores y Perfil, y a «Ver el sitio». **Cerrar sesión** vuelve al ingreso.
 
 Acciones que no cambian de pantalla:
 - **Categorías:** el alta, la edición y la confirmación de borrado se abren en una ventana sobre la misma pantalla.
@@ -73,6 +74,7 @@ Acciones que no cambian de pantalla:
 
 ## Protección de rutas
 
-- Todas las rutas `/admin/*` salvo `/admin/login` y `/admin/registro` requieren sesión. Sin sesión, llevan al ingreso y, después de ingresar, vuelven a la pantalla pedida.
+- Todas las rutas `/admin/*` salvo `/admin/login` requieren sesión. Sin sesión, llevan al ingreso y, después de ingresar, vuelven a la pantalla pedida.
+- La dirección vieja del registro (`/admin/registro`) redirige a «Agregar administrador», que también exige sesión.
 - Si la sesión vence mientras se usa el panel, el panel vuelve al ingreso.
 - Una dirección que no existe muestra una página «No encontrada» con un botón para volver a la portada.

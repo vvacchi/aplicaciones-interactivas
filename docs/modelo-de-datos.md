@@ -39,6 +39,7 @@ erDiagram
         String mensaje
         ObjectId publicacion "ref Publicacion, opcional"
         String estado "pendiente | leida | respondida"
+        Object respuesta "opcional: mensaje, fecha, autor"
     }
     USUARIO {
         ObjectId _id
@@ -113,7 +114,8 @@ Lo que envía un visitante desde el formulario de contacto.
 | `asunto` | texto | obligatorio, 3 a 120 caracteres |
 | `mensaje` | texto | obligatorio, 10 a 2000 caracteres |
 | `publicacion` | referencia a Publicacion | opcional; se completa cuando la consulta sale del botón «Consultar» |
-| `estado` | texto | `pendiente` (por defecto), `leida` o `respondida`. Es lo único que el administrador puede modificar |
+| `estado` | texto | `pendiente` (por defecto), `leida` o `respondida`. El administrador lo cambia a mano, y pasa solo a `respondida` al responder |
+| `respuesta` | objeto | opcional: `mensaje`, `fecha` y `autor` de la respuesta enviada por mail desde el panel |
 
 Las fechas que elige el visitante (alquiler o experiencia) viajan dentro del texto del mensaje.
 
@@ -146,4 +148,16 @@ Cada **horario** tiene `dia` (`lunes` … `domingo`, sin tildes), `cerrado` (boo
 
 ## Datos de ejemplo
 
-`npm run seed` (en `backend/`) vacía las colecciones y carga un juego de datos de ejemplo definido en `backend/src/seed/datos.js`: el comercio, un administrador, 5 categorías, 27 publicaciones (9 experiencias, 6 cursos y 12 equipos de alquiler) y 4 consultas. Antes de insertar, cada publicación se valida con el mismo esquema que usa la API.
+`npm run seed` (en `backend/`) vacía las colecciones y carga un juego de datos de ejemplo definido en `backend/src/seed/datos.js`: el comercio, un administrador, 5 categorías, 27 publicaciones (9 experiencias, 6 cursos y 12 equipos de alquiler) y 4 consultas. Antes de insertar, cada publicación se valida con el mismo esquema que usa la API. Las imágenes son URLs de fotos de Wikimedia Commons, elegidas para cada publicación (los lugares reales de Bariloche y el equipo de cada alquiler); autor y licencia de cada una en [`creditos-imagenes.md`](creditos-imagenes.md).
+
+## Consultas al catálogo
+
+`GET /publicaciones` combina la búsqueda por texto (`q`) con filtros por campos comunes (`tipo`, `categoria`, `disponible`, `destacada`, `precioMin`, `precioMax`) y, para el buscador avanzado, por campos de `atributos`:
+
+| Parámetro | Busca en | Ejemplo |
+|---|---|---|
+| `dificultad` | `atributos.dificultad` (experiencias) | `dificultad=alta,media` |
+| `temporada` | `atributos.temporada` (experiencias; alcanza con que coincida una) | `temporada=verano` |
+| `nivel` | `atributos.nivel` (cursos) | `nivel=inicial` |
+
+Cada parámetro acepta varios valores separados por coma, y los filtros se combinan entre sí.
