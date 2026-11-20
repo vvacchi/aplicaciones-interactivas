@@ -43,8 +43,6 @@ El sitio público muestra el catálogo y permite enviar consultas. No hay carrit
 | [Modelo de datos](docs/modelo-de-datos.md) | Colecciones, campos y relaciones |
 | [Diagrama de navegación](docs/diagrama-de-navegacion.md) | Pantallas y cómo se pasa de una a otra |
 | [Manual de instalación](docs/manual-de-instalacion.md) | Cómo levantar el proyecto en una máquina nueva |
-| [Guion de la demo](docs/guion-de-demo.md) | Recorrido paso a paso para presentar el sistema |
-| [Guía de pruebas](docs/guia-de-pruebas.md) | Lista completa de pruebas de funcionalidad y seguridad, con el resultado de la última corrida |
 | [Créditos de las imágenes](docs/creditos-imagenes.md) | Autor y licencia de cada foto de ejemplo |
 
 ## Inicio rápido
