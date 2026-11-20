@@ -35,8 +35,10 @@ export const registrar = async (datos) => {
     throw new ConflictoError('Ya existe un usuario con ese correo electronico');
   }
 
+  // Lo crea un admin que ya tiene sesion: no se emite un token nuevo,
+  // asi quien lo crea no queda logueado como el usuario creado.
   const usuario = await Usuario.create(datos);
-  return emitirSesion(usuario);
+  return aRespuesta(usuario);
 };
 
 export const login = async ({ email, password }) => {

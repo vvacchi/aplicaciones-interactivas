@@ -45,11 +45,7 @@ export default function Login() {
     <PantallaAcceso
       titulo="Ingresar al panel"
       bajada="Administrá publicaciones, categorías y consultas."
-      pie={
-        <>
-          ¿Todavía no tenés cuenta? <Link to="/admin/registro">Creá una</Link>
-        </>
-      }
+      pie="El acceso es solo para el equipo de Andes Vertical. Si necesitás una cuenta, pedísela a un administrador."
     >
       {desde && !form.errorGeneral && (
         <Aviso variante="advertencia">Ingresá para continuar. Si tu sesión venció, volvé a entrar.</Aviso>

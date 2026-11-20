@@ -11,7 +11,18 @@ z.config(z.locales.es());
 
 const app = express();
 
-app.use(cors());
+/**
+ * Solo el frontend del proyecto puede llamar a la API desde un navegador.
+ * CORS_ORIGENES admite varias direcciones separadas por coma (por ejemplo,
+ * el sitio publicado y el de desarrollo). Postman o curl no pasan por CORS:
+ * lo que protege los datos es la autenticacion de cada ruta.
+ */
+const origenes = (process.env.CORS_ORIGENES || 'http://localhost:5173')
+  .split(',')
+  .map((origen) => origen.trim())
+  .filter(Boolean);
+
+app.use(cors({ origin: origenes }));
 app.use(express.json());
 app.use(morgan('dev'));
 

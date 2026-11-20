@@ -9,6 +9,7 @@ const SECCIONES = [
   { texto: 'Categorías', a: '/admin/categorias' },
   { texto: 'Consultas', a: '/admin/consultas' },
   { texto: 'Comercio', a: '/admin/comercio' },
+  { texto: 'Administradores', a: '/admin/administradores' },
   { texto: 'Perfil', a: '/admin/perfil' },
 ];
 

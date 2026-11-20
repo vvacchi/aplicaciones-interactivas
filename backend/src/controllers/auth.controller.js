@@ -1,8 +1,8 @@
 import * as authService from '../services/auth.service.js';
 
 export const registrar = async (req, res) => {
-  const sesion = await authService.registrar(req.validado.body);
-  res.status(201).json(sesion);
+  const usuario = await authService.registrar(req.validado.body);
+  res.status(201).json(usuario);
 };
 
 export const login = async (req, res) => {

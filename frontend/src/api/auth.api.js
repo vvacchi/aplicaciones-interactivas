@@ -1,7 +1,9 @@
 import { get, post, put } from './cliente.js';
 
-// login, registro y resetear devuelven { usuario, token }.
+// login y resetear devuelven { usuario, token }.
 export const login = (credenciales) => post('/auth/login', credenciales);
+
+/** Solo con sesion de admin: crea otro administrador y devuelve el usuario creado (sin token). */
 export const registrar = (datos) => post('/auth/registro', datos);
 export const obtenerPerfil = () => get('/auth/perfil');
 
