@@ -17,6 +17,18 @@ const consultaSchema = new mongoose.Schema(
       enum: ['pendiente', 'leida', 'respondida'],
       default: 'pendiente',
     },
+    // La respuesta que el administrador envio por mail desde el panel.
+    respuesta: {
+      type: new mongoose.Schema(
+        {
+          mensaje: { type: String, required: true, trim: true },
+          fecha: { type: Date, required: true },
+          autor: { type: String, trim: true },
+        },
+        { _id: false }
+      ),
+      default: undefined,
+    },
   },
   { timestamps: true }
 );

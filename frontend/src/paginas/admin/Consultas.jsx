@@ -5,10 +5,13 @@ import {
   eliminarConsulta,
   listarConsultas,
   obtenerConsulta,
+  responderConsulta,
 } from '../../api/consultas.api.js';
 import { usePedido } from '../../hooks/usePedido.js';
+import { useFormulario } from '../../hooks/useFormulario.js';
 import Aviso from '../../componentes/Aviso.jsx';
 import Boton from '../../componentes/Boton.jsx';
+import Campo from '../../componentes/Campo.jsx';
 import Chip from '../../componentes/Chip.jsx';
 import EncabezadoPagina from '../../componentes/EncabezadoPagina.jsx';
 import Etiqueta from '../../componentes/Etiqueta.jsx';
@@ -17,7 +20,7 @@ import Paginacion from '../../componentes/Paginacion.jsx';
 import { Cargando, ErrorCarga, Vacio } from '../../componentes/Estados.jsx';
 import { formatearFechaHora } from '../../utils/fechas.js';
 import { ESTADOS_CONSULTA, TIPOS } from '../../utils/textos.js';
-import { esId } from '../../utils/validaciones.js';
+import { errorDeLargo, esId, soloErrores } from '../../utils/validaciones.js';
 import estilos from './Consultas.module.css';
 
 const LIMITE = 15;
@@ -55,14 +58,94 @@ function EstadoConsulta({ estado }) {
 
 /* ------------------------------- Detalle ------------------------------- */
 
-/** mailto con el asunto y un saludo ya escritos, para responder desde el correo. */
-function enlaceRespuesta({ email, nombre, asunto }) {
-  const params = new URLSearchParams({
-    subject: `Re: ${asunto}`,
-    body: `Hola ${nombre.split(' ')[0]},\n\n`,
+const LARGO_RESPUESTA = [10, 5000];
+
+/**
+ * Respuesta escrita en el panel: el back la manda por mail desde la cuenta
+ * del comercio y la guarda en la consulta.
+ */
+function Responder({ consulta, alResponder }) {
+  const saludo = `Hola ${consulta.nombre.split(' ')[0]}:\n\n`;
+  const [escribiendo, setEscribiendo] = useState(!consulta.respuesta);
+  const [enviada, setEnviada] = useState(false);
+
+  const form = useFormulario({
+    inicial: { mensaje: saludo },
+    validar: ({ mensaje }) =>
+      soloErrores({
+        mensaje:
+          mensaje.trim() === saludo.trim()
+            ? 'Escribí la respuesta antes de enviarla.'
+            : errorDeLargo(mensaje, LARGO_RESPUESTA, {
+                vacio: 'Escribí la respuesta antes de enviarla.',
+                corto: `La respuesta debe tener al menos ${LARGO_RESPUESTA[0]} caracteres.`,
+                largo: `La respuesta no puede superar los ${LARGO_RESPUESTA[1]} caracteres.`,
+              }),
+      }),
+    alEnviar: async ({ mensaje }) => {
+      const actualizada = await responderConsulta(consulta._id, mensaje.trim());
+      setEnviada(true);
+      setEscribiendo(false);
+      form.setValores({ mensaje: saludo });
+      alResponder(actualizada);
+    },
   });
-  // URLSearchParams codifica los espacios como "+", que los clientes de correo no traducen.
-  return `mailto:${email}?${params.toString().replace(/\+/g, '%20')}`;
+
+  const { respuesta } = consulta;
+
+  return (
+    <section className={estilos.responder} aria-labelledby="titulo-respuesta">
+      <h3 id="titulo-respuesta" className={estilos.estadoTitulo}>
+        {respuesta ? 'Respuesta enviada' : 'Responder'}
+      </h3>
+
+      {enviada && (
+        <Aviso variante="exito">
+          Le enviaste la respuesta a {consulta.email}. La consulta quedó como «Respondida».
+        </Aviso>
+      )}
+
+      {respuesta && (
+        <div className={estilos.respuesta}>
+          <p className={estilos.respuestaDatos}>
+            {formatearFechaHora(respuesta.fecha)}
+            {respuesta.autor && ` · ${respuesta.autor}`}
+          </p>
+          <p className={estilos.mensaje}>{respuesta.mensaje}</p>
+        </div>
+      )}
+
+      {escribiendo ? (
+        <form className={estilos.formRespuesta} onSubmit={form.enviar} noValidate>
+          {form.errorGeneral && <Aviso>{form.errorGeneral}</Aviso>}
+          <Campo
+            etiqueta="Tu respuesta"
+            como="textarea"
+            name="mensaje"
+            rows={7}
+            value={form.valores.mensaje}
+            onChange={form.cambiar}
+            error={form.errores.mensaje}
+            ayuda={`Le llega a ${consulta.email} desde el mail de Andes Vertical, con su consulta citada abajo.`}
+          />
+          <div className={estilos.accionesRespuesta}>
+            <Boton type="submit" disabled={form.enviando}>
+              {form.enviando ? 'Enviando…' : 'Enviar respuesta'}
+            </Boton>
+            {respuesta && (
+              <Boton variante="borde" onClick={() => setEscribiendo(false)} disabled={form.enviando}>
+                Cancelar
+              </Boton>
+            )}
+          </div>
+        </form>
+      ) : (
+        <Boton variante="borde" onClick={() => { setEnviada(false); setEscribiendo(true); }}>
+          Escribir otra respuesta
+        </Boton>
+      )}
+    </section>
+  );
 }
 
 function Detalle({ id, alCambiarEstado, alEliminar, enlaceVolver }) {
@@ -70,6 +153,8 @@ function Detalle({ id, alCambiarEstado, alEliminar, enlaceVolver }) {
   const { datos, error, cargando, recargar } = usePedido(pedir);
   // Estado elegido despues de cargar; pisa al que vino del back.
   const [estadoNuevo, setEstadoNuevo] = useState(null);
+  // Consulta devuelta al responder (trae la respuesta y el estado nuevos).
+  const [respondida, setRespondida] = useState(null);
   const [guardando, setGuardando] = useState(false);
   const [errorEstado, setErrorEstado] = useState(null);
 
@@ -84,7 +169,8 @@ function Detalle({ id, alCambiarEstado, alEliminar, enlaceVolver }) {
     );
   }
 
-  const consulta = { ...datos, estado: estadoNuevo ?? datos.estado };
+  const base = respondida ?? datos;
+  const consulta = { ...base, estado: estadoNuevo ?? base.estado };
   const { nombre, email, telefono, asunto, mensaje, publicacion, createdAt, estado } = consulta;
 
   const cambiarEstado = async (nuevo) => {
@@ -160,15 +246,20 @@ function Detalle({ id, alCambiarEstado, alEliminar, enlaceVolver }) {
         {errorEstado && <Aviso>{errorEstado}</Aviso>}
       </div>
 
+      <Responder
+        consulta={consulta}
+        alResponder={(actualizada) => {
+          setRespondida(actualizada);
+          setEstadoNuevo(null);
+          alCambiarEstado();
+        }}
+      />
+
       <div className={estilos.accionesDetalle}>
-        <Boton href={enlaceRespuesta(consulta)}>Responder por mail</Boton>
         <button type="button" className={estilos.eliminar} onClick={() => alEliminar(consulta)}>
           Eliminar consulta
         </button>
       </div>
-      {estado !== 'respondida' && (
-        <p className={estilos.nota}>Cuando le respondas, marcala como «Respondida» para llevar el control.</p>
-      )}
     </article>
   );
 }

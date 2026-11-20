@@ -7,6 +7,7 @@ import {
   crearConsultaSchema,
   cambiarEstadoSchema,
   listarConsultasSchema,
+  responderConsultaSchema,
 } from '../../validaciones/consultas.validacion.js';
 
 const router = Router();
@@ -45,6 +46,14 @@ router.put(
   soloAdmin,
   validar({ params: idParamSchema, body: cambiarEstadoSchema }),
   consultasController.cambiarEstado
+);
+
+/** Envia la respuesta por mail desde la cuenta del comercio y la guarda. */
+router.post(
+  '/:id/respuesta',
+  soloAdmin,
+  validar({ params: idParamSchema, body: responderConsultaSchema }),
+  consultasController.responder
 );
 
 router.delete(

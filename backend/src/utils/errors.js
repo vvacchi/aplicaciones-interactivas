@@ -37,3 +37,10 @@ export class ProhibidoError extends Error {
     this.name = 'ProhibidoError';
   }
 }
+/** Un servicio externo (por ejemplo, el correo saliente) no respondio. */
+export class ServicioNoDisponibleError extends Error {
+  constructor(mensaje = 'El servicio no esta disponible en este momento') {
+    super(mensaje);
+    this.name = 'ServicioNoDisponibleError';
+  }
+}

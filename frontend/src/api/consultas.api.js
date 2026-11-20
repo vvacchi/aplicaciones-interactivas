@@ -18,3 +18,10 @@ export const obtenerConsulta = (id) => get(`/consultas/${id}`);
 /** Lo unico editable de una consulta es su estado: el resto lo escribio el visitante. */
 export const cambiarEstadoConsulta = (id, estado) => put(`/consultas/${id}/estado`, { estado });
 export const eliminarConsulta = (id) => del(`/consultas/${id}`);
+
+/**
+ * POST /consultas/:id/respuesta: el back manda el mail desde la cuenta del
+ * comercio, guarda la respuesta y pasa la consulta a "respondida".
+ * Devuelve la consulta actualizada. Si el mail no sale, responde 503.
+ */
+export const responderConsulta = (id, mensaje) => post(`/consultas/${id}/respuesta`, { mensaje });

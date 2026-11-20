@@ -38,6 +38,15 @@ export const cambiarEstadoSchema = z.strictObject({
   }),
 });
 
+/** POST /api/consultas/:id/respuesta */
+export const responderConsultaSchema = z.strictObject({
+  mensaje: z
+    .string()
+    .trim()
+    .min(10, { error: 'La respuesta debe tener al menos 10 caracteres' })
+    .max(5000, { error: 'La respuesta no puede superar los 5000 caracteres' }),
+});
+
 /** GET /api/consultas */
 export const listarConsultasSchema = z.strictObject({
   estado: z

@@ -5,6 +5,7 @@ import {
   DatosInvalidosError,
   NoAutorizadoError,
   ProhibidoError,
+  ServicioNoDisponibleError,
 } from '../utils/errors.js';
 
 export const errorHandler = (err, req, res, next) => {
@@ -26,6 +27,9 @@ export const errorHandler = (err, req, res, next) => {
   }
   if (err instanceof ProhibidoError) {
     return res.status(403).json({ mensaje: err.message });
+  }
+  if (err instanceof ServicioNoDisponibleError) {
+    return res.status(503).json({ mensaje: err.message });
   }
 
   // Errores de Mongoose

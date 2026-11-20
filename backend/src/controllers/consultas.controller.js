@@ -23,6 +23,15 @@ export const cambiarEstado = async (req, res) => {
   res.json(consulta);
 };
 
+export const responder = async (req, res) => {
+  const consulta = await consultasService.responder(
+    req.validado.params.id,
+    req.validado.body.mensaje,
+    req.usuario
+  );
+  res.json(consulta);
+};
+
 export const eliminar = async (req, res) => {
   await consultasService.eliminar(req.validado.params.id);
   res.status(204).end();
