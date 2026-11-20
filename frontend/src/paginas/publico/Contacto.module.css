@@ -121,6 +121,7 @@
 /* ------------------------------ Enviada ------------------------------ */
 .enviada {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   justify-items: start;
   gap: var(--espacio-4);
   padding: var(--espacio-8) var(--espacio-6);
@@ -137,6 +138,7 @@
 
 .enviada p {
   max-width: 36rem;
+  overflow-wrap: anywhere;
 }
 
 .enviadaAcciones {
@@ -206,4 +208,10 @@
   padding-top: var(--espacio-3);
   border-top: 1px solid rgb(255 255 255 / 0.2);
   font-weight: var(--peso-semi);
+}
+
+@media (max-width: 400px) {
+  .enviada {
+    padding: var(--espacio-6) var(--espacio-4);
+  }
 }

@@ -97,9 +97,14 @@
   font-weight: var(--peso-semi);
   font-size: var(--texto-sm);
   color: var(--color-primario);
-  text-decoration: underline;
+  text-decoration: none;
   text-underline-offset: 3px;
   cursor: pointer;
+}
+
+.limpiar:hover,
+.abrirFiltros:hover {
+  text-decoration: underline;
 }
 
 .abrirFiltros {

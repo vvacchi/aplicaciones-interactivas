@@ -11,6 +11,7 @@
   text-transform: uppercase;
   letter-spacing: 0.02em;
   text-decoration: none;
+  max-width: 100%;
   white-space: nowrap;
   cursor: pointer;
   transition:
@@ -70,4 +71,12 @@
 .chico {
   padding: 0.45rem 1rem;
   font-size: var(--texto-xs);
+}
+
+/* En pantallas muy angostas un texto largo pasa a dos renglones en vez de salirse. */
+@media (max-width: 400px) {
+  .boton {
+    white-space: normal;
+    text-align: center;
+  }
 }

@@ -40,7 +40,12 @@
 
 .tabla td a {
   font-weight: var(--peso-semi);
+  text-decoration: none;
   text-underline-offset: 3px;
+}
+
+.tabla td a:hover {
+  text-decoration: underline;
 }
 
 .nombre {
@@ -76,9 +81,13 @@
   font-size: var(--texto-sm);
   font-weight: var(--peso-semi);
   color: var(--color-primario);
-  text-decoration: underline;
+  text-decoration: none;
   text-underline-offset: 3px;
   cursor: pointer;
+}
+
+.accion:hover {
+  text-decoration: underline;
 }
 
 .eliminar {

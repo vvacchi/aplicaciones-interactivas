@@ -59,7 +59,12 @@
   padding-top: var(--espacio-3);
   font-size: var(--texto-sm);
   font-weight: var(--peso-semi);
+  text-decoration: none;
   text-underline-offset: 3px;
+}
+
+.enlace:hover {
+  text-decoration: underline;
 }
 
 /* --------------------------- Ultimas consultas --------------------------- */

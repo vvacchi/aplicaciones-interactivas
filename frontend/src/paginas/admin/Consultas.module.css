@@ -301,8 +301,11 @@
   font-size: var(--texto-sm);
   font-weight: var(--peso-semi);
   color: var(--color-error);
-  text-decoration: underline;
+  text-decoration: none;
   text-underline-offset: 3px;
   cursor: pointer;
 }
 
+.eliminar:hover {
+  text-decoration: underline;
+}

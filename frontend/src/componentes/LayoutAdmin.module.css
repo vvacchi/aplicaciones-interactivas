@@ -80,9 +80,13 @@
   border: 0;
   background: none;
   font-weight: var(--peso-semi);
-  text-decoration: underline;
+  text-decoration: none;
   text-underline-offset: 3px;
   cursor: pointer;
+}
+
+.salir:hover {
+  text-decoration: underline;
 }
 
 .contenido {

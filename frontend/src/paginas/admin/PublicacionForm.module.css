@@ -187,9 +187,13 @@
   background: none;
   font-weight: var(--peso-semi);
   color: var(--color-primario);
-  text-decoration: underline;
+  text-decoration: none;
   text-underline-offset: 2px;
   cursor: pointer;
+}
+
+.accionesImagen button:hover {
+  text-decoration: underline;
 }
 
 .accionesImagen button:last-child {
