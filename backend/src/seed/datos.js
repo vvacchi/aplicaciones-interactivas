@@ -11,41 +11,41 @@
 export const CATEGORIAS = [
   {
     clave: 'trekking',
-    nombre: 'Trekking y travesias',
+    nombre: 'Trekking y travesías',
     descripcion:
-      'Caminatas de un dia y travesias de varias jornadas por los senderos y refugios del Parque Nacional Nahuel Huapi.',
+      'Caminatas de un día y travesías de varias jornadas por los senderos y refugios del Parque Nacional Nahuel Huapi.',
   },
   {
     clave: 'escalada',
     nombre: 'Escalada en roca',
     descripcion:
-      'Escalada deportiva y clasica en el granito de las agujas de Frey, Cerro Lopez y Cerro Ventana.',
+      'Escalada deportiva y clásica en el granito de las agujas de Frey, Cerro López y Cerro Ventana.',
   },
   {
     clave: 'montanismo',
-    nombre: 'Montanismo y alta montana',
+    nombre: 'Montañismo y alta montaña',
     descripcion:
       'Ascensos sobre glaciar y terreno mixto, con uso de piolet, crampones y cuerda.',
   },
   {
     clave: 'esqui',
-    nombre: 'Esqui de travesia',
+    nombre: 'Esquí de travesía',
     descripcion:
-      'Salidas y formacion para moverse en nieve fuera de pista durante el invierno patagonico.',
+      'Salidas y formación para moverse en nieve fuera de pista durante el invierno patagónico.',
   },
   {
     clave: 'campamento',
     nombre: 'Campamento y vivac',
     descripcion:
-      'Equipamiento para pernoctar en montana: carpas, bolsas de dormir y cocinas.',
+      'Equipamiento para pernoctar en montaña: carpas, bolsas de dormir y cocinas.',
   },
 ];
 
 export const COMERCIO = {
   nombre: 'Andes Vertical',
   descripcion:
-    'Operador de montana integral en San Carlos de Bariloche. Trabajamos con guias certificados por la AAGM en tres lineas: experiencias guiadas por el Parque Nacional Nahuel Huapi, escuela de montana con cursos de escalada, montanismo y esqui de travesia, y alquiler de equipamiento tecnico revisado antes de cada salida.',
-  direccion: 'Mitre 500, San Carlos de Bariloche, Rio Negro',
+    'Operador de montaña integral en San Carlos de Bariloche. Trabajamos con guías certificados por la AAGM en tres líneas: experiencias guiadas por el Parque Nacional Nahuel Huapi, escuela de montaña con cursos de escalada, montañismo y esquí de travesía, y alquiler de equipamiento técnico revisado antes de cada salida.',
+  direccion: 'Mitre 500, San Carlos de Bariloche, Río Negro',
   telefono: '+54 294 4123456',
   email: 'hola@andesvertical.com.ar',
   redes: {
@@ -73,17 +73,19 @@ export const ADMIN = {
   rol: 'admin',
 };
 
-const foto = (semilla) => `https://picsum.photos/seed/${semilla}/1200/800`;
-
 export const PUBLICACIONES = [
   /* ---------------------------- EXPERIENCIAS --------------------------- */
   {
-    nombre: 'Travesia de los 4 Refugios',
+    nombre: 'Travesía de los 4 Refugios',
     categoria: 'trekking',
     tipo: 'experiencia',
     descripcion:
-      'La travesia mas reconocida de Bariloche: 46 kilometros que unen los refugios Frey, San Martin (Jakob), Manfredo Segre y Lopez. Se sale de Villa Catedral y se termina en Colonia Suiza, pernoctando en los refugios con media pension. El tramo Jakob - Laguna Negra es el mas exigente, con pedreros y filos sobre los 2000 metros.',
-    imagenes: [foto('travesia-4-refugios'), foto('refugio-frey-laguna'), foto('filo-catedral')],
+      'La travesía más reconocida de Bariloche: 46 kilómetros que unen los refugios Frey, San Martín (Jakob), Manfredo Segre y López. Se sale de Villa Catedral y se termina en Colonia Suiza, pernoctando en los refugios con media pensión. El tramo Jakob - Laguna Negra es el más exigente, con pedreros y filos sobre los 2000 metros.',
+    imagenes: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Refugio_Frey_-_panoramio.jpg/1280px-Refugio_Frey_-_panoramio.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Argentina_-_Bariloche_trekking_115_-_colourful_Jakob_Lake_and_Refugio_%286798012395%29.jpg/1280px-Argentina_-_Bariloche_trekking_115_-_colourful_Jakob_Lake_and_Refugio_%286798012395%29.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Cerro_Catedral._Torre_Principal.jpg/1280px-Cerro_Catedral._Torre_Principal.jpg',
+    ],
     precio: 890000,
     destacada: true,
     atributos: {
@@ -93,8 +95,8 @@ export const PUBLICACIONES = [
       cupoMaximo: 8,
       puntoEncuentro: 'Base del Cerro Catedral, Villa Catedral',
       incluye: [
-        'Guia de montana certificado AAGM',
-        'Media pension en los cuatro refugios',
+        'Guía de montaña certificado AAGM',
+        'Media pensión en los cuatro refugios',
         'Permisos de Parques Nacionales',
         'Equipo de seguridad y comunicaciones',
         'Seguro de actividad',
@@ -102,12 +104,16 @@ export const PUBLICACIONES = [
     },
   },
   {
-    nombre: 'Travesia Frey - Jakob',
+    nombre: 'Travesía Frey - Jakob',
     categoria: 'trekking',
     tipo: 'experiencia',
     descripcion:
-      'Tres dias uniendo la laguna Toncek con la laguna Jakob. El segundo dia es el mas largo: se asciende a la laguna Schmoll, se cruza la Cancha de Futbol en el filo del Catedral y se baja al valle del arroyo Rucaco antes del ultimo ascenso al Refugio San Martin.',
-    imagenes: [foto('frey-jakob'), foto('laguna-schmoll')],
+      'Tres días uniendo la laguna Toncek con la laguna Jakob. El segundo día es el más largo: se asciende a la laguna Schmoll, se cruza la Cancha de Fútbol en el filo del Catedral y se baja al valle del arroyo Rucaco antes del último ascenso al Refugio San Martín.',
+    imagenes: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Argentina_-_Bariloche_trekking_058_-_camping_at_Refugio_Frey_%286797859833%29.jpg/1280px-Argentina_-_Bariloche_trekking_058_-_camping_at_Refugio_Frey_%286797859833%29.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Refugio_Frey_-_panoramio_-_Estany3.jpg/1280px-Refugio_Frey_-_panoramio_-_Estany3.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Argentina_-_Bariloche_trekking_070_-_Refugio_Frey_%286834294166%29.jpg/1280px-Argentina_-_Bariloche_trekking_070_-_Refugio_Frey_%286834294166%29.jpg',
+    ],
     precio: 520000,
     atributos: {
       dificultad: 'alta',
@@ -116,20 +122,23 @@ export const PUBLICACIONES = [
       cupoMaximo: 8,
       puntoEncuentro: 'Base del Cerro Catedral, Villa Catedral',
       incluye: [
-        'Guia de montana certificado AAGM',
-        'Media pension en refugios',
+        'Guía de montaña certificado AAGM',
+        'Media pensión en refugios',
         'Permisos de Parques Nacionales',
         'Seguro de actividad',
       ],
     },
   },
   {
-    nombre: 'Refugio Frey en el dia',
+    nombre: 'Refugio Frey en el día',
     categoria: 'trekking',
     tipo: 'experiencia',
     descripcion:
-      'Ida y vuelta en la jornada al refugio mas visitado de Bariloche. El sendero tradicional sale de Villa Catedral y atraviesa bosque de lenga y cana colihue hasta el vivac Piedritas, desde donde resta la ultima hora de ascenso. El refugio esta a 1700 metros, a orillas de la laguna Toncek y al pie de las agujas de granito.',
-    imagenes: [foto('refugio-frey-dia'), foto('laguna-toncek')],
+      'Ida y vuelta en la jornada al refugio más visitado de Bariloche. El sendero tradicional sale de Villa Catedral y atraviesa bosque de lenga y caña colihue hasta el vivac Piedritas, desde donde resta la última hora de ascenso. El refugio está a 1700 metros, a orillas de la laguna Toncek y al pie de las agujas de granito.',
+    imagenes: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Refugio_Frey_Catedral.jpg/1280px-Refugio_Frey_Catedral.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Refugio_de_monta%C3%B1a_Frey%2C_San_Carlos_de_Bariloche_%28Argentina%29.JPG/1280px-Refugio_de_monta%C3%B1a_Frey%2C_San_Carlos_de_Bariloche_%28Argentina%29.JPG',
+    ],
     precio: 145000,
     destacada: true,
     atributos: {
@@ -138,7 +147,7 @@ export const PUBLICACIONES = [
       temporada: ['primavera', 'verano', 'otonio'],
       cupoMaximo: 12,
       puntoEncuentro: 'Playa de estacionamiento del Cerro Catedral',
-      incluye: ['Guia de montana', 'Vianda de marcha', 'Seguro de actividad'],
+      incluye: ['Guía de montaña', 'Vianda de marcha', 'Seguro de actividad'],
     },
   },
   {
@@ -146,8 +155,11 @@ export const PUBLICACIONES = [
     categoria: 'trekking',
     tipo: 'experiencia',
     descripcion:
-      'Caminata de aproximacion suave desde Colonia Suiza que se empina en el ultimo tramo, el llamado Caracol, antes de llegar a la laguna de origen glaciar donde esta el refugio. Se puede hacer en el dia saliendo temprano.',
-    imagenes: [foto('laguna-negra'), foto('refugio-segre')],
+      'Caminata de aproximación suave desde Colonia Suiza que se empina en el último tramo, el llamado Caracol, antes de llegar a la laguna de origen glaciar donde está el refugio. Se puede hacer en el día saliendo temprano.',
+    imagenes: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Refugio_Italia_-_Laguna_Negra.jpg/1280px-Refugio_Italia_-_Laguna_Negra.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Refugio_Italia_-_Laguna_Negra_-_panoramio.jpg/1280px-Refugio_Italia_-_Laguna_Negra_-_panoramio.jpg',
+    ],
     precio: 155000,
     atributos: {
       dificultad: 'media',
@@ -155,24 +167,27 @@ export const PUBLICACIONES = [
       temporada: ['primavera', 'verano', 'otonio'],
       cupoMaximo: 12,
       puntoEncuentro: 'Colonia Suiza, parada del arroyo Goye',
-      incluye: ['Guia de montana', 'Vianda de marcha', 'Seguro de actividad'],
+      incluye: ['Guía de montaña', 'Vianda de marcha', 'Seguro de actividad'],
     },
   },
   {
-    nombre: 'Refugio Lopez desde Colonia Suiza',
+    nombre: 'Refugio López desde Colonia Suiza',
     categoria: 'trekking',
     tipo: 'experiencia',
     descripcion:
-      'La subida mas corta a un refugio de Bariloche: dos horas con pendiente firme al principio que se suaviza a medida que se gana altura. Vista abierta sobre el lago Nahuel Huapi y el Cerro Capilla. Ideal como primera salida de montana.',
-    imagenes: [foto('refugio-lopez'), foto('vista-nahuel-huapi')],
+      'La subida más corta a un refugio de Bariloche: dos horas con pendiente firme al principio que se suaviza a medida que se gana altura. Vista abierta sobre el lago Nahuel Huapi y el Cerro Capilla. Ideal como primera salida de montaña.',
+    imagenes: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Refugio_L%C3%B3pez.jpg/1280px-Refugio_L%C3%B3pez.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Refugio_del_Cerro_Lopez_1_-_panoramio.jpg/1280px-Refugio_del_Cerro_Lopez_1_-_panoramio.jpg',
+    ],
     precio: 98000,
     atributos: {
       dificultad: 'baja',
       duracionHoras: 5,
       temporada: ['primavera', 'verano', 'otonio'],
       cupoMaximo: 15,
-      puntoEncuentro: 'Arroyo Lopez, Circuito Chico',
-      incluye: ['Guia de montana', 'Seguro de actividad'],
+      puntoEncuentro: 'Arroyo López, Circuito Chico',
+      incluye: ['Guía de montaña', 'Seguro de actividad'],
     },
   },
   {
@@ -180,8 +195,12 @@ export const PUBLICACIONES = [
     categoria: 'montanismo',
     tipo: 'experiencia',
     descripcion:
-      'Ascenso de tres jornadas a una de las cumbres del Tronador. Se parte de Pampa Linda hacia el refugio Otto Meiling y desde alli se encara el glaciar. El tramo final incluye una pendiente de hielo de unos 50 grados y algo de trepada, asi que se pide experiencia previa en terreno glaciar.',
-    imagenes: [foto('tronador-glaciar'), foto('refugio-otto-meiling'), foto('cumbre-pico-argentino')],
+      'Ascenso de tres jornadas a una de las cumbres del Tronador. Se parte de Pampa Linda hacia el refugio Otto Meiling y desde allí se encara el glaciar. El tramo final incluye una pendiente de hielo de unos 50 grados y algo de trepada, así que se pide experiencia previa en terreno glaciar.',
+    imagenes: [
+      'https://upload.wikimedia.org/wikipedia/commons/8/82/Cerro_tronador_desde_lago_mascardi_01b.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Cerro_Tronador_-_cordillera_de_los_Andes.JPG/1280px-Cerro_Tronador_-_cordillera_de_los_Andes.JPG',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Argentina_-_Mt_Tronador_Ascent_-_01_%286962279303%29.jpg/1280px-Argentina_-_Mt_Tronador_Ascent_-_01_%286962279303%29.jpg',
+    ],
     precio: 1150000,
     destacada: true,
     atributos: {
@@ -191,8 +210,8 @@ export const PUBLICACIONES = [
       cupoMaximo: 4,
       puntoEncuentro: 'Pampa Linda, Parque Nacional Nahuel Huapi',
       incluye: [
-        'Guia de alta montana certificado',
-        'Equipo tecnico de progresion y seguridad',
+        'Guía de alta montaña certificado',
+        'Equipo técnico de progresión y seguridad',
         'Alojamiento en refugio Otto Meiling',
         'Traslado desde Bariloche',
         'Seguro de actividad',
@@ -204,8 +223,11 @@ export const PUBLICACIONES = [
     categoria: 'escalada',
     tipo: 'experiencia',
     descripcion:
-      'Jornada completa de escalada clasica en el granito naranja del valle de Frey, uno de los mejores sectores de escalada de Sudamerica. Se eligen las vias segun el nivel del grupo y las condiciones del dia. Requiere experiencia previa en escalada de varios largos.',
-    imagenes: [foto('agujas-frey'), foto('escalada-granito')],
+      'Jornada completa de escalada clásica en el granito naranja del valle de Frey, uno de los mejores sectores de escalada de Sudamérica. Se eligen las vías según el nivel del grupo y las condiciones del día. Requiere experiencia previa en escalada de varios largos.',
+    imagenes: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Argentina_-_Frey_climbing_33_-_looking_out_to_Cerro_Catedral_%286962264021%29.jpg/1280px-Argentina_-_Frey_climbing_33_-_looking_out_to_Cerro_Catedral_%286962264021%29.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Argentina_-_Frey_climbing_08_-_Frey_Lake_%286815885306%29.jpg/1280px-Argentina_-_Frey_climbing_08_-_Frey_Lake_%286815885306%29.jpg',
+    ],
     precio: 210000,
     atributos: {
       dificultad: 'alta',
@@ -214,7 +236,7 @@ export const PUBLICACIONES = [
       cupoMaximo: 4,
       puntoEncuentro: 'Refugio Frey, laguna Toncek',
       incluye: [
-        'Guia de escalada certificado',
+        'Guía de escalada certificado',
         'Cuerdas y material de seguro colectivo',
         'Seguro de actividad',
       ],
@@ -225,8 +247,11 @@ export const PUBLICACIONES = [
     categoria: 'escalada',
     tipo: 'experiencia',
     descripcion:
-      'Medio dia de escalada deportiva a pocos minutos del centro de Bariloche. Sector de facil acceso con vias equipadas de distintos grados, apto para quienes escalan por primera vez y tambien para quien quiere sumar largos.',
-    imagenes: [foto('cerro-ventana'), foto('escalada-deportiva')],
+      'Medio día de escalada deportiva a pocos minutos del centro de Bariloche. Sector de fácil acceso con vías equipadas de distintos grados, apto para quienes escalan por primera vez y también para quien quiere sumar largos.',
+    imagenes: [
+      'https://upload.wikimedia.org/wikipedia/commons/5/54/Fm_Ventana_Jurasico_Piltriquitron.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Man_rock_climbing_at_Homestead_Climbing_Area%2C_Tucson_AZ_Photo_courtesy_of_Joe_Sambataro_%2836882805856%29.jpg/1280px-Man_rock_climbing_at_Homestead_Climbing_Area%2C_Tucson_AZ_Photo_courtesy_of_Joe_Sambataro_%2836882805856%29.jpg',
+    ],
     precio: 95000,
     atributos: {
       dificultad: 'baja',
@@ -235,20 +260,24 @@ export const PUBLICACIONES = [
       cupoMaximo: 6,
       puntoEncuentro: 'Base del Cerro Ventana, Ruta 40',
       incluye: [
-        'Guia de escalada certificado',
-        'Arnes, casco y pies de gato',
+        'Guía de escalada certificado',
+        'Arnés, casco y pies de gato',
         'Cuerdas y material de seguro',
         'Seguro de actividad',
       ],
     },
   },
   {
-    nombre: 'Esqui de travesia en el filo del Catedral',
+    nombre: 'Esquí de travesía en el filo del Catedral',
     categoria: 'esqui',
     tipo: 'experiencia',
     descripcion:
-      'Salida de un dia fuera de pista con ascenso con pieles de foca y descenso por laderas abiertas. Se evalua el estado del manto nival antes de decidir el recorrido. Hace falta esquiar con solvencia en pista negra.',
-    imagenes: [foto('esqui-travesia-catedral'), foto('nieve-patagonia')],
+      'Salida de un día fuera de pista con ascenso con pieles de foca y descenso por laderas abiertas. Se evalúa el estado del manto nival antes de decidir el recorrido. Hace falta esquiar con solvencia en pista negra.',
+    imagenes: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Offpiste_skiers_getting_ready_for_descent_from_Storebj%C3%B8rn.jpg/1280px-Offpiste_skiers_getting_ready_for_descent_from_Storebj%C3%B8rn.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Skitouring_in_Krasnya_Polyana.JPG/1280px-Skitouring_in_Krasnya_Polyana.JPG',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Ski_mountaineering_on_the_Gran_Paradiso.jpg/1280px-Ski_mountaineering_on_the_Gran_Paradiso.jpg',
+    ],
     precio: 235000,
     disponible: false,
     atributos: {
@@ -258,7 +287,7 @@ export const PUBLICACIONES = [
       cupoMaximo: 5,
       puntoEncuentro: 'Base del Cerro Catedral, Villa Catedral',
       incluye: [
-        'Guia de montana certificado',
+        'Guía de montaña certificado',
         'DVA, pala y sonda',
         'Seguro de actividad',
       ],
@@ -267,28 +296,34 @@ export const PUBLICACIONES = [
 
   /* ------------------------------- CURSOS ------------------------------ */
   {
-    nombre: 'Curso de iniciacion a la escalada deportiva',
+    nombre: 'Curso de iniciación a la escalada deportiva',
     categoria: 'escalada',
     tipo: 'curso',
     descripcion:
-      'Dos jornadas para empezar a escalar desde cero. Se trabajan nudos, encordamiento, asegurado con y sin freno asistido, comunicacion entre companeros y descenso en rappel. La practica es en sectores equipados cerca de Bariloche.',
-    imagenes: [foto('curso-escalada-inicial'), foto('asegurando-escalada')],
+      'Dos jornadas para empezar a escalar desde cero. Se trabajan nudos, encordamiento, asegurado con y sin freno asistido, comunicación entre compañeros y descenso en rappel. La práctica es en sectores equipados cerca de Bariloche.',
+    imagenes: [
+      'https://upload.wikimedia.org/wikipedia/commons/c/cf/Climbing_in_St._Lorenz_-_Wachau%2C_Austria.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/India_Sport_Climbing_2016.jpg/1280px-India_Sport_Climbing_2016.jpg',
+    ],
     precio: 180000,
     atributos: {
       duracionHoras: 16,
       nivel: 'inicial',
       certificacion: 'Certificado de asistencia Andes Vertical',
       cupo: 8,
-      requisitosPrevios: ['Mayor de 14 anos', 'Sin experiencia previa requerida'],
+      requisitosPrevios: ['Mayor de 14 años', 'Sin experiencia previa requerida'],
     },
   },
   {
-    nombre: 'Curso de escalada clasica en agujas de Frey',
+    nombre: 'Curso de escalada clásica en agujas de Frey',
     categoria: 'escalada',
     tipo: 'curso',
     descripcion:
-      'Cuatro dias de escalada tradicional en el valle de Frey. Se aprende a colocar proteccion movil, armar reuniones, planificar una via de varios largos y gestionar el descenso. Se pernocta en el refugio.',
-    imagenes: [foto('curso-escalada-clasica'), foto('proteccion-movil'), foto('frey-agujas-curso')],
+      'Cuatro días de escalada tradicional en el valle de Frey. Se aprende a colocar protección móvil, armar reuniones, planificar una vía de varios largos y gestionar el descenso. Se pernocta en el refugio.',
+    imagenes: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Jumaring_Climbing.jpg/1280px-Jumaring_Climbing.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Tuolumne_Meadows_-_Stately_Pleasure_Dome_-_West_Country_-_Pitch_3_-_1.JPG/1280px-Tuolumne_Meadows_-_Stately_Pleasure_Dome_-_West_Country_-_Pitch_3_-_1.JPG',
+    ],
     precio: 640000,
     destacada: true,
     atributos: {
@@ -297,19 +332,22 @@ export const PUBLICACIONES = [
       certificacion: 'Certificado de asistencia Andes Vertical',
       cupo: 6,
       requisitosPrevios: [
-        'Escalar en segundo de forma autonoma',
+        'Escalar en segundo de forma autónoma',
         'Experiencia en escalada deportiva',
-        'Buen estado fisico para la aproximacion al Frey',
+        'Buen estado físico para la aproximación al Frey',
       ],
     },
   },
   {
-    nombre: 'Curso de montanismo invernal: piolet y crampones',
+    nombre: 'Curso de montañismo invernal: piolet y crampones',
     categoria: 'montanismo',
     tipo: 'curso',
     descripcion:
-      'Tres dias de tecnica de progresion en nieve y hielo. Uso de crampones y piolet, autodetencion, armado de anclajes en nieve, encordamiento en glaciar y lectura del terreno.',
-    imagenes: [foto('curso-invernal'), foto('piolet-crampones')],
+      'Tres días de técnica de progresión en nieve y hielo. Uso de crampones y piolet, autodetención, armado de anclajes en nieve, encordamiento en glaciar y lectura del terreno.',
+    imagenes: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/U_S_Marine_Corps_Mountain_Warfare_Instructors_conduct_cold-weather_rescue_training_with_Argentine_marines_%288631010%29.jpg/1280px-U_S_Marine_Corps_Mountain_Warfare_Instructors_conduct_cold-weather_rescue_training_with_Argentine_marines_%288631010%29.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/U.S._Army_SSgt_Earl_-_lead_mountaineer_-_secures_anchor_preparing_to_rappel_into_crevasse_during_Operation_Colony_Glacier_-_June_2023.jpg/1280px-U.S._Army_SSgt_Earl_-_lead_mountaineer_-_secures_anchor_preparing_to_rappel_into_crevasse_during_Operation_Colony_Glacier_-_June_2023.jpg',
+    ],
     precio: 460000,
     atributos: {
       duracionHoras: 24,
@@ -317,18 +355,21 @@ export const PUBLICACIONES = [
       certificacion: 'Certificado de asistencia Andes Vertical',
       cupo: 6,
       requisitosPrevios: [
-        'Experiencia en trekking de montana',
-        'Buen estado fisico',
+        'Experiencia en trekking de montaña',
+        'Buen estado físico',
       ],
     },
   },
   {
-    nombre: 'Curso de esqui de travesia nivel 1',
+    nombre: 'Curso de esquí de travesía nivel 1',
     categoria: 'esqui',
     tipo: 'curso',
     descripcion:
-      'Introduccion al esqui fuera de pista: ascenso con pieles, conversiones en pendiente, manejo de la fijacion de travesia y nociones de seguridad en nieve. Incluye una jornada completa de busqueda con DVA.',
-    imagenes: [foto('curso-esqui-travesia'), foto('pieles-de-foca')],
+      'Introducción al esquí fuera de pista: ascenso con pieles, conversiones en pendiente, manejo de la fijación de travesía y nociones de seguridad en nieve. Incluye una jornada completa de búsqueda con DVA.',
+    imagenes: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Ski_Mountaineering_on_the_Columbia_Icefield.jpg/1280px-Ski_Mountaineering_on_the_Columbia_Icefield.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Steve_Marolt_Skiing_Northeast_ridge_of_everest_in_2007.jpg/1280px-Steve_Marolt_Skiing_Northeast_ridge_of_everest_in_2007.jpg',
+    ],
     precio: 520000,
     disponible: false,
     atributos: {
@@ -344,8 +385,12 @@ export const PUBLICACIONES = [
     categoria: 'montanismo',
     tipo: 'curso',
     descripcion:
-      'Dos jornadas intensivas sobre sistemas de polipastos, anclajes, remonte por cuerda y evacuacion de un companero. Destinado a quienes ya se mueven en terreno glaciar y quieren resolver una emergencia sin asistencia externa.',
-    imagenes: [foto('rescate-grietas'), foto('polipasto-cuerda')],
+      'Dos jornadas intensivas sobre sistemas de polipastos, anclajes, remonte por cuerda y evacuación de un compañero. Destinado a quienes ya se mueven en terreno glaciar y quieren resolver una emergencia sin asistencia externa.',
+    imagenes: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Crevasse_Self-Rescue.jpg/1280px-Crevasse_Self-Rescue.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Rope_Team_Glacier.jpg/1280px-Rope_Team_Glacier.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Crevasse_rescue_training_04.jpg/1280px-Crevasse_rescue_training_04.jpg',
+    ],
     precio: 340000,
     atributos: {
       duracionHoras: 16,
@@ -353,18 +398,21 @@ export const PUBLICACIONES = [
       certificacion: 'Certificado de asistencia Andes Vertical',
       cupo: 6,
       requisitosPrevios: [
-        'Curso de montanismo invernal o equivalente',
-        'Experiencia en progresion encordada',
+        'Curso de montañismo invernal o equivalente',
+        'Experiencia en progresión encordada',
       ],
     },
   },
   {
-    nombre: 'Curso de orientacion y navegacion en montana',
+    nombre: 'Curso de orientación y navegación en montaña',
     categoria: 'trekking',
     tipo: 'curso',
     descripcion:
-      'Una jornada de mapa, brujula y GPS aplicados al terreno del Nahuel Huapi. Se trabaja interpretacion de curvas de nivel, rumbos, triangulacion y planificacion de una travesia con horarios y puntos de escape.',
-    imagenes: [foto('orientacion-montana'), foto('mapa-brujula')],
+      'Una jornada de mapa, brújula y GPS aplicados al terreno del Nahuel Huapi. Se trabaja interpretación de curvas de nivel, rumbos, triangulación y planificación de una travesía con horarios y puntos de escape.',
+    imagenes: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Het_duimkompas_met_kaart.jpg/1280px-Het_duimkompas_met_kaart.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Compasses_orienteering.jpg/1280px-Compasses_orienteering.jpg',
+    ],
     precio: 120000,
     atributos: {
       duracionHoras: 8,
@@ -377,12 +425,15 @@ export const PUBLICACIONES = [
 
   /* ----------------------------- ALQUILERES ---------------------------- */
   {
-    nombre: 'Crampones tecnicos de 12 puntas',
+    nombre: 'Crampones técnicos de 12 puntas',
     categoria: 'montanismo',
     tipo: 'alquiler',
     descripcion:
-      'Crampones de acero aptos para hielo y terreno mixto, compatibles con botas rigidas y semirrigidas. Se entregan afilados y con las correas revisadas.',
-    imagenes: [foto('crampones')],
+      'Crampones de acero aptos para hielo y terreno mixto, compatibles con botas rígidas y semirrígidas. Se entregan afilados y con las correas revisadas.',
+    imagenes: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Strap-on_crampon.JPG/1280px-Strap-on_crampon.JPG',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Gramp%C3%B5es.jpg/1280px-Gramp%C3%B5es.jpg',
+    ],
     atributos: {
       precioPorDia: 14000,
       talles: ['Universal'],
@@ -392,12 +443,14 @@ export const PUBLICACIONES = [
     },
   },
   {
-    nombre: 'Piolet tecnico de montana',
+    nombre: 'Piolet técnico de montaña',
     categoria: 'montanismo',
     tipo: 'alquiler',
     descripcion:
-      'Piolet clasico de progresion para pendientes de nieve y glaciar. Se entrega con dragonera regulable.',
-    imagenes: [foto('piolet')],
+      'Piolet clásico de progresión para pendientes de nieve y glaciar. Se entrega con dragonera regulable.',
+    imagenes: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Ice_axe_pick_%26_adze_protector.JPG/1280px-Ice_axe_pick_%26_adze_protector.JPG',
+    ],
     atributos: {
       precioPorDia: 11000,
       talles: ['50 cm', '60 cm', '70 cm'],
@@ -407,12 +460,15 @@ export const PUBLICACIONES = [
     },
   },
   {
-    nombre: 'Arnes de escalada regulable',
+    nombre: 'Arnés de escalada regulable',
     categoria: 'escalada',
     tipo: 'alquiler',
     descripcion:
-      'Arnes con perneras regulables y cuatro portamateriales, apto para escalada deportiva, clasica y progresion en glaciar.',
-    imagenes: [foto('arnes-escalada')],
+      'Arnés con perneras regulables y cuatro portamateriales, apto para escalada deportiva, clásica y progresión en glaciar.',
+    imagenes: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Petzl_Harness.jpg/1280px-Petzl_Harness.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Climbing_Chest_harnesses_DSCN1449.jpg/1280px-Climbing_Chest_harnesses_DSCN1449.jpg',
+    ],
     atributos: {
       precioPorDia: 8000,
       talles: ['S', 'M', 'L', 'XL'],
@@ -426,8 +482,11 @@ export const PUBLICACIONES = [
     categoria: 'escalada',
     tipo: 'alquiler',
     descripcion:
-      'Calzado de escalada de horma neutra, comodo para jornadas largas y para quien escala por primera vez. Se desinfectan despues de cada uso.',
-    imagenes: [foto('pies-de-gato')],
+      'Calzado de escalada de horma neutra, cómodo para jornadas largas y para quien escala por primera vez. Se desinfectan después de cada uso.',
+    imagenes: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Quechua_climbing_shoes.jpg/1280px-Quechua_climbing_shoes.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Climbing_Shoes_and_Chalk_Bag_-_02.jpg/1280px-Climbing_Shoes_and_Chalk_Bag_-_02.jpg',
+    ],
     atributos: {
       precioPorDia: 9000,
       talles: ['36', '37', '38', '39', '40', '41', '42', '43', '44'],
@@ -441,23 +500,29 @@ export const PUBLICACIONES = [
     categoria: 'escalada',
     tipo: 'alquiler',
     descripcion:
-      'Casco liviano con regulacion de talle y soporte para frontal. Obligatorio en las salidas de escalada clasica y alta montana.',
-    imagenes: [foto('casco-escalada')],
+      'Casco liviano con regulación de talle y soporte para frontal. Obligatorio en las salidas de escalada clásica y alta montaña.',
+    imagenes: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Climbing_helmet.jpg/1280px-Climbing_helmet.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Wales_Rock_Climbing_Gogarth.jpg/1280px-Wales_Rock_Climbing_Gogarth.jpg',
+    ],
     atributos: {
       precioPorDia: 6000,
-      talles: ['Unico regulable'],
+      talles: ['Único regulable'],
       unidadesTotales: 20,
       unidadesDisponibles: 16,
       deposito: 20000,
     },
   },
   {
-    nombre: 'Cuerda dinamica 60 metros',
+    nombre: 'Cuerda dinámica 60 metros',
     categoria: 'escalada',
     tipo: 'alquiler',
     descripcion:
-      'Cuerda simple de 9,8 mm y 60 metros con tratamiento hidrofugo. Se lleva registro de caidas y horas de uso de cada unidad.',
-    imagenes: [foto('cuerda-dinamica')],
+      'Cuerda simple de 9,8 mm y 60 metros con tratamiento hidrófugo. Se lleva registro de caídas y horas de uso de cada unidad.',
+    imagenes: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Knoten_002_2024_02_20.jpg/1280px-Knoten_002_2024_02_20.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Climbing_rope_Lanex_Rocky_9%2C8mm.jpg/1280px-Climbing_rope_Lanex_Rocky_9%2C8mm.jpg',
+    ],
     atributos: {
       precioPorDia: 22000,
       talles: ['60 m'],
@@ -467,12 +532,15 @@ export const PUBLICACIONES = [
     },
   },
   {
-    nombre: 'Equipo completo de esqui de travesia',
+    nombre: 'Equipo completo de esquí de travesía',
     categoria: 'esqui',
     tipo: 'alquiler',
     descripcion:
-      'Esquis con fijacion de travesia, botas y pieles de foca cortadas a medida del esqui. El ajuste de fijacion se hace en el local antes de la salida.',
-    imagenes: [foto('esqui-travesia-equipo'), foto('botas-travesia')],
+      'Esquís con fijación de travesía, botas y pieles de foca cortadas a medida del esquí. El ajuste de fijación se hace en el local antes de la salida.',
+    imagenes: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Tourenski_Pin_Bindung_20250201a.jpg/1280px-Tourenski_Pin_Bindung_20250201a.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Ski_touring_boots_and_bindings_using_NNN-BC.jpg/1280px-Ski_touring_boots_and_bindings_using_NNN-BC.jpg',
+    ],
     atributos: {
       precioPorDia: 48000,
       talles: ['160 cm', '170 cm', '180 cm'],
@@ -486,23 +554,29 @@ export const PUBLICACIONES = [
     categoria: 'esqui',
     tipo: 'alquiler',
     descripcion:
-      'Detector de victimas de avalancha digital de tres antenas, pala de aluminio y sonda de 240 cm. Se entrega con las pilas cargadas y una explicacion de uso.',
-    imagenes: [foto('dva-pala-sonda')],
+      'Detector de víctimas de avalancha digital de tres antenas, pala de aluminio y sonda de 240 cm. Se entrega con las pilas cargadas y una explicación de uso.',
+    imagenes: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Avalanche-security_search_and_rescue_equipment.jpg/1280px-Avalanche-security_search_and_rescue_equipment.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Avalanche_Victim_Device.JPG/1280px-Avalanche_Victim_Device.JPG',
+    ],
     atributos: {
       precioPorDia: 26000,
-      talles: ['Unico'],
+      talles: ['Único'],
       unidadesTotales: 8,
       unidadesDisponibles: 6,
       deposito: 150000,
     },
   },
   {
-    nombre: 'Mochila de travesia 65 litros',
+    nombre: 'Mochila de travesía 65 litros',
     categoria: 'trekking',
     tipo: 'alquiler',
     descripcion:
-      'Mochila con espalda regulable, cinturon acolchado y funda de lluvia. Capacidad pensada para travesias de tres a cinco dias con pernocte en refugio.',
-    imagenes: [foto('mochila-travesia')],
+      'Mochila con espalda regulable, cinturón acolchado y funda de lluvia. Capacidad pensada para travesías de tres a cinco días con pernocte en refugio.',
+    imagenes: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Hiker_in_the_Mountains_%2848920132448%29.jpg/1280px-Hiker_in_the_Mountains_%2848920132448%29.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Mountaineering_Man_Trail_Path_Mountains.jpg/1280px-Mountaineering_Man_Trail_Path_Mountains.jpg',
+    ],
     atributos: {
       precioPorDia: 10000,
       talles: ['S/M', 'M/L'],
@@ -516,23 +590,29 @@ export const PUBLICACIONES = [
     categoria: 'trekking',
     tipo: 'alquiler',
     descripcion:
-      'Raquetas con alza de talon para caminar sobre nieve profunda. Se entregan con bastones telescopicos incluidos.',
-    imagenes: [foto('raquetas-nieve')],
+      'Raquetas con alza de talón para caminar sobre nieve profunda. Se entregan con bastones telescópicos incluidos.',
+    imagenes: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/The_sun_barely_poking_through_the_winter_clouds_while_snowshoeing_on_Bentley_Lake._-_panoramio.jpg/1280px-The_sun_barely_poking_through_the_winter_clouds_while_snowshoeing_on_Bentley_Lake._-_panoramio.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Snowshoeing_in_Hokkaido.jpg/1280px-Snowshoeing_in_Hokkaido.jpg',
+    ],
     atributos: {
       precioPorDia: 13000,
-      talles: ['Unico regulable'],
+      talles: ['Único regulable'],
       unidadesTotales: 10,
       unidadesDisponibles: 10,
       deposito: 50000,
     },
   },
   {
-    nombre: 'Carpa de montana para dos personas',
+    nombre: 'Carpa de montaña para dos personas',
     categoria: 'campamento',
     tipo: 'alquiler',
     descripcion:
       'Carpa de dos capas con varillas de aluminio, resistente a viento fuerte. Se entrega seca, con sobretecho, piqueteros y vientos completos.',
-    imagenes: [foto('carpa-montana')],
+    imagenes: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Camping_in_Chugach_State_Park._Chugach_Mountains%2C_Alaska.jpg/1280px-Camping_in_Chugach_State_Park._Chugach_Mountains%2C_Alaska.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Cedar_Lake_snow_tent_mountains_WIC_NPS_Photo_9.15.06_%2822306646353%29.jpg/1280px-Cedar_Lake_snow_tent_mountains_WIC_NPS_Photo_9.15.06_%2822306646353%29.jpg',
+    ],
     atributos: {
       precioPorDia: 19000,
       talles: ['2 personas'],
@@ -546,8 +626,11 @@ export const PUBLICACIONES = [
     categoria: 'campamento',
     tipo: 'alquiler',
     descripcion:
-      'Bolsa de pluma con temperatura de confort de -10 grados, apta para las noches de refugio y vivac en verano patagonico. Se entrega lavada y con bolsa de compresion.',
-    imagenes: [foto('bolsa-dormir')],
+      'Bolsa de pluma con temperatura de confort de -10 grados, apta para las noches de refugio y vivac en verano patagónico. Se entrega lavada y con bolsa de compresión.',
+    imagenes: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/OutDoor_2018%2C_Friedrichshafen_%281X7A0298%29.jpg/1280px-OutDoor_2018%2C_Friedrichshafen_%281X7A0298%29.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Nomad%2C_OutDoor_2018%2C_Friedrichshafen_%281X7A0319%29.jpg/1280px-Nomad%2C_OutDoor_2018%2C_Friedrichshafen_%281X7A0319%29.jpg',
+    ],
     atributos: {
       precioPorDia: 15000,
       talles: ['Regular', 'Large'],
@@ -564,37 +647,37 @@ export const CONSULTAS = [
     nombre: 'Martina Aguirre',
     email: 'martina.aguirre@mail.com',
     telefono: '+54 11 5566 7788',
-    asunto: 'Cupos para la travesia de los 4 refugios en enero',
+    asunto: 'Cupos para la travesía de los 4 refugios en enero',
     mensaje:
-      'Hola, somos tres y queriamos hacer la travesia de los 4 refugios la segunda semana de enero. Nunca dormimos en refugio, hay que llevar bolsa de dormir?',
+      'Hola, somos tres y queríamos hacer la travesía de los 4 refugios la segunda semana de enero. Nunca dormimos en refugio, ¿hay que llevar bolsa de dormir?',
     estado: 'pendiente',
-    publicacion: 'Travesia de los 4 Refugios',
+    publicacion: 'Travesía de los 4 Refugios',
   },
   {
     nombre: 'Diego Ferreyra',
     email: 'diego.ferreyra@mail.com',
-    asunto: 'Nivel necesario para el curso de escalada clasica',
+    asunto: 'Nivel necesario para el curso de escalada clásica',
     mensaje:
-      'Buenas. Escalo deportiva hace dos anos en rocodromo y algo de roca, pero nunca puse proteccion movil. Me alcanza para el curso de cuatro dias en Frey?',
+      'Buenas. Escalo deportiva hace dos años en rocódromo y algo de roca, pero nunca puse protección móvil. ¿Me alcanza para el curso de cuatro días en Frey?',
     estado: 'leida',
-    publicacion: 'Curso de escalada clasica en agujas de Frey',
+    publicacion: 'Curso de escalada clásica en agujas de Frey',
   },
   {
-    nombre: 'Sofia Bianchi',
+    nombre: 'Sofía Bianchi',
     email: 'sofia.bianchi@mail.com',
     telefono: '+54 294 4778899',
-    asunto: 'Alquiler de crampones por tres dias',
+    asunto: 'Alquiler de crampones por tres días',
     mensaje:
-      'Hola, necesito crampones del 39 para una salida al Tronador del 12 al 15. Los tienen disponibles para esas fechas?',
+      'Hola, necesito crampones del 39 para una salida al Tronador del 12 al 15. ¿Los tienen disponibles para esas fechas?',
     estado: 'respondida',
-    publicacion: 'Crampones tecnicos de 12 puntas',
+    publicacion: 'Crampones técnicos de 12 puntas',
   },
   {
-    nombre: 'Julian Medina',
+    nombre: 'Julián Medina',
     email: 'julian.medina@mail.com',
     asunto: 'Salidas para grupos de empresa',
     mensaje:
-      'Buen dia. Trabajo en una empresa de Buenos Aires y estamos organizando un viaje de equipo a Bariloche para marzo. Hacen salidas para grupos de 20 personas?',
+      'Buen día. Trabajo en una empresa de Buenos Aires y estamos organizando un viaje de equipo a Bariloche para marzo. ¿Hacen salidas para grupos de 20 personas?',
     estado: 'pendiente',
   },
 ];

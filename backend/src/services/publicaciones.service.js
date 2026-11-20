@@ -114,6 +114,9 @@ export const listar = async (
     Publicacion.find(filtro)
       .populate('categoria', 'nombre')
       .sort(ORDENES[orden])
+      // Reglas del castellano para ordenar por nombre: sin esto, MongoDB
+      // compara por codigo de caracter y "Frey" queda antes que "de".
+      .collation({ locale: 'es' })
       .skip(salteo)
       .limit(limite),
     Publicacion.countDocuments(filtro),
