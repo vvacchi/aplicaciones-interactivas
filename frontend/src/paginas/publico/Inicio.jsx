@@ -7,7 +7,7 @@ import { usePedido } from '../../hooks/usePedido.js';
 import Boton from '../../componentes/Boton.jsx';
 import TarjetaPublicacion from '../../componentes/TarjetaPublicacion.jsx';
 import { Cargando, ErrorCarga, Vacio } from '../../componentes/Estados.jsx';
-import { agruparHorarios, enlacesDeRedes } from '../../utils/formato.js';
+import { agruparHorarios } from '../../utils/formato.js';
 import estilos from './Inicio.module.css';
 
 /* ------------------------------ Pedidos ------------------------------ */
@@ -249,7 +249,6 @@ function Nosotros({ comercio, imagen }) {
 
 function Bloques({ comercio }) {
   const horarios = agruparHorarios(comercio?.horarios);
-  const redes = enlacesDeRedes(comercio?.redes);
 
   return (
     <section className={estilos.bloques} aria-label="Contacto y horarios">
@@ -290,17 +289,6 @@ function Bloques({ comercio }) {
               )}
             </p>
           </address>
-          {redes.length > 0 && (
-            <ul className={estilos.redes}>
-              {redes.map((r) => (
-                <li key={r.red}>
-                  <a href={r.url} target="_blank" rel="noreferrer">
-                    {r.red}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          )}
         </div>
       )}
     </section>

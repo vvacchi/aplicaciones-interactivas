@@ -9,7 +9,7 @@ import Campo from '../../componentes/Campo.jsx';
 import EncabezadoPagina from '../../componentes/EncabezadoPagina.jsx';
 import { Cargando } from '../../componentes/Estados.jsx';
 import { contarDias, formatearFechaNumerica, rangoDeUrl, resumirRango } from '../../utils/fechas.js';
-import { agruparHorarios, enlacesDeRedes } from '../../utils/formato.js';
+import { agruparHorarios } from '../../utils/formato.js';
 import { TIPOS } from '../../utils/textos.js';
 import { esEmail, esId } from '../../utils/validaciones.js';
 import estilos from './Contacto.module.css';
@@ -269,7 +269,6 @@ function Enviada({ datos, alOtraConsulta }) {
 function DatosDeContacto({ comercio }) {
   if (!comercio) return null;
   const horarios = agruparHorarios(comercio.horarios);
-  const redes = enlacesDeRedes(comercio.redes);
 
   return (
     <aside className={estilos.lateral} aria-labelledby="titulo-otras-formas">
@@ -300,18 +299,6 @@ function DatosDeContacto({ comercio }) {
             ))}
           </dl>
         </>
-      )}
-
-      {redes.length > 0 && (
-        <ul className={estilos.redes}>
-          {redes.map((r) => (
-            <li key={r.red}>
-              <a href={r.url} target="_blank" rel="noreferrer">
-                {r.red}
-              </a>
-            </li>
-          ))}
-        </ul>
       )}
     </aside>
   );
