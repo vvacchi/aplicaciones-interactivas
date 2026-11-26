@@ -3,9 +3,7 @@ import { objectId, booleanoDeQuery } from './comun.validacion.js';
 
 export const TIPOS = ['experiencia', 'curso', 'alquiler'];
 
-/* ------------------------------------------------------------------ */
-/* Atributos propios de cada tipo                                      */
-/* ------------------------------------------------------------------ */
+// Atributos propios de cada tipo
 
 const atributosExperiencia = z.strictObject({
   dificultad: z.enum(['baja', 'media', 'alta']),
@@ -45,9 +43,7 @@ const ATRIBUTOS_POR_TIPO = {
   alquiler: atributosAlquiler,
 };
 
-/* ------------------------------------------------------------------ */
-/* Campos comunes a las tres formas                                    */
-/* ------------------------------------------------------------------ */
+// Campos comunes a las tres formas
 
 const nombre = z
   .string()
@@ -68,9 +64,7 @@ const imagenes = z
 
 const precio = z.number().nonnegative({ error: 'El precio no puede ser negativo' });
 
-/* ------------------------------------------------------------------ */
-/* POST /api/publicaciones                                             */
-/* ------------------------------------------------------------------ */
+// POST /api/publicaciones
 
 /**
  * Se usa una unión discriminada por `tipo`: Zod elige el schema de
@@ -100,9 +94,7 @@ export const crearPublicacionSchema = z.discriminatedUnion(
   { error: `El tipo debe ser uno de: ${TIPOS.join(', ')}` }
 );
 
-/* ------------------------------------------------------------------ */
-/* PUT /api/publicaciones/:id                                          */
-/* ------------------------------------------------------------------ */
+// PUT /api/publicaciones/:id
 
 /**
  * En una actualización todos los campos son opcionales, así que no se
@@ -165,9 +157,7 @@ export const actualizarPublicacionSchema = z
     }
   });
 
-/* ------------------------------------------------------------------ */
-/* GET /api/publicaciones                                              */
-/* ------------------------------------------------------------------ */
+// GET /api/publicaciones
 
 const enteroDeQuery = (opciones = {}) =>
   z.coerce.number().int().min(opciones.min ?? 1);

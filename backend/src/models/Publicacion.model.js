@@ -24,6 +24,4 @@ const publicacionSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-publicacionSchema.index({ nombre: 'text', descripcion: 'text' });
-
 export default mongoose.model('Publicacion', publicacionSchema);

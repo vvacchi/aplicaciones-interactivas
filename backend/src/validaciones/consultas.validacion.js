@@ -3,7 +3,7 @@ import { objectId } from './comun.validacion.js';
 
 export const ESTADOS = ['pendiente', 'leida', 'respondida'];
 
-/** POST /api/consultas — lo usa cualquier visitante del sitio. */
+/** POST /api/consultas: lo usa cualquier visitante del sitio. */
 export const crearConsultaSchema = z.strictObject({
   nombre: z
     .string()

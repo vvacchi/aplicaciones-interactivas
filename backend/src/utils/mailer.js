@@ -3,9 +3,9 @@ import nodemailer from 'nodemailer';
 /**
  * Envio de correo por SMTP.
  *
- * Se habla SMTP generico y no la API de un proveedor puntual: cambiar de
- * Gmail a Brevo, Resend o cualquier otro es cambiar las variables de
- * entorno, sin tocar el codigo.
+ * Se usa SMTP y no la API de un proveedor puntual: cambiar de Gmail a
+ * Brevo, Resend u otro servicio es cambiar las variables de entorno, sin
+ * tocar el codigo.
  */
 
 const config = () => {
@@ -32,6 +32,13 @@ const config = () => {
   };
 };
 
+const escaparHtml = (texto) =>
+  texto
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+
 const enviar = async ({ para, asunto, texto, html, responderA }) => {
   const { remitente, ...transporte } = config();
   const transporter = nodemailer.createTransport(transporte);
@@ -50,8 +57,7 @@ const enviar = async ({ para, asunto, texto, html, responderA }) => {
  * Correo de recuperacion de contrasena.
  *
  * El enlace apunta a la pantalla del frontend que toma el token del query
- * string. El token tambien va en el texto para poder probar el circuito
- * mientras esa pantalla no exista.
+ * string (/recuperar-password?token=...).
  */
 export const enviarMailRecuperacion = async ({ usuario, token }) => {
   const base = process.env.APP_URL || 'http://localhost:5173';
@@ -72,21 +78,21 @@ export const enviarMailRecuperacion = async ({ usuario, token }) => {
   ].join('\n');
 
   const html = `
-    <div style="font-family: system-ui, sans-serif; color: #1a1a1a; line-height: 1.6;">
-      <h2 style="margin-bottom: 8px;">Recuperar tu contrase&ntilde;a</h2>
-      <p>Hola ${usuario.nombre},</p>
+    <div style="font-family: system-ui, sans-serif; color: #2a2a30; line-height: 1.6;">
+      <h2 style="margin-bottom: 8px; color: #26368a;">Recuperar tu contrase&ntilde;a</h2>
+      <p>Hola ${escaparHtml(usuario.nombre)},</p>
       <p>Recibimos un pedido para restablecer la contrase&ntilde;a de tu cuenta.</p>
       <p style="margin: 24px 0;">
         <a href="${enlace}"
-           style="background:#1a1a1a;color:#fff;padding:12px 20px;border-radius:6px;text-decoration:none;">
+           style="background:#26368a;color:#fff;padding:12px 20px;border-radius:999px;text-decoration:none;">
           Elegir una contrase&ntilde;a nueva
         </a>
       </p>
-      <p style="font-size: 14px; color: #555;">
+      <p style="font-size: 14px; color: #5f606a;">
         El enlace vence en una hora y se puede usar una sola vez.<br>
         Si no pediste el cambio, ignor&aacute; este mensaje.
       </p>
-      <p style="font-size: 14px; color: #555;">Andes Vertical</p>
+      <p style="color: #26368a; font-weight: 600;">Andes Vertical</p>
     </div>
   `;
 
@@ -97,12 +103,6 @@ export const enviarMailRecuperacion = async ({ usuario, token }) => {
     html,
   });
 };
-const escaparHtml = (texto) =>
-  texto
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
 
 /**
  * Respuesta a una consulta, escrita por el administrador en el panel.

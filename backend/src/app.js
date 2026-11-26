@@ -27,7 +27,7 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 app.get('/', (req, res) => {
-  res.json({ mensaje: 'API Bariloche - v1', estado: 'ok' });
+  res.json({ mensaje: 'API Andes Vertical - v1', estado: 'ok' });
 });
 
 app.use('/api', router);

@@ -74,7 +74,7 @@ export const ADMIN = {
 };
 
 export const PUBLICACIONES = [
-  /* ---------------------------- EXPERIENCIAS --------------------------- */
+  // Experiencias
   {
     nombre: 'Travesía de los 4 Refugios',
     categoria: 'trekking',
@@ -294,7 +294,7 @@ export const PUBLICACIONES = [
     },
   },
 
-  /* ------------------------------- CURSOS ------------------------------ */
+  // Cursos
   {
     nombre: 'Curso de iniciación a la escalada deportiva',
     categoria: 'escalada',
@@ -423,7 +423,7 @@ export const PUBLICACIONES = [
     },
   },
 
-  /* ----------------------------- ALQUILERES ---------------------------- */
+  // Alquileres
   {
     nombre: 'Crampones técnicos de 12 puntas',
     categoria: 'montanismo',

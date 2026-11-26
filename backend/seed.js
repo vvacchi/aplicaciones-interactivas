@@ -138,8 +138,8 @@ const cargarConsultas = async (publicaciones) => {
 };
 
 const sincronizarIndices = async () => {
-  // Crea el indice de texto de publicaciones y el unique de email,
-  // que son los que usan la busqueda y el registro.
+  // Deja los indices de la base iguales a los de los modelos: el email
+  // unico de los usuarios y el nombre unico de las categorias.
   await Promise.all([
     Publicacion.syncIndexes(),
     Usuario.syncIndexes(),
