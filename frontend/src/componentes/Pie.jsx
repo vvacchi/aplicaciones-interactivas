@@ -21,7 +21,6 @@ export default function Pie() {
           <h2 className={estilos.titulo}>Ayuda</h2>
           <ul>
             <li><Link to="/contacto">Hacer una consulta</Link></li>
-            <li><Link to="/admin/login">Acceso administradores</Link></li>
           </ul>
         </nav>
       </div>

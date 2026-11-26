@@ -10,7 +10,7 @@ import { Cargando, ErrorCarga, Vacio } from '../../componentes/Estados.jsx';
 import { agruparHorarios } from '../../utils/formato.js';
 import estilos from './Inicio.module.css';
 
-/* ------------------------------ Pedidos ------------------------------ */
+// Pedidos
 // Funciones del modulo: son estables y usePedido no las vuelve a llamar.
 
 /** Experiencias destacadas; si no hay ninguna marcada, las mas recientes. */
@@ -63,7 +63,7 @@ const ESCALA = [
 
 const plural = (n, [uno, varios]) => `${n} ${n === 1 ? uno : varios}`;
 
-/* ----------------------------- Secciones ----------------------------- */
+// Secciones
 
 function Hero({ imagen }) {
   return (
@@ -295,7 +295,7 @@ function Bloques({ comercio }) {
   );
 }
 
-/* ------------------------------- Pagina ------------------------------- */
+// Pagina
 
 export default function Inicio() {
   const experiencias = usePedido(pedirExperiencias);

@@ -56,7 +56,7 @@ function EstadoConsulta({ estado }) {
   return <Etiqueta variante={VARIANTE_ESTADO[estado]}>{ESTADOS_CONSULTA[estado]}</Etiqueta>;
 }
 
-/* ------------------------------- Detalle ------------------------------- */
+// Detalle
 
 const LARGO_RESPUESTA = [10, 5000];
 
@@ -264,7 +264,7 @@ function Detalle({ id, alCambiarEstado, alEliminar, enlaceVolver }) {
   );
 }
 
-/* -------------------------------- Pagina -------------------------------- */
+// Pagina
 
 export default function Consultas() {
   const [params, setParams] = useSearchParams();

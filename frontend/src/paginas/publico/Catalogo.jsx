@@ -101,7 +101,7 @@ const paramsDeApi = (f) => ({
   nivel: f.nivel.join(',') || undefined,
 });
 
-/* ----------------------------- Controles ----------------------------- */
+// Controles
 
 function Buscador({ inicial, alBuscar }) {
   const [texto, setTexto] = useState(inicial);
@@ -194,7 +194,7 @@ function FiltroAtributo({ filtro, elegidos, alCambiar }) {
   );
 }
 
-/* ------------------------------- Pagina ------------------------------- */
+// Pagina
 
 export default function Catalogo() {
   const [params, setParams] = useSearchParams();

@@ -53,7 +53,7 @@ const DESCRIPCION_TIPO = {
   alquiler: 'Equipo que se cobra por día.',
 };
 
-/* ------------------------- Conversion de datos ------------------------- */
+// Conversion de datos
 
 const aTexto = (valor) => (valor === undefined || valor === null ? '' : String(valor));
 
@@ -159,7 +159,7 @@ function aDatos(v) {
   return datos;
 }
 
-/* ------------------------------ Validacion ------------------------------ */
+// Validacion
 
 // Mismas reglas que publicaciones.validacion.js en el back.
 function errorDeNumero(texto, { obligatorio = true, entero = false, minimo = 0, mayorQueCero = false, nombre }) {
@@ -249,7 +249,7 @@ function traducirErroresDelBack(error) {
   );
 }
 
-/* ------------------------------ Piezas ------------------------------ */
+// Piezas
 
 function Seccion({ titulo, bajada, children }) {
   return (
@@ -369,7 +369,7 @@ function EditorImagenes({ imagenes, alCambiar, error }) {
   );
 }
 
-/* ----------------------------- Formulario ----------------------------- */
+// Formulario
 
 function Formulario({ publicacion, categorias }) {
   const navegar = useNavigate();
@@ -600,7 +600,7 @@ function Formulario({ publicacion, categorias }) {
   );
 }
 
-/* ------------------------------- Pagina ------------------------------- */
+// Pagina
 
 // Alta y edicion comparten formulario; con `id` es edicion.
 export default function PublicacionForm() {
