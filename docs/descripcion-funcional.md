@@ -26,7 +26,7 @@ El visitante nunca necesita registrarse: todo el sitio público es de libre acce
 - Exploración por **tipo** (experiencias, cursos, alquiler) o por **categoría**, con la cantidad de propuestas de cada una.
 - Escala de dificultad y nivel, para que el visitante sepa cómo leer las propuestas.
 - Tres secciones con propuestas: experiencias destacadas, cursos y equipo disponible.
-- Presentación del comercio («Nosotros»), horarios de atención, dirección, teléfono, mail y redes.
+- Presentación del comercio («Nosotros»), horarios de atención, dirección, teléfono y mail.
 
 ### Catálogo (`/catalogo`)
 - **Búsqueda por texto:** tienen que aparecer todas las palabras escritas, en el nombre, la descripción o la categoría. No distingue mayúsculas ni tildes y encuentra palabras incompletas («escala» encuentra «escalada»). Ignora palabras como «y», «de» o «la».
@@ -90,7 +90,7 @@ Pantalla de inicio del panel: consultas sin leer, total de publicaciones por tip
 Alta de una cuenta nueva del panel (nombre, apellido, mail, teléfono y contraseña inicial). Solo la ve un administrador con sesión; la persona nueva ingresa con esos datos y cambia la contraseña desde «Perfil».
 
 ### Datos del comercio
-Nombre, descripción, dirección, teléfono, mail, redes sociales y horarios de los siete días. Es lo que el sitio muestra en la portada y en la página de contacto.
+Nombre, descripción, dirección, teléfono, mail, redes sociales y horarios de los siete días. Es lo que el sitio muestra en la portada y en la página de contacto. Las redes sociales quedan guardadas en la ficha, pero el sitio público no las muestra.
 
 ## Reglas de negocio
 

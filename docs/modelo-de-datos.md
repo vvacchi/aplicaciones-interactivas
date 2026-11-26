@@ -141,7 +141,7 @@ Ficha institucional. Es un **documento único**: no hay listado ni identificador
 | `direccion` | texto | obligatorio, 5 a 200 caracteres |
 | `telefono` | texto | obligatorio, 6 a 30 caracteres |
 | `email` | texto | opcional, mail válido |
-| `redes` | objeto | `instagram`, `facebook` (hasta 120) y `whatsapp` (hasta 40), todos opcionales |
+| `redes` | objeto | `instagram`, `facebook` (hasta 120) y `whatsapp` (hasta 40), todos opcionales. Se guardan en la ficha, pero el sitio público no las muestra |
 | `horarios` | lista de horarios | hasta 7, sin días repetidos |
 
 Cada **horario** tiene `dia` (`lunes` … `domingo`, sin tildes), `cerrado` (booleano) y, si está abierto, `desde` y `hasta` en formato `HH:MM`, con el cierre posterior a la apertura.
